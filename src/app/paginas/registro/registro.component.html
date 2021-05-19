@@ -1,0 +1,30 @@
+
+    
+
+    <section   class="container mt-5 h-100 form-control text-dark form-signin border-danger "  style="background-color: rgba(109, 159, 206, 0.747); ">
+        <div class="text-right">
+            <a routerLink='/login' class="text-danger h4" style="text-shadow: 1px 1px black;">Ir a LOGIN</a>
+        </div>
+    
+            <h1 class=" text-center">REGISTRO {{titulo}}</h1>
+        
+            <section class="text-center">
+        
+                <div class="custom-control custom-radio">
+                    <input type="radio" class="custom-control-input" formControlname="tipoRegistro" id="radioPacientes" value="PACIENTES" [(ngModel)]="titulo" [ngModelOptions]="{standalone: true}">
+                    <label for="radioPacientes" class='custom-control-label'>Pacientes</label>
+                </div>
+                <div class="custom-control custom-radio ">
+                    <input type="radio" class="custom-control-input" formControlname="tipoRegistro" id="radioEspecialista" value="ESPECIALISTAS" [(ngModel)]="titulo" [ngModelOptions]="{standalone: true}">
+                    <label for="radioEspecialista" class=' custom-control-label' >Especialistas</label>
+                </div>
+                
+            </section>
+    
+            <app-registro-pacientes *ngIf='titulo=="PACIENTES"'></app-registro-pacientes>
+            <app-registo-especialistas  *ngIf='titulo=="ESPECIALISTAS"'></app-registo-especialistas>
+    
+    
+    </section>        
+
+
