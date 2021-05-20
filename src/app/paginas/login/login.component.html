@@ -1,27 +1,27 @@
-<section class="container mt-5 w-50 h-100 form-control text-dark form-signin border-danger "  style="background-color: rgba(109, 159, 206, 0.747);">
+<section class="container  w-50 h-100 form-control text-dark form-signin border-danger "  style="background-color: rgba(109, 159, 206, 0.747);">
     <div class="text-right">
         <a routerLink='/registro' class="text-danger h4" style="text-shadow: 1px 1px black;">Ir a Registro</a>
     </div>
 
         <h1 class=" text-center">INGRESAR</h1>  
     
-        <form class=' mt-3' >
+        <form class=' mt-3' novalidate  [formGroup]="this.usuarioValidacion" >
 
             <div class="row pb-1 form-group">
                 <div class="col">
                     <label for="">Correo</label>
-                    <input type='email'  class='form-control' placeholder="Correo" formControlName='correo' >
+                    <input type='email'  class='form-control' placeholder="Correo" formControlName='correo'  [class]='this.isValid("correo")'>
     
-                    <!--div class="invalid-feedback" style="font-family: sans-serif;" style="font-family: sans-serif;position: absolute;">
+                    <div class="invalid-feedback" style="font-family: sans-serif;" style="font-family: sans-serif;position: absolute;">
                         <span style="text-shadow: 1px 1px black; font-weight:800;"
-                          *ngIf="pacienteRegForm.controls.correo.errors?.required && pacienteRegForm.controls.correo.touched">
+                          *ngIf="usuarioValidacion.controls.correo.errors?.required && usuarioValidacion.controls.correo.touched">
                           *Por favor ingrese su Correo
                         </span>
                         <span style="text-shadow: 1px 1px black; font-weight:800;"
-                          *ngIf="pacienteRegForm.controls.correo.errors?.pattern && pacienteRegForm.controls.correo.touched">
+                          *ngIf="usuarioValidacion.controls.correo.errors?.pattern && usuarioValidacion.controls.correo.touched">
                           Correo invalido
                         </span>
-                    </div-->
+                    </div>
                 </div>
     
             </div>
@@ -32,14 +32,14 @@
     
                 <div class="col">
                     <label for="">Clave</label>
-                    <input type="password"  class='form-control mb-0' placeholder="Clave" >
-    
-                    <!--div class="invalid-feedback"  style="font-family: sans-serif;position: absolute;">
+                    <input type="password"  class='form-control mb-0' placeholder="Clave" formControlName='clave' [class]='this.isValid("clave")' >
+                    
+                    <div class="invalid-feedback"  style="font-family: sans-serif;position: absolute;">
                         <span style="text-shadow: 1px 1px black; font-weight:800;"
-                          *ngIf="pacienteRegForm.controls.clave.errors?.required && pacienteRegForm.controls.clave.touched">
+                          *ngIf="usuarioValidacion.controls.clave.errors?.required && usuarioValidacion.controls.clave.touched">
                           *Por favor ingrese su Clave
                         </span>
-                    </div-->
+                    </div>
                 </div>
     
                 
@@ -48,13 +48,8 @@
     
             <div class="row mt-4 ">
                 <div class="col">
-                    <button class="btn btn-danger btn-block" >REGISTRARSE!!!</button>
-                </div>
-            </div>
-    
-            <div class="row mt-1 mb-3">
-                <div class="col">
-                    <button type="reset" class="btn btn-warning btn-block">Limpiar</button>
+                    <button class="btn btn-danger btn-block" (click)="this.Ingresar()" [disabled]="this.usuarioValidacion.invalid">Ingresar!!!</button>
+                    <button class="btn btn-dark btn-block" (click)='this.InicioRapido()' >Inicio Rapido</button>
                 </div>
             </div>
 

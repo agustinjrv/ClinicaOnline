@@ -1,5 +1,6 @@
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <a class="navbar-brand" routerLink="bienvenida"><img src='assets/icono.svg' style="width: 30px;height: 30px;">Clinica</a>
+    
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -8,6 +9,10 @@
       <ul class="navbar-nav mr-auto">
         <li class="nav-item ">
           <a class="nav-link" routerLink="home">Home</a>
+          
+        </li>
+        <li>
+          <a class="nav-link" routerLink="seccionUsuarios">Administrar Usuarios</a>
         </li>
         
       </ul>
@@ -25,7 +30,7 @@
 
   </nav>
 
-    <div style="height: 20px;"></div>
+    <div style="height:70px;"></div>
 
 
     <router-outlet></router-outlet>

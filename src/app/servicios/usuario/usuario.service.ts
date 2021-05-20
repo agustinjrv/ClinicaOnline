@@ -1,9 +1,8 @@
+import { EspecialidadesService } from './../especialidades/especialidades.service';
 import { Injectable } from '@angular/core';
 import {AngularFirestore,AngularFirestoreCollection,} from '@angular/fire/firestore/';
-import { AngularFireAuth } from "@angular/fire/auth";
 import { AngularFireDatabase } from '@angular/fire/database';
-import { Especialista } from 'src/app/clases/especialista/especialista';
-import { Paciente } from 'src/app/clases/paciente/paciente';
+import { AuthService } from '../auth/auth.service';
 
 
 
@@ -12,58 +11,55 @@ import { Paciente } from 'src/app/clases/paciente/paciente';
 })
 export class UsuarioService {
 
-  public pathPacientes='/Pacientes';
-  public pathEspecialistas='/Especialistas';
-  public coleccionPacientes:AngularFirestoreCollection<Paciente>;
-  public coleccionEspecialistas:AngularFirestoreCollection<Especialista>;
+  public pathUsuarios='/Usuarios';
+  public coleccionUsuarios:AngularFirestoreCollection<any>;
+  public listaUsuarios;
 
-  constructor(private bd:AngularFirestore, private AuthFirebase:AngularFireAuth ,private bdAuth:AngularFireDatabase) 
+  constructor(private bd:AngularFirestore,
+              private servicioAuth:AuthService ,
+              private bdAuth:AngularFireDatabase,
+              private servicioEspecialidades:EspecialidadesService) 
   { 
-    this.coleccionPacientes=this.bd.collection(this.pathPacientes);
-    this.coleccionEspecialistas=this.bd.collection(this.pathEspecialistas);
+    this.coleccionUsuarios=this.bd.collection(this.pathUsuarios);
   }
 
   public AgregarUno(usuario:any)
   {
+    this.servicioAuth.Register(usuario.correo,usuario.clave).then((error)=>{
 
-    this.AuthFirebase.createUserWithEmailAndPassword(usuario.correo,usuario.clave).then(()=>{
-      this.EnviarMailDeVerificacion();
-    });    
+      ///Mostrar validaciones de las que trae
+      this.AgregarUsuario(usuario);
 
-    if(usuario instanceof Paciente)
-    {
-      this.AgregarPaciente(usuario);
-    }
-    else if(usuario instanceof Especialista)
-    {
-      this.AgregarEspecialista(usuario)
-    }
+    });
+  
+    
   }
 
-  private AgregarEspecialista(usuario:Especialista)
+  private AgregarUsuario(usuario:any)
   {
-    this.coleccionEspecialistas.add({...usuario}).then(()=>{
-      console.log('Especialista Agregado');
+
+    if(usuario.perfil=='Especialista'){
+      this.servicioEspecialidades.AgregarUno(usuario.especialidad);
+    }
+
+
+    this.coleccionUsuarios.add({...usuario}).then(()=>{
+      console.log('Usuario Agregado');
     });
    
   }
 
-  async EnviarMailDeVerificacion(){
-    return await (await this.AuthFirebase.currentUser).sendEmailVerification(); 
+  public TrearTodos()
+  {
+    return this.coleccionUsuarios;
+        
+    
   }
-
-  private AgregarPaciente(usuario:Paciente)
-  { 
-    this.coleccionPacientes.add({...usuario}).then(()=>{
-      console.log('Paciente Agregado');
-    });;
-  }
-
   
 
   public BorrarUno(id:any)
   {
-
+      
   }
 
   public ModificarUno()

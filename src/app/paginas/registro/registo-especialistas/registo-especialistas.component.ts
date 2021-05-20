@@ -67,6 +67,7 @@ export class RegistoEspecialistasComponent implements OnInit {
     this.unEspecialista.imagenPrincipal=this.especialistaRegForm.value.imagenPrincipal;
     
     
+    
     this.servicioUsuario.AgregarUno(this.unEspecialista);
 
   }

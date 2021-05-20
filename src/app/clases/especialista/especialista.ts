@@ -7,4 +7,5 @@ export class Especialista {
     public correo:string;
     public clave:string;
     public imagenPrincipal:any;
+    public perfil='Especialista';
 }

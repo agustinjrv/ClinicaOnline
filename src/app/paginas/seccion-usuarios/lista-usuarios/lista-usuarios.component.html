@@ -1,0 +1,101 @@
+<section class="container ">
+    <div style="width: 200px;">
+        <select id="" class="form-control" [(ngModel)]='this.mostrar'>
+            <option value="Administradores">Administradores</option>
+            <option value="Especialistas">Especialistas</option>
+            <option value="Pacientes">Pacientes</option>
+        </select>
+    </div>
+    
+
+    <table class="table table-dark table-borderless table-hover" *ngIf='this.mostrar=="Administradores"'>
+       
+        <tr>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Edad</th>
+            <th>DNI</th>
+            <th>Correo</th>
+            <th>Clave</th>
+            <th>Perfil</th>
+            <th>Imagen Principal</th>
+        </tr>
+
+        <tr *ngFor='let i of this.listaAdministradores'>
+            <td>{{i.nombre}}</td>
+            <td>{{i.apellido}}</td>
+            <td>{{i.edad}}</td>
+            <td>{{i.dni}}</td>
+            <td>{{i.correo}}</td>
+            <td>{{i.clave}}</td>
+            <td>{{i.perfil}}</td>
+            <td>{{i.imagenPrincipal}}</td>
+        </tr>
+
+    </table>
+    
+
+    <table class="table table-dark table-borderless table-hover" *ngIf='this.mostrar=="Especialistas"'>
+        
+        <tr>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Edad</th>
+            <th>DNI</th>
+            <th>Especialidad</th>
+            <th>Correo</th>
+            <th>Clave</th>
+            <th>Perfil</th>
+            <th>Imagen Principal</th>    
+        </tr>
+
+        <tr *ngFor='let i of this.listaEspecialistas'>
+            <td>{{i.nombre}}</td>
+            <td>{{i.apellido}}</td>
+            <td>{{i.edad}}</td>
+            <td>{{i.dni}}</td>
+            <td>{{i.especialidad}}</td>
+            <td>{{i.correo}}</td>
+            <td>{{i.clave}}</td>
+            <td>{{i.perfil}}</td>
+            <td>{{i.imagenPrincipal}}</td>
+        </tr>
+
+    </table>
+    
+
+
+    <table class="table table-dark table-borderless " *ngIf='this.mostrar=="Pacientes"'>
+        
+
+        <tr>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Edad</th>
+            <th>DNI</th>
+            <th>ObraSocial</th>
+            <th>Correo</th>
+            <th>Clave</th>
+            <th>Perfil</th>
+            <th>Imagen Principal</th>
+            <th>ImagenSecundaria</th>
+        </tr>
+
+        <tr *ngFor='let i of this.listaPacientes'>
+            <td>{{i.nombre}}</td>
+            <td>{{i.apellido}}</td>
+            <td>{{i.edad}}</td>
+            <td>{{i.dni}}</td>
+            <td>{{i.obraSocial}}</td>
+            <td>{{i.correo}}</td>
+            <td>{{i.clave}}</td>
+            <td>{{i.perfil}}</td>
+            <td>{{i.imagenPrincipal}}</td>
+            <td>{{i.imagenSecundaria}}</td>
+
+        </tr>
+
+    </table>
+    
+    
+</section>
