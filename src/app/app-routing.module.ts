@@ -10,17 +10,19 @@ import { RegistroComponent } from './paginas/registro/registro.component';
 import { SeccionUsuariosComponent } from './paginas/seccion-usuarios/seccion-usuarios.component';
 import { SolicitudesComponent } from './paginas/seccion-usuarios/solicitudes/solicitudes.component';
 import { ListaUsuariosComponent } from './paginas/seccion-usuarios/lista-usuarios/lista-usuarios.component';
-import { AuthGuardGuard } from './guard/authGuard/auth-guard.guard';
+import { AuthGuard } from './guard/authGuard/auth.guard';
+import { EsAdministradorGuard } from './guard/esAdministrador/es-administrador.guard';
+
 
 const routes: Routes = [
 
   {path:'',redirectTo:'bienvenida',pathMatch:'full'},
-  {path:'home',component:HomeComponent,canActivate:[AuthGuardGuard]},
+  {path:'home',component:HomeComponent,canActivate:[AuthGuard]},
   {path:'bienvenida',component:BienvenidaComponent},
   {path:'registro',component:RegistroComponent},    
   {path:'login',component:LoginComponent},
   {path:'paginaNoEncontrada',component:PaginaNoEncontradaComponent},
-  {path:'seccionUsuarios',
+  {path:'seccionUsuarios',canActivate:[EsAdministradorGuard],
    children:[
       {path:'',component:SeccionUsuariosComponent},
       {path:'lista',component:ListaUsuariosComponent},

@@ -77,14 +77,6 @@ export class LoginComponent implements OnInit {
   public InicioRapido()
   {
     this.usuarioValidacion.setValue({correo:'admin@admin.com',clave:'123456'})
-    console.log(this.usuarioValidacion);
-    
-    /*
-    this.authServicie.Login('a@a.com','123456').then(()=>{
-      console.log('aaa');
-      this.router.navigateByUrl('/home');
-
-  });*/
   }
 
 

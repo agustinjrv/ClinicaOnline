@@ -8,10 +8,20 @@ import { AuthService } from './servicios/auth/auth.service';
 })
 export class AppComponent {
   title = 'ClinicaOnline';
-  public usuarioLogeado;
+  public usuarioLogeado:any={};
 
   public constructor(private servicioAuth:AuthService){
-    this.usuarioLogeado=localStorage.getItem('usuarioLogeado');
+    this.usuarioLogeado.correo='';
+    this.usuarioLogeado.perfil='';
+    let aux= localStorage.getItem('usuarioLogeado');
+    
+    try {
+      this.usuarioLogeado =JSON.parse(aux);  
+    } catch (error) {
+      
+    }
+    
+    
   }
 
   LogOut()
