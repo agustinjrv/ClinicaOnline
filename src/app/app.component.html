@@ -17,7 +17,7 @@
         
       </ul>
 
-      <div ><!--*ngIf="usuarioLogin == false || usuarioLogin ==null; else salir"-->
+      <div *ngIf="usuarioLogeado == false || usuarioLogeado ==null; else salir">
         <a class="nav-item"><button class="btn btn-outline-primary" routerLink="login">Login</button></a>
         <a class="nav-item ml-3"><a class="btn btn-outline-success" routerLink="registro">Registrarse</a></a>
       </div>

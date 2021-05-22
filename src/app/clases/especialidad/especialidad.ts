@@ -1,4 +1,5 @@
 export class Especialidad {    
+    public id:string;
     public nombre:string;
     public mostrar:boolean;
 

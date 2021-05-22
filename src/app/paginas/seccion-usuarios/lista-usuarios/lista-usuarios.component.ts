@@ -12,29 +12,30 @@ import { Administrador } from 'src/app/clases/administrador/administrador';
 })
 export class ListaUsuariosComponent implements OnInit {
 
-  public mostrar:string='Administradores';
+  public mostrar:string;
   public listaUsuarios:any[]=[];
   public listaAdministradores:Administrador[]=[];
   public listaEspecialistas:Especialista[]=[];
   public listaPacientes:Paciente[]=[];
+  public mostrarSpinner=true;
 
   constructor(private servicioUsuarios:UsuarioService) { 
-    this.servicioUsuarios.TrearTodos().valueChanges().subscribe((data)=>{
-      
+
+
+    this.servicioUsuarios.TraerTodos().valueChanges().subscribe((data)=>{
       this.listaUsuarios=data;
       this.CargarListas();
-      
     });
-      
+    
   }
-
+  
   ngOnInit(): void {
   
   }
 
   public CargarListas()
   {
-    console.log(this.listaUsuarios);
+    
     this.listaUsuarios.forEach(element => {
         
       switch(element.perfil)
@@ -50,6 +51,12 @@ export class ListaUsuariosComponent implements OnInit {
           break;
       }
     });
+    setTimeout(()=>{
+      this.mostrarSpinner=false;
+      this.mostrar='Administradores';
+    },500);
+    
+    
   }
 
 }

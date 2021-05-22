@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
 
+  public estaLogeado=false;
+
   constructor(public  firebaseAuth: AngularFireAuth, private router: Router, private context: AngularFireDatabase) { }
 
   Login(email: string, password: string) {

@@ -1,12 +1,6 @@
 
 import { Component, OnInit } from '@angular/core';
 
-
-
-
-
-
-
 @Component({
   selector: 'app-registro',
   templateUrl: './registro.component.html',
@@ -15,6 +9,8 @@ import { Component, OnInit } from '@angular/core';
 export class RegistroComponent implements OnInit {
 
   public titulo:string='PACIENTES';
+
+  public condicion=true;
   
   constructor() { 
     

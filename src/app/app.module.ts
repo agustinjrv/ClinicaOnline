@@ -18,6 +18,10 @@ import { SolicitudesComponent } from './paginas/seccion-usuarios/solicitudes/sol
 import { GenerarUsuarioComponent } from './paginas/seccion-usuarios/generar-usuario/generar-usuario.component';
 import { ListaUsuariosComponent } from './paginas/seccion-usuarios/lista-usuarios/lista-usuarios.component';
 import { RegistroAdministradoresComponent } from './paginas/registro/registro-administradores/registro-administradores.component';
+import { NegativoDirective } from './directivas/negativo.directive';
+import { ResaltarDirective } from './directivas/resaltar.directive';
+import { SpinnerComponent } from './componentes/spinner/spinner.component';
+
 
 @NgModule({
   declarations: [
@@ -34,6 +38,10 @@ import { RegistroAdministradoresComponent } from './paginas/registro/registro-ad
     GenerarUsuarioComponent,
     ListaUsuariosComponent,
     RegistroAdministradoresComponent,
+    NegativoDirective,
+    ResaltarDirective,
+    SpinnerComponent,
+    
     
   ],
   imports: [

@@ -1,12 +1,8 @@
-export class Paciente {
-    public nombre:string;
-    public apellido:string;
-    public edad:number;
-    public dni:number;
+import { Usuario } from "../usuario/usuario";
+
+export class Paciente extends Usuario{
+    
     public obraSocial:string;
-    public correo:string;
-    public clave:string;
-    public imagenPrincipal:any;
     public imagenSecundaria:any;
     public perfil='Paciente';
 

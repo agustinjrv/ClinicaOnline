@@ -1,11 +1,8 @@
-export class Especialista {
-    public nombre:string;
-    public apellido:string;
-    public edad:number;
-    public dni:number;
+import { Usuario } from "../usuario/usuario";
+
+export class Especialista extends Usuario{
+    
     public especialidad:string;
-    public correo:string;
-    public clave:string;
-    public imagenPrincipal:any;
     public perfil='Especialista';
+    public estadoCuenta=false;
 }

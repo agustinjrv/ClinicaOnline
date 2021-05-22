@@ -3,6 +3,9 @@ import { Injectable } from '@angular/core';
 import {AngularFirestore,AngularFirestoreCollection,} from '@angular/fire/firestore/';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { AuthService } from '../auth/auth.service';
+import { Usuario } from 'src/app/clases/usuario/usuario';
+import { Especialista } from 'src/app/clases/especialista/especialista';
+
 
 
 
@@ -23,11 +26,12 @@ export class UsuarioService {
     this.coleccionUsuarios=this.bd.collection(this.pathUsuarios);
   }
 
-  public AgregarUno(usuario:any)
+  public AgregarUno(usuario:Usuario)
   {
     this.servicioAuth.Register(usuario.correo,usuario.clave).then((error)=>{
 
       ///Mostrar validaciones de las que trae
+
       this.AgregarUsuario(usuario);
 
     });
@@ -35,21 +39,22 @@ export class UsuarioService {
     
   }
 
-  private AgregarUsuario(usuario:any)
+  private async AgregarUsuario(usuario:any)
   {
-
+    
     if(usuario.perfil=='Especialista'){
-      this.servicioEspecialidades.AgregarUno(usuario.especialidad);
+      await this.servicioEspecialidades.AgregarUno(usuario.especialidad);
     }
 
-
-    this.coleccionUsuarios.add({...usuario}).then(()=>{
-      console.log('Usuario Agregado');
-    });
-   
+    usuario.id=this.bd.createId();
+    await this.coleccionUsuarios.doc(usuario.id).set({...usuario});
+    console.log('Usuario Agregado')
+     
   }
 
-  public TrearTodos()
+  
+
+  public TraerTodos()
   {
     return this.coleccionUsuarios;
         
@@ -57,14 +62,21 @@ export class UsuarioService {
   }
   
 
-  public BorrarUno(id:any)
-  {
-      
+  public BorrarUno(unEspecialista:Especialista)
+  {    
+     this.coleccionUsuarios.doc(unEspecialista.id).delete();
   }
 
-  public ModificarUno()
+  public ModificarUno(unEspecialista:Especialista)
   {
+    unEspecialista.estadoCuenta=true;
+    this.coleccionUsuarios.doc(unEspecialista.id).set({...unEspecialista}).then(()=>{
 
+      console.log('modificado');
+
+    });
+    //traer especialidades,cambiar estado
+    //modificar espcialista
   }
 
   

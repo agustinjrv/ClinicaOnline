@@ -1,14 +1,16 @@
-<section class="container ">
-    <div style="width: 200px;">
-        <select id="" class="form-control" [(ngModel)]='this.mostrar'>
-            <option value="Administradores">Administradores</option>
-            <option value="Especialistas">Especialistas</option>
-            <option value="Pacientes">Pacientes</option>
-        </select>
+<section class="container">
+
+    <div class="bg-dark text-center mb-3 form-control  h-100 border-dark">
+        <button class="btn btn-danger" (click)='this.mostrar="Administradores"'>Administradores</button>
+        <button class="btn btn-warning ml-3" (click)='this.mostrar="Especialistas"'>Especialistas</button>
+        <button class="btn btn-success ml-3" (click)='this.mostrar="Pacientes"'>Pacientes</button>
     </div>
+
+    <app-spinner *ngIf='this.mostrarSpinner'></app-spinner>
+
     
 
-    <table class="table table-dark table-borderless table-hover" *ngIf='this.mostrar=="Administradores"'>
+    <table class="table table-dark  table-borderless table-hover"  *ngIf='this.mostrar=="Administradores"'>
        
         <tr>
             <th>Nombre</th>
@@ -17,7 +19,7 @@
             <th>DNI</th>
             <th>Correo</th>
             <th>Clave</th>
-            <th>Perfil</th>
+            <th  class="bg-danger">Perfil</th>
             <th>Imagen Principal</th>
         </tr>
 
@@ -28,14 +30,14 @@
             <td>{{i.dni}}</td>
             <td>{{i.correo}}</td>
             <td>{{i.clave}}</td>
-            <td>{{i.perfil}}</td>
+            <td class="bg-danger">{{i.perfil}}</td>
             <td>{{i.imagenPrincipal}}</td>
         </tr>
 
     </table>
     
 
-    <table class="table table-dark table-borderless table-hover" *ngIf='this.mostrar=="Especialistas"'>
+    <table class="table table-dark table-borderless table-hover"  *ngIf='this.mostrar=="Especialistas"'>
         
         <tr>
             <th>Nombre</th>
@@ -45,7 +47,7 @@
             <th>Especialidad</th>
             <th>Correo</th>
             <th>Clave</th>
-            <th>Perfil</th>
+            <th class="bg-warning text-dark">Perfil</th>
             <th>Imagen Principal</th>    
         </tr>
 
@@ -57,7 +59,7 @@
             <td>{{i.especialidad}}</td>
             <td>{{i.correo}}</td>
             <td>{{i.clave}}</td>
-            <td>{{i.perfil}}</td>
+            <td class="bg-warning text-dark">{{i.perfil}}</td>
             <td>{{i.imagenPrincipal}}</td>
         </tr>
 
@@ -65,7 +67,7 @@
     
 
 
-    <table class="table table-dark table-borderless " *ngIf='this.mostrar=="Pacientes"'>
+    <table class="table table-dark table-success table-borderless text-white " *ngIf='this.mostrar=="Pacientes"'>
         
 
         <tr>
@@ -76,7 +78,7 @@
             <th>ObraSocial</th>
             <th>Correo</th>
             <th>Clave</th>
-            <th>Perfil</th>
+            <th class="bg-success">Perfil</th>
             <th>Imagen Principal</th>
             <th>ImagenSecundaria</th>
         </tr>
@@ -89,7 +91,7 @@
             <td>{{i.obraSocial}}</td>
             <td>{{i.correo}}</td>
             <td>{{i.clave}}</td>
-            <td>{{i.perfil}}</td>
+            <td class="bg-success">{{i.perfil}}</td>
             <td>{{i.imagenPrincipal}}</td>
             <td>{{i.imagenSecundaria}}</td>
 

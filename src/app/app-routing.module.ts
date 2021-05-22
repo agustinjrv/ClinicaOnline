@@ -10,11 +10,12 @@ import { RegistroComponent } from './paginas/registro/registro.component';
 import { SeccionUsuariosComponent } from './paginas/seccion-usuarios/seccion-usuarios.component';
 import { SolicitudesComponent } from './paginas/seccion-usuarios/solicitudes/solicitudes.component';
 import { ListaUsuariosComponent } from './paginas/seccion-usuarios/lista-usuarios/lista-usuarios.component';
+import { AuthGuardGuard } from './guard/authGuard/auth-guard.guard';
 
 const routes: Routes = [
 
   {path:'',redirectTo:'bienvenida',pathMatch:'full'},
-  {path:'home',component:HomeComponent},
+  {path:'home',component:HomeComponent,canActivate:[AuthGuardGuard]},
   {path:'bienvenida',component:BienvenidaComponent},
   {path:'registro',component:RegistroComponent},    
   {path:'login',component:LoginComponent},
