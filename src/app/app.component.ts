@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+
 import { AuthService } from './servicios/auth/auth.service';
+
 
 @Component({
   selector: 'app-root',
@@ -7,10 +9,12 @@ import { AuthService } from './servicios/auth/auth.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'ClinicaOnline';
-  public usuarioLogeado:any={};
+
+  public usuarioLogeado:any=false;
+ 
 
   public constructor(private servicioAuth:AuthService){
+    this.usuarioLogeado={};
     this.usuarioLogeado.correo='';
     this.usuarioLogeado.perfil='';
     let aux= localStorage.getItem('usuarioLogeado');
@@ -24,11 +28,13 @@ export class AppComponent {
     
   }
 
+  
+
   LogOut()
   {
     this.servicioAuth.LogOutCurrentUser();
     localStorage.setItem('usuarioLogeado','');
-    location.href="/login";
+    location.href="bienvenida/login";
   }
 
 

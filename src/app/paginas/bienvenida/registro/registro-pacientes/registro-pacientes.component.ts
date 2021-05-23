@@ -63,10 +63,13 @@ export class RegistroPacientesComponent implements OnInit {
       this.unPaciente.correo=this.pacienteRegForm.value.correo;
       this.unPaciente.clave=this.pacienteRegForm.value.clave;
       this.unPaciente.imagenPrincipal=this.pacienteRegForm.value.imagenPrincipal;
-//      this.unPaciente.imagenSecundaria=this.pacienteRegForm.value.imagenSecundaria;
+    //this.unPaciente.imagenSecundaria=this.pacienteRegForm.value.imagenSecundaria;
 
     this.servicioUsuario.AgregarUno(this.unPaciente);
     
+    setTimeout(()=>{
+      this.router.navigateByUrl('bienvenida/login');
+    },500);
 
   }
 

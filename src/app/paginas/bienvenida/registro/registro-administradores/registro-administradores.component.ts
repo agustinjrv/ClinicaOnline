@@ -67,6 +67,9 @@ export class RegistroAdministradoresComponent implements OnInit {
     
     this.servicioUsuario.AgregarUno(this.unAdministrador);
 
+    alert('Agregado');
+    
+
 
   }
 }

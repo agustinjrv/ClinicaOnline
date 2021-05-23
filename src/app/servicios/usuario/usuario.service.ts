@@ -43,7 +43,7 @@ export class UsuarioService {
   {
     
     if(usuario.perfil=='Especialista'){
-      await this.servicioEspecialidades.AgregarUno(usuario.especialidad);
+      await this.servicioEspecialidades.AgregarUno(usuario.especialidades);
     }
 
     usuario.id=this.bd.createId();

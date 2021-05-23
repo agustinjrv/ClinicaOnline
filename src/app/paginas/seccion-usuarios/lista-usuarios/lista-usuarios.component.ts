@@ -1,8 +1,8 @@
-import { Especialista } from './../../../clases/especialista/especialista';
-import { Paciente } from './../../../clases/paciente/paciente';
 import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from 'src/app/servicios/usuario/usuario.service';
 import { Administrador } from 'src/app/clases/administrador/administrador';
+import { Especialista } from 'src/app/clases/especialista/especialista';
+import { Paciente } from 'src/app/clases/paciente/paciente';
 
 
 @Component({

@@ -9,17 +9,17 @@
       <ul class="navbar-nav mr-auto">
         <li class="nav-item ">
           <a class="nav-link" routerLink="home">Home</a>
-          
         </li>
-        <li *ngIf='usuarioLogeado.perfil=="Administrador"'>
+
+        <li *ngIf='this.usuarioLogeado.perfil=="Administrador"'>
           <a class="nav-link" routerLink="seccionUsuarios">Administrar Usuarios</a>
         </li>	
         
       </ul>
 
       <div *ngIf="usuarioLogeado.correo == false || usuarioLogeado.correo ==null || usuarioLogeado.correo =='' ; else salir">
-        <a class="nav-item"><button class="btn btn-outline-primary" routerLink="login">Login</button></a>
-        <a class="nav-item ml-3"><a class="btn btn-outline-success" routerLink="registro">Registrarse</a></a>
+        <a class="nav-item"><button class="btn btn-outline-primary" routerLink="bienvenida/login">Login</button></a>
+        <a class="nav-item ml-3"><a class="btn btn-outline-success" routerLink="bienvenida/registro">Registrarse</a></a>
       </div>
 
       <ng-template #salir>
@@ -32,8 +32,10 @@
 
     <div style="height:70px;"></div>
 
+<router-outlet></router-outlet>
 
-    <router-outlet></router-outlet>
+
+    
 
     <!--form class="form-inline my-2 my-lg-0">
         <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">

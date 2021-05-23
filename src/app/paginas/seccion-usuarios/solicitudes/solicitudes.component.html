@@ -1,31 +1,41 @@
-<section class="container">
+<section class="container-">
 
     <app-spinner *ngIf='this.mostrarSpinner'></app-spinner>
-    <table class="table table-dark table-borderless table-hover"  *ngIf='!this.mostrarSpinner'>
+
+    <div class="row">
+        <div class="col-9">
+            <h1>Especialistas</h1>
+            <table class="table table-dark table-borderless table-hover"  *ngIf='!this.mostrarSpinner'>
         
-        <tr>
-            <th>Nombre</th>
-            <th>Apellido</th>
-            <th>Edad</th>
-            <th>DNI</th>
-            <th>Especialidad</th>
-            <th>Correo</th>
-            <th>Imagen Principal</th>    
-            <th>Activar</th>
-            <th>Negar</th>
-        </tr>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Edad</th>
+                    <th>DNI</th>
+                    <th>Correo</th>
+                    <th>Imagen</th>    
+                </tr>
+        
+                <tr *ngFor='let i of this.listaEspecialistas' (click)='this.SeleccionarEspecialista(i)'>
+                    <td>{{i.nombre}}</td>
+                    <td>{{i.apellido}}</td>
+                    <td>{{i.edad}}</td>
+                    <td>{{i.dni}}</td>
+                    <td>{{i.correo}}</td>
+                    <td>{{i.imagenPrincipal}}</td>
+                </tr>
+        
+            </table>
 
-        <tr *ngFor='let i of this.listaEspecialistas'>
-            <td>{{i.nombre}}</td>
-            <td>{{i.apellido}}</td>
-            <td>{{i.edad}}</td>
-            <td>{{i.dni}}</td>
-            <td class="bg-warning text-dark">{{i.especialidad}}</td>
-            <td>{{i.correo}}</td>
-            <td>{{i.imagenPrincipal}}</td>
-            <td><button class="btn btn-success btn-block" (click)='this.ActivarCuenta(i)'>Activar</button></td>
-            <td><button class="btn btn-danger btn-block" (click)='this.NegarCuenta(i)'>Negar</button></td>
-        </tr>
+        </div>
 
-    </table>
+
+
+        <div class="col-3">
+            <h1>Especialidades</h1>
+            <app-tabla-especialidades  [listaEspecialidades]='this.listaEspecialidades' (aceptar)='this.ActivarCuenta($event)' (negar)='this.NegarCuenta($event)'></app-tabla-especialidades>
+        </div>
+
+    </div>
+    
 </section>

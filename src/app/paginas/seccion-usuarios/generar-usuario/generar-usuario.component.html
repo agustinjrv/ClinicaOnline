@@ -1,25 +1,12 @@
 
     <section class="container h-100 form-control text-dark form-signin border-danger "  style="background-color: rgba(109, 159, 206, 0.747); ">
-        <div class="text-right">
-            <a routerLink='/login' class="text-danger h4" style="text-shadow: 1px 1px black;">Ir a LOGIN</a>
-        </div>
     
             <h1 class=" text-center">REGISTRO {{titulo}}</h1>
         
             <section class="text-center">
-        
-                <div class="custom-control custom-radio">
-                    <input type="radio" class="custom-control-input" formControlname="tipoRegistro" id="radioPacientes" value="PACIENTES" [(ngModel)]="titulo" [ngModelOptions]="{standalone: true}">
-                    <label for="radioPacientes" class='custom-control-label'>Pacientes</label>
-                </div>
-                <div class="custom-control custom-radio ">
-                    <input type="radio" class="custom-control-input" formControlname="tipoRegistro" id="radioEspecialista" value="ESPECIALISTAS" [(ngModel)]="titulo" [ngModelOptions]="{standalone: true}">
-                    <label for="radioEspecialista" class='custom-control-label'>Especialistas</label>
-                </div>
-                <div class="custom-control custom-radio ">
-                    <input type="radio" class="custom-control-input" formControlname="tipoRegistro" id="radioAdministrador" value="ADMINISTRADORES" [(ngModel)]="titulo" [ngModelOptions]="{standalone: true}">
-                    <label for="radioAdministrador" class='custom-control-label'>Administradores</label>
-                </div>
+                <button class="btn btn-success ml-3" (click)='this.titulo="PACIENTES"'>Pacientes</button>
+                <button class="btn btn-warning ml-3" (click)='this.titulo="ESPECIALISTAS"'>Especialistas</button>
+                <button class="btn btn-danger ml-3" (click)='this.titulo="ADMINISTRADORES"'>Administradores</button>
                 
             </section>
     

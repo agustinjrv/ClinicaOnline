@@ -1,8 +1,10 @@
-import { Especialidad } from './../../../clases/especialidad/especialidad';
+import { Especialidad } from 'src/app/clases/especialidad/especialidad';
+
 import { UsuarioService } from 'src/app/servicios/usuario/usuario.service';
 import { Component, OnInit } from '@angular/core';
 import { Especialista } from 'src/app/clases/especialista/especialista';
 import { EspecialidadesService } from 'src/app/servicios/especialidades/especialidades.service';
+import { TablaEspecialidadesComponent } from 'src/app/componentes/tabla-especialidades/tabla-especialidades.component';
 
 
 @Component({
@@ -14,6 +16,8 @@ export class SolicitudesComponent implements OnInit {
 
   public mostrarSpinner=true;
   public listaEspecialistas:any[]=[];
+  public listaEspecialidades:any=false;
+  public especialistaSeleccionado:Especialista;
 
   constructor(private servicioUsuario:UsuarioService,private servicioEspecialidades:EspecialidadesService ) 
   { 
@@ -38,17 +42,26 @@ export class SolicitudesComponent implements OnInit {
     })
   }
 
-  public ActivarCuenta(unEspecialista:Especialista)
+  public ActivarCuenta(a)
   {
-      this.servicioUsuario.ModificarUno(unEspecialista);
-      this.servicioEspecialidades.ModificarUno(unEspecialista.especialidad);
+      this.servicioUsuario.ModificarUno(this.especialistaSeleccionado);
+
+      this.especialistaSeleccionado.especialidades.forEach(element => {
+        this.servicioEspecialidades.ModificarUno(element);
+      });
   }
 
 
-  public NegarCuenta(unEspecialista:Especialista)
+  public NegarCuenta(a)
   {
-    this.servicioUsuario.BorrarUno(unEspecialista);
-    this.servicioEspecialidades.BorrarUno(unEspecialista.id);
+    this.servicioUsuario.BorrarUno(this.especialistaSeleccionado);
+  }
+
+  public SeleccionarEspecialista(especialista){
+      this.especialistaSeleccionado=especialista;
+      this.listaEspecialidades=[];
+      this.listaEspecialidades=especialista.especialidades;
+
   }
 
 }

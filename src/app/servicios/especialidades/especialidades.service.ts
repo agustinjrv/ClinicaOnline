@@ -2,6 +2,7 @@ import { AngularFireDatabase } from '@angular/fire/database';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore/';
 import { Injectable } from '@angular/core';
 import { Especialidad } from 'src/app/clases/especialidad/especialidad';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class EspecialidadesService {
 
   public pathEspecialidad='/Especialidades';
   public coleccionEspecialidades:AngularFirestoreCollection<any>;
-  public listaEspecialidades;
+  public listaEspecialidades:any[]=[];
   
   
   
@@ -25,21 +26,28 @@ export class EspecialidadesService {
     });
   }
 
-  public  AgregarUno(unaEspecialidad:any)
+  public  AgregarUno(nuevasEspecialidades:any[])
   {
-    let flag1=false;
- 
-    this.listaEspecialidades.forEach(element => {
-        if(element.nombre==unaEspecialidad)  
-        {
-          flag1=true;          
-        }
-     });
-
-    if(!flag1)
+    
+    for(let i=0;i<nuevasEspecialidades.length;i++)
     {
-       this.AgregarEspecialidad(unaEspecialidad);
-    }   
+      let encontro=false;
+      for(let j=0;j<this.listaEspecialidades.length;j++)
+      {
+        if(nuevasEspecialidades[i]==this.listaEspecialidades[j].nombre)
+        {
+            encontro=true;
+            break;
+        }        
+      } 
+
+      if(!encontro)
+      {
+        this.AgregarEspecialidad( nuevasEspecialidades[i]);
+      }   
+    }
+    
+    
    
     
   }
@@ -51,6 +59,7 @@ export class EspecialidadesService {
 
    
       let nuevaEspecialidad= new Especialidad(unaEspecialidad,false);
+      nuevaEspecialidad.id=this.bd.createId();
     
       this.coleccionEspecialidades.add({...nuevaEspecialidad}).then(()=>{
         console.log('Especialidad Agregada');
@@ -67,13 +76,12 @@ export class EspecialidadesService {
     return this.coleccionEspecialidades;    
   }
 
-  public ModificarUno(unaEspecialidad:string)
+  public ModificarUno(unaEspecialidad:any)
   {
       let especialidadModi:Especialidad;
 
       this.listaEspecialidades.forEach(element => {
 
-        console.log('estoy en el foreach');
         if(element.nombre==unaEspecialidad)
         {
           especialidadModi=element;
