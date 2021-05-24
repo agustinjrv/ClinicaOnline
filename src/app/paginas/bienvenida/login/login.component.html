@@ -49,8 +49,20 @@
             <div class="row mt-4 ">
                 <div class="col">
                     <button class="btn btn-danger btn-block" (click)="this.Ingresar()" [disabled]="this.usuarioValidacion.invalid">Ingresar!!!</button>
-                    <button class="btn btn-dark btn-block" (click)='this.InicioRapido()' >Inicio Rapido</button>
+                    
                 </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col">
+                    <button class="btn btn-dark btn-block" (click)='this.InicioRapido("admin@admin.com","123456")' >Admin</button>
+                </div>
+                <div class="col">
+                    <button class="btn btn-dark btn-block" (click)='this.InicioRapido("paciente@paciente.com","123456")' >Paciente</button>
+                </div>
+                <div class="col">
+                    <button class="btn btn-dark btn-block" (click)='this.InicioRapido("pepeArgento@gmail.com","134555588")' >Especialista</button>
+                </div>               
+
             </div>
 
         </form>

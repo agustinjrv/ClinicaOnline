@@ -44,6 +44,7 @@ export class ListaUsuariosComponent implements OnInit {
           this.listaAdministradores.push(element);
           break;
         case 'Especialista':
+          if(element.estadoCuenta)
           this.listaEspecialistas.push(element);
           break;
         case 'Paciente':

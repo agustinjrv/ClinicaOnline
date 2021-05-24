@@ -1,10 +1,14 @@
 import { EspecialidadesService } from './../especialidades/especialidades.service';
 import { Injectable } from '@angular/core';
-import {AngularFirestore,AngularFirestoreCollection,} from '@angular/fire/firestore/';
+import { AngularFirestore, AngularFirestoreCollection, } from '@angular/fire/firestore/';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { AuthService } from '../auth/auth.service';
 import { Usuario } from 'src/app/clases/usuario/usuario';
 import { Especialista } from 'src/app/clases/especialista/especialista';
+import { AngularFireStorage } from '@angular/fire/storage';
+import * as firebase from 'firebase';
+import { Paciente } from 'src/app/clases/paciente/paciente';
+import { Router } from '@angular/router';
 
 
 
@@ -14,63 +18,132 @@ import { Especialista } from 'src/app/clases/especialista/especialista';
 })
 export class UsuarioService {
 
-  public pathUsuarios='/Usuarios';
-  public coleccionUsuarios:AngularFirestoreCollection<any>;
+  public pathUsuarios = '/Usuarios';
+  public coleccionUsuarios: AngularFirestoreCollection<any>;
   public listaUsuarios;
 
-  constructor(private bd:AngularFirestore,
-              private servicioAuth:AuthService ,
-              private bdAuth:AngularFireDatabase,
-              private servicioEspecialidades:EspecialidadesService) 
-  { 
-    this.coleccionUsuarios=this.bd.collection(this.pathUsuarios);
+  constructor(private bd: AngularFirestore,
+    private servicioAuth: AuthService,
+    private bdAuth: AngularFireDatabase,
+    private servicioEspecialidades: EspecialidadesService,
+    private storage: AngularFireStorage,
+    private router:Router) {
+    this.coleccionUsuarios = this.bd.collection(this.pathUsuarios);
   }
 
-  public AgregarUno(usuario:Usuario)
+  public AgregarUno(usuario: any, foto1: any, foto2?: any)
   {
-    this.servicioAuth.Register(usuario.correo,usuario.clave).then((error)=>{
+    let fotoCargada1;
+    let fotoCargada2;
 
-      ///Mostrar validaciones de las que trae
+    this.servicioAuth.Register(usuario.correo, usuario.clave).then((response) => {
 
-      this.AgregarUsuario(usuario);
+         usuario.id = response.user.uid;
+
+
+      if (foto2!=null)
+      {
+
+        
+        const filePath = `/usuarios/${usuario.id}/1.png`;
+        const ref = this.storage.ref(filePath);
+        const task = this.storage.upload(filePath, foto1).then(()=>{
+
+            const filePath2 = `/usuarios/${usuario.id}/2.png`;
+            const ref2 = this.storage.ref(filePath2);
+            const task2 = this.storage.upload(filePath2, foto2).then(()=>{
+
+              let storages = firebase.default.storage();
+              let storageRef = storages.ref();
+              let spaceRef = storageRef.child(filePath);
+    
+              let storages2 = firebase.default.storage();
+              let storageRef2 = storages2.ref();
+              let spaceRef2 = storageRef2.child(filePath2);
+    
+              spaceRef.getDownloadURL().then(url => {
+                fotoCargada1 = url;
+                fotoCargada1 = `${fotoCargada1}`;
+                usuario.imagenPrincipal=fotoCargada1;      
+                
+                  spaceRef2.getDownloadURL().then((url)=>{
+                    fotoCargada2 = url;
+                    fotoCargada2 = `${fotoCargada2}`;
+                    usuario.imagenSecundaria=fotoCargada2;
+                    this.AgregarUsuario(usuario);
+                    
+                  });
+
+              });
+
+
+            });
+
+        });
+
+      }
+      else
+      {
+
+        
+        const filePath = `/usuarios/${usuario.id}/1.png`;
+        const ref = this.storage.ref(filePath);
+        const task = this.storage.upload(filePath, foto1).then(()=>{
+
+          let storages = firebase.default.storage();
+          let storageRef = storages.ref();
+          let spaceRef = storageRef.child(filePath);
+  
+            spaceRef.getDownloadURL().then(url => {
+    
+    
+              fotoCargada1 = url
+              fotoCargada1 = `${fotoCargada1}`
+              usuario.imagenPrincipal = fotoCargada1;
+    
+              this.AgregarUsuario(usuario);
+    
+            });
+        });       
+
+      }
+
+      
 
     });
-  
-    
+
+
   }
 
-  private async AgregarUsuario(usuario:any)
-  {
-    
-    if(usuario.perfil=='Especialista'){
+  public async AgregarUsuario(usuario: any) {
+
+    if (usuario.perfil == 'Especialista') {
       await this.servicioEspecialidades.AgregarUno(usuario.especialidades);
     }
 
-    usuario.id=this.bd.createId();
-    await this.coleccionUsuarios.doc(usuario.id).set({...usuario});
+    //usuario.id=this.bd.createId();
+    await this.coleccionUsuarios.doc(usuario.id).set({ ...usuario });
     console.log('Usuario Agregado')
-     
+    this.router.navigateByUrl('bienvenida/login');
+
   }
 
-  
 
-  public TraerTodos()
-  {
+
+  public TraerTodos() {
     return this.coleccionUsuarios;
-        
-    
-  }
-  
 
-  public BorrarUno(unEspecialista:Especialista)
-  {    
-     this.coleccionUsuarios.doc(unEspecialista.id).delete();
+
   }
 
-  public ModificarUno(unEspecialista:Especialista)
-  {
-    unEspecialista.estadoCuenta=true;
-    this.coleccionUsuarios.doc(unEspecialista.id).set({...unEspecialista}).then(()=>{
+
+  public BorrarUno(unEspecialista: Especialista) {
+    this.coleccionUsuarios.doc(unEspecialista.id).delete();
+  }
+
+  public ModificarUno(unEspecialista: Especialista) {
+    unEspecialista.estadoCuenta = true;
+    this.coleccionUsuarios.doc(unEspecialista.id).set({ ...unEspecialista }).then(() => {
 
       console.log('modificado');
 
@@ -79,6 +152,6 @@ export class UsuarioService {
     //modificar espcialista
   }
 
-  
+
 
 }

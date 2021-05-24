@@ -10,7 +10,7 @@ import { HomeComponent } from './paginas/home/home.component';
 import { PaginaNoEncontradaComponent } from './paginas/pagina-no-encontrada/pagina-no-encontrada.component';
 import { SeccionUsuariosModule } from './paginas/seccion-usuarios/seccion-usuarios.module';
 import { BienvenidaModule } from './paginas/bienvenida/bienvenida.module';
-import { EnterDirective } from './directivas/enter.directive';
+
 
   
 
@@ -21,7 +21,7 @@ import { EnterDirective } from './directivas/enter.directive';
     AppComponent,
     HomeComponent,
     PaginaNoEncontradaComponent,
-    EnterDirective,
+    
   ],
   imports: [
     

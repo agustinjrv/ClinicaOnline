@@ -74,9 +74,9 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  public InicioRapido()
+  public InicioRapido(_correo:string,_clave:string)
   {
-    this.usuarioValidacion.setValue({correo:'admin@admin.com',clave:'123456'})
+    this.usuarioValidacion.setValue({correo:_correo,clave:_clave})
   }
 
 

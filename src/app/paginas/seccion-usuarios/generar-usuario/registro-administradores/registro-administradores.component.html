@@ -1,0 +1,137 @@
+
+    <form class=' mt-3' novalidate  [formGroup]="administradorRegForm">
+        <div class="row pb-1 form-group">
+            <div class="col ">
+                <label for="">Nombre</label>
+                <input type="text" class='form-control' placeholder="Nombre" formControlName='nombre' [class]="this.isValid('nombre')">
+    
+                    <div class="invalid-feedback" style="font-family: sans-serif;position: absolute;">
+                        <span style="text-shadow: 1px 1px black; font-weight:800;"
+                            *ngIf="administradorRegForm.controls.nombre.errors?.required && administradorRegForm.controls.nombre.touched">
+                            *Por favor ingrese su Nombre
+                        </span>
+                    </div>
+            </div>
+    
+            <div class="col">
+                <label for="">Apellido</label>
+                <input type="text"  class='form-control' placeholder="Apellido" formControlName='apellido' [class]="this.isValid('apellido')">
+    
+                <div class="invalid-feedback" style="font-family: sans-serif;" style="font-family: sans-serif;position: absolute;">
+                    <span style="text-shadow: 1px 1px black; font-weight:800;"
+                        *ngIf="administradorRegForm.controls.apellido.errors?.required && administradorRegForm.controls.apellido.touched">
+                        *Por favor ingrese su Apellido
+                    </span>
+                </div>
+            </div>
+    
+        </div>
+    
+        <div class="row pb-1 form-group">
+            <div class="col">
+                <label for="">Edad</label>
+                <input type="number"  class='form-control' placeholder="Edad" formControlName='edad' [class]="this.isValid('edad')">
+    
+                <div class="invalid-feedback" style="font-family: sans-serif;" style="font-family: sans-serif;position: absolute;">
+                    <span style="text-shadow: 1px 1px black; font-weight:800;"
+                        *ngIf="administradorRegForm.controls.edad.errors?.required && administradorRegForm.controls.edad.touched">
+                        *Por favor ingrese su Edad
+                    </span>
+                </div>
+    
+            </div>
+    
+            <div class="col">
+                <label for="">DNI</label>
+                <input type="number"  class='form-control' placeholder="DNI" formControlName='dni' [class]="this.isValid('dni')">
+    
+                
+                <div class="invalid-feedback" style="font-family: sans-serif;" style="font-family: sans-serif;position: absolute;">
+                    <span style="text-shadow: 1px 1px black; font-weight:800;"
+                        *ngIf="administradorRegForm.controls.dni.errors?.required && administradorRegForm.controls.dni.touched">
+                        *Por favor ingrese su DNI
+                    </span>
+                </div>
+            </div>
+        </div>
+    
+        
+    
+        <div class="row pb-1 form-group">
+    
+            <div class="col">
+                <label for="">Correo</label>
+                <input type='email'  class='form-control' placeholder="Correo" formControlName='correo' [class]="this.isValid('correo')">
+    
+                <div class="invalid-feedback" style="font-family: sans-serif;" style="font-family: sans-serif;position: absolute;">
+                    <span style="text-shadow: 1px 1px black; font-weight:800;"
+                        *ngIf="administradorRegForm.controls.correo.errors?.required && administradorRegForm.controls.correo.touched">
+                        *Por favor ingrese su Correo
+                    </span>
+                    <span style="text-shadow: 1px 1px black; font-weight:800;"
+                        *ngIf="administradorRegForm.controls.correo.errors?.pattern && administradorRegForm.controls.correo.touched">
+                        Correo invalido
+                    </span>
+                </div>
+            </div>    
+
+            <div class="col">
+
+            </div>
+    
+    
+        </div>
+    
+        <div class="row pb-1 form-group">
+            
+    
+            <div class="col">
+                <label for="">Clave</label>
+                <input type="password"  class='form-control mb-0' placeholder="Clave" formControlName='clave' [class]="this.isValid('clave')">
+    
+                <div class="invalid-feedback"  style="font-family: sans-serif;position: absolute;">
+                    <span style="text-shadow: 1px 1px black; font-weight:800;"
+                        *ngIf="administradorRegForm.controls.clave.errors?.required && administradorRegForm.controls.clave.touched">
+                        *Por favor ingrese su Clave
+                    </span>
+                </div>
+            </div>
+    
+            <div class="col"></div>
+    
+        </div>
+    
+    
+        <div class="row pb-1 form-group">
+            <div class="col">
+                <label for="">Foto de perfil Principal</label><br>
+                <input type="file" class="btn btn-dark" accept=".png, .jpg" 
+                        (change)='SubirFoto1($event)'
+                        formControlName='imagenPrincipal' 
+                        [class]="isValid('imagenPrincipal')">
+    
+                <div class="invalid-feedback"  style="font-family: sans-serif;position: absolute;">
+                    <span style="text-shadow: 1px 1px black; font-weight:800;"
+                        *ngIf="administradorRegForm.controls.imagenPrincipal.errors?.required && administradorRegForm.controls.imagenPrincipal.touched">
+                        *Por favor ingrese una foto
+                    </span>
+                </div>
+            </div>
+        </div>
+    
+        <div class="row mt-4 ">
+            <div class="col">
+                
+                <button class="btn btn-danger btn-block" (click)='this.RegistrarAdministrador()' [disabled]="this.administradorRegForm.invalid">REGISTRARSE!!!</button>
+            </div>
+        </div>
+    
+        <div class="row mt-1">
+            <div class="col">
+                <button type="reset" class="btn btn-warning btn-block">Limpiar</button>
+            </div>
+        </div>
+    
+    </form>
+
+

@@ -10,8 +10,10 @@ import { GenerarUsuarioComponent } from './generar-usuario/generar-usuario.compo
 import { SolicitudesComponent } from './solicitudes/solicitudes.component';
 import { TablaEspecialidadesComponent } from 'src/app/componentes/tabla-especialidades/tabla-especialidades.component';
 
-
-
+import { AutocompleteLibModule } from 'angular-ng-autocomplete';
+import { RegistroAdministradoresComponent } from './generar-usuario/registro-administradores/registro-administradores.component';
+import { RegistroPacientesComponent } from './generar-usuario/registro-pacientes/registro-pacientes.component';
+import { RegistroEspecialistasComponent } from './generar-usuario/registro-especialistas/registro-especialistas.component';
 
 @NgModule({
   declarations: [
@@ -20,8 +22,10 @@ import { TablaEspecialidadesComponent } from 'src/app/componentes/tabla-especial
     ListaUsuariosComponent,
     GenerarUsuarioComponent,
     SolicitudesComponent,
-     TablaEspecialidadesComponent 
-    
+     TablaEspecialidadesComponent,
+     RegistroAdministradoresComponent,
+     RegistroPacientesComponent,
+     RegistroEspecialistasComponent
     
   ],
   imports: [
@@ -29,6 +33,7 @@ import { TablaEspecialidadesComponent } from 'src/app/componentes/tabla-especial
     SeccionUsuariosRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    AutocompleteLibModule
     
   ],
   

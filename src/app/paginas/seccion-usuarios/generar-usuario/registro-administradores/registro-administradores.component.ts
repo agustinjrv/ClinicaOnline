@@ -15,6 +15,7 @@ export class RegistroAdministradoresComponent implements OnInit {
   administradorRegForm: FormGroup;
   public unAdministrador:Administrador;
   private isEmail =/\S+@\S+\.\S+/;
+  public foto1:any;
 
   constructor(private fb: FormBuilder,private router: Router,private servicioUsuario:UsuarioService) 
   { 
@@ -51,6 +52,12 @@ export class RegistroAdministradoresComponent implements OnInit {
     
   }
 
+  public SubirFoto1($event)
+  {
+    console.log($event)
+    this.foto1 = $event.target.files[0];
+  }
+
 
 
  
@@ -63,10 +70,10 @@ export class RegistroAdministradoresComponent implements OnInit {
     this.unAdministrador.dni=this.administradorRegForm.value.dni;
     this.unAdministrador.correo=this.administradorRegForm.value.correo;
     this.unAdministrador.clave=this.administradorRegForm.value.clave;
-    this.unAdministrador.imagenPrincipal=this.administradorRegForm.value.imagenPrincipal;
+    //this.unAdministrador.imagenPrincipal=this.administradorRegForm.value.imagenPrincipal;
     
     
-    //this.servicioUsuario.AgregarUno(this.unAdministrador);
+    this.servicioUsuario.AgregarUno(this.unAdministrador,this.foto1);
 
     alert('Agregado');
     

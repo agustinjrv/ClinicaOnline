@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './paginas/home/home.component';
 import { PaginaNoEncontradaComponent } from './paginas/pagina-no-encontrada/pagina-no-encontrada.component';
-
 import { AuthGuard } from './guard/authGuard/auth.guard';
 import { EsAdministradorGuard } from './guard/esAdministrador/es-administrador.guard';
 
