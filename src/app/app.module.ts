@@ -8,8 +8,12 @@ import { AngularFireModule } from '@angular/fire';
 import { environment } from 'src/environments/environment';
 import { HomeComponent } from './paginas/home/home.component';
 import { PaginaNoEncontradaComponent } from './paginas/pagina-no-encontrada/pagina-no-encontrada.component';
-import { SeccionUsuariosModule } from './paginas/seccion-usuarios/seccion-usuarios.module';
 import { BienvenidaModule } from './paginas/bienvenida/bienvenida.module';
+import { AdministradorModule } from './paginas/administrador/administrador.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
 
 
   
@@ -22,14 +26,18 @@ import { BienvenidaModule } from './paginas/bienvenida/bienvenida.module';
     HomeComponent,
     PaginaNoEncontradaComponent,
     
+    
   ],
   imports: [
     
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    SeccionUsuariosModule,
     BienvenidaModule,
+    AdministradorModule,
+    FormsModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule
     
     
   ],  

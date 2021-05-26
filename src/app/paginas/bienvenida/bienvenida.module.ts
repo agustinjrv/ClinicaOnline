@@ -8,9 +8,11 @@ import { LoginComponent } from './login/login.component';
 import { RegistroComponent } from './registro/registro.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegistroPacientesComponent } from './registro/registro-pacientes/registro-pacientes.component';
-import { RegistroAdministradoresComponent } from './registro/registro-administradores/registro-administradores.component';
-import { RegistroEspecialistasComponent } from './registro/registro-especialistas/registro-especialistas.component';
+
+
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
+import { RegistroEspecialistasComponent } from './registro/registro-especialistas/registro-especialistas.component';
+
 
 
 
@@ -20,9 +22,10 @@ import { AutocompleteLibModule } from 'angular-ng-autocomplete';
     BienvenidaComponent,
     LoginComponent,
     RegistroComponent,
-    RegistroEspecialistasComponent,
     RegistroPacientesComponent,
-    RegistroAdministradoresComponent,
+    RegistroEspecialistasComponent
+    
+    
     
   ],
   imports: [

@@ -58,20 +58,27 @@ export class LoginComponent implements OnInit {
       
       let usuarioLogin:any={};
 
-      for(let i=0;i<this.listaUsuarios.length;i++)
-      {
-        if(this.listaUsuarios[i].correo == this.unUsuario.correo)
-        {
-            usuarioLogin.correo= this.unUsuario.correo;
-            usuarioLogin.perfil= this.listaUsuarios[i].perfil;
-            break;	
-        }
-        
-      }
+     this.servicioUsuario.TraerUno(this.unUsuario.correo).valueChanges().subscribe((data)=>{
 
-      localStorage.setItem('usuarioLogeado',JSON.stringify(usuarioLogin));
-      location.href="/home"; 
+        let datosUsuario:any=data;
+        
+
+        usuarioLogin.correo= this.unUsuario.correo;
+        usuarioLogin.perfil= datosUsuario[0].perfil;
+        
+        
+        localStorage.setItem('usuarioLogeado',JSON.stringify(usuarioLogin));
+        location.href="/home"; 
+        
+      });
+
+     
+      
+
+      
     });
+
+    
   }
 
   public InicioRapido(_correo:string,_clave:string)

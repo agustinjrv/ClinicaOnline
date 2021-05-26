@@ -12,10 +12,13 @@ const routes: Routes = [
   {path:'',redirectTo:'bienvenida',pathMatch:'full'},
   {path:'home',component:HomeComponent,canActivate:[AuthGuard]},   
   
-  {path: 'seccionUsuarios', loadChildren: () => import('./paginas/seccion-usuarios/seccion-usuarios.module').then(m => m.SeccionUsuariosModule),canActivate:[EsAdministradorGuard]},
   {path: 'bienvenida', loadChildren: () => import('./paginas/bienvenida/bienvenida.module').then(m => m.BienvenidaModule) },  
+  {path: 'paciente', loadChildren: () => import('./paginas/paciente/paciente.module').then(m => m.PacienteModule) },
+  { path: 'administrador', loadChildren: () => import('./paginas/administrador/administrador.module').then(m => m.AdministradorModule) ,canActivate:[EsAdministradorGuard]},
   
   {path:'paginaNoEncontrada',component:PaginaNoEncontradaComponent},
+
+  { path: 'especialista', loadChildren: () => import('./paginas/especialista/especialista.module').then(m => m.EspecialistaModule) },
   {path:'**',redirectTo:'paginaNoEncontrada',pathMatch:'full'},
   
 ];

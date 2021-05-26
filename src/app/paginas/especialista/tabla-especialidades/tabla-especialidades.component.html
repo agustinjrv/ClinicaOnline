@@ -1,0 +1,26 @@
+<div *ngIf='this.listaEspecialidades!=false'>
+
+    <table class="table table-hover table-dark" >
+        <thead>
+            <tr>
+                <th>ESPECIALIDES</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+            <tr *ngFor='let i of this.listaEspecialidades'>
+                <td (click)='Seleccionar(i)'  >{{i}}</td>
+            </tr>
+        </tbody>
+        
+        
+    </table>
+    
+
+</div>
+
+<table class="table table-dark" *ngIf='this.listaEspecialidades==false'>
+    <tr>
+        Seleccione un usuario para ver sus especialidades
+    </tr>
+</table>

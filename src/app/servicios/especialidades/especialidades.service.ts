@@ -64,11 +64,6 @@ export class EspecialidadesService {
       this.coleccionEspecialidades.add({...nuevaEspecialidad}).then(()=>{
         console.log('Especialidad Agregada');
       });
-
-        //this.flag1=false;
-        //this.flag2=0;
-    
-   
   }
 
   public  TraerTodos()

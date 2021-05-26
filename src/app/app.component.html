@@ -12,7 +12,11 @@
         </li>
 
         <li *ngIf='this.usuarioLogeado.perfil=="Administrador"'>
-          <a class="nav-link" routerLink="seccionUsuarios">Administrar Usuarios</a>
+          <a class="nav-link" routerLink="administrador/seccionUsuarios">Administrar Usuarios</a>
+        </li>	
+        
+        <li *ngIf='this.usuarioLogeado.perfil=="Especialista"'>
+          <a class="nav-link" routerLink="especialista/miPerfil">Mi Perfil</a>
         </li>	
         
       </ul>
@@ -28,11 +32,13 @@
   
     </div>
 
-  </nav>
+</nav>
 
     <div style="height:70px;"></div>
 
 <router-outlet></router-outlet>
+
+
 
 
     

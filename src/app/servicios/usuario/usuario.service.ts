@@ -115,15 +115,33 @@ export class UsuarioService {
 
   }
 
+  public  TraerUno(correo)
+  {
+    return this.BuscarUsuarioCorreo(correo);
+  }
+
+  public BuscarUsuarioCorreo(correo) {
+    return this.bd.collection(this.pathUsuarios, ref=>ref.where("correo", "==", correo ));    
+  }
+
+  public TraerPorPerfil(perfil:string)
+  {
+    return this.bd.collection(this.pathUsuarios, ref=>ref.where("perfil", "==", perfil ));    
+  }
+
+  public TraerEspecialistasCuentasNoVerficadas()
+  {
+    return this.bd.collection(this.pathUsuarios, ref=>ref.where("perfil", "==", 'Especialista').where('estadoCuenta','==',false));    
+  }
+
   public async AgregarUsuario(usuario: any) {
 
     if (usuario.perfil == 'Especialista') {
       await this.servicioEspecialidades.AgregarUno(usuario.especialidades);
     }
 
-    //usuario.id=this.bd.createId();
     await this.coleccionUsuarios.doc(usuario.id).set({ ...usuario });
-    console.log('Usuario Agregado')
+    
     this.router.navigateByUrl('bienvenida/login');
 
   }

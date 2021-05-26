@@ -1,0 +1,85 @@
+
+<div class="row">
+
+    <label for="">Especialidades</label>
+
+    <div class="col">
+        <div class="ng-autocomplete"  >
+            <ng-autocomplete #auto 
+            [data]="this.listaEspecialidades"
+            [searchKeyword]="keyword"
+            placeholder="Especialidades"
+            (selected)="SeleccionarTurno($event)"
+            
+            [itemTemplate]="itemTemplate"
+            [notFoundTemplate]="notFoundTemplate">
+            </ng-autocomplete>
+
+            <ng-template #itemTemplate let-item>
+            <a >{{item.nombre}}</a>
+            </ng-template>
+
+            <ng-template #notFoundTemplate let-notFound>
+            <div >{{notFound}}</div>
+            </ng-template>
+        </div>
+
+    </div>
+    
+
+    <div class="col" >
+        Especialidad        
+        <table class="table table-dark table-hover " style="position: absolute;z-index: 100;" *ngIf='this.especialidadSeleccionada'>
+            <tr>
+                <td>{{especialidadSeleccionada}}</td>
+                <td class="text-right"><button (click)='especialidadSeleccionada=false' class="btn btn-secondary">❌</button></td>
+            </tr>
+            
+        </table>                         
+    
+    </div>
+    <div class="col-1"></div>
+
+</div>
+
+<section class="row">
+    <div class="col">
+
+        <table class="table table-dark  table-hover"  *ngIf='especialidadSeleccionada'>
+        
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Especialidad</th>
+                <th>Correo</th>
+                <th>Imagen Principal</th>    
+            </tr>
+    
+            <tr *ngFor='let i of this.especialistasMostrar'>
+                <td>{{i.nombre}}</td>
+                <td>{{i.apellido}}</td>
+                <td>{{i.especialidad}}</td>
+                <td>{{i.correo}}</td>
+                <td><img src="{{i.imagenPrincipal}}" width="50px" height="50px" ></td>
+            </tr>
+    
+        </table>
+    
+    </div>
+
+</section>
+
+<section>
+    <div class='row'>
+        <div class="col">
+            <button class="btn btn-success">Fecha1</button>
+        </div>
+        <div class="col">
+            <button class="btn btn-warning">Fecha2</button>
+        </div>
+        <div class="col">
+            <button class="btn btn-danger">Fecha3</button>
+        </div>
+    </div>
+</section>
+
