@@ -3,7 +3,7 @@
 
     <div class="row">
         <div class="col">
-            <table class="table table-dark table-hover  text-white " >
+            <table class="table table-dark table-hover text-white " >
                 
                 <tr>
                     <th>Nombre</th>
@@ -32,7 +32,7 @@
 
             
             <!--SeleccionarEspecialidad emitirlo y mostrar las fechas en otra tabla-->
-            <div >
+            <div>
                 <app-tabla-especialidades  [listaEspecialidades]='this.datosUsuario.especialidades' (seleccionar)='Seleccionar($event)'></app-tabla-especialidades>    
             </div>
 
@@ -96,27 +96,24 @@
     
                     <section class="row mt-3">
                         <div class="col">
-                            <h3 class="text-left">Sabados</h3>
+                            <h3 class="text-center">Sabados</h3>
                         </div>
                     </section>
         
-                    <section class="row ">
+                    <section class="row mt-3">
     
-                        <div class="col-2 text-left">
+                        <div class="col text-right">
                             <label for="horaInicio mr-5">Inicio</label>
                             <br>
-                            <input type="time" name="" id="horaInicio">
-        
+                            <input type="time" name="" id="horaInicioSabados" min="08:00">
                         </div>
-                        <!--div class="col-1 mt-1">
-                            <br>
-                            <h3>A</h3>
-                        </div-->
-        
+                        
+                        <span>A</span>
+    
                         <div class="col text-left">
                             <label for="horaFin" >Fin</label>
                             <br>
-                            <input type="time" name="" id="horaFin" >
+                            <input type="time" name="" id="horaFinSabados" max="19">
                         </div>
           
                     </section>
@@ -131,25 +128,29 @@
 
                     <thead>
                         <tr>
-                            <th>Dia</th>
+                            <th>Dias</th>
                             <th>Hora Inicio</th>
                             <th>Hora Fin</th>
                         </tr>
                     </thead>
                     
-                    <tbody>
-                        <!--tr *ngFor='unHorario of this.datosUsuario.especialidades' >
-
+                    <tbody *ngIf='this.horariosDeEspecialidad'>
+                        <tr>
                             <td>
-                                {{unHorario.dia}}
+                                {{diasMostrar}}
                             </td>
                             <td>
-                                {{unHorario.horaInicio}}
+                                {{horariosDeEspecialidad.desde}}
                             </td>
                             <td>
-                                {{unHorario.horaFin}}
+                                {{horariosDeEspecialidad.hasta}}
                             </td>
-                        </tr-->
+                        </tr>
+                        <tr *ngIf='trabajaSabado'>
+                            <td>Sabados</td>
+                            <td>{{this.horariosDeEspecialidad.desdeSabados}}</td>
+                            <td>{{this.horariosDeEspecialidad.hastaSabados}}</td>
+                        </tr>
                     </tbody>
                     
 
@@ -161,7 +162,7 @@
             
 
             
-        <div class="row mt-3 ml-1 mr-1">
+        <div class="row mt-3 ml-1 mr-1" *ngIf='this.especialidadSeleccionada'>
             <div class="col">
                 <button class="btn btn-warning btn-block" (click)='ModificarFechas()'>Modificar Dias</button>
             </div>

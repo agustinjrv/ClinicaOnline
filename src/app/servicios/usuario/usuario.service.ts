@@ -170,6 +170,15 @@ export class UsuarioService {
     //modificar espcialista
   }
 
+  public AgregarHoras(unEspecialista:Especialista,horas:any)
+  {
+      let especialistaModi = JSON.parse(JSON.stringify(unEspecialista));
+      especialistaModi.horas=horas;
+
+      this.coleccionUsuarios.doc(unEspecialista.id).set(especialistaModi);
+      
+  }
+
 
 
 }

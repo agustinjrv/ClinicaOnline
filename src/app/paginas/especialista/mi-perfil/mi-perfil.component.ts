@@ -1,8 +1,11 @@
+import { EInicialDIa } from './../../../clases/horario/horario';
 import { Component, OnInit } from '@angular/core';
-import { Especialidad } from 'src/app/clases/especialidad/especialidad';
+
 import { Especialista } from 'src/app/clases/especialista/especialista';
 import { EDiasSemana, Horario } from 'src/app/clases/horario/horario';
-import { Usuario } from 'src/app/clases/usuario/usuario';
+
+import { HorariosService } from 'src/app/servicios/horarios/horarios.service';
+
 import { UsuarioService } from 'src/app/servicios/usuario/usuario.service';
 
 @Component({
@@ -16,20 +19,17 @@ export class MiPerfilComponent implements OnInit {
   public datosUsuario: Especialista;
   public usuarioLogeado = JSON.parse(localStorage.getItem('usuarioLogeado'));
   public especialidadSeleccionada: any = false;
-  public horariosDeEspecialidad: any = false;
   public especialidadesUsuario: string[] = [];
+  public horariosEspecialista:any[]=[];
+  
+  public horariosDeEspecialidad: any = false;
+  public diasMostrar='';
+  public trabajaSabado=false;
 
-
-  public lunes: Horario;
-  public martes: Horario;
-  public miercoles: Horario;
-  public jueves: Horario;
-  public viernes: Horario;
-  public sabados: Horario;
 
   public diasBool: any = {};
 
-  constructor(private servicioUsuario: UsuarioService,) {
+  constructor(private servicioUsuario: UsuarioService,private servicioHorarios:HorariosService) {
 
     this.diasBool.lunes = false;
     this.diasBool.martes = false;
@@ -37,34 +37,42 @@ export class MiPerfilComponent implements OnInit {
     this.diasBool.jueves = false;
     this.diasBool.viernes = false;
     this.diasBool.sabado = false;
+  
     
-    
-    this.lunes = new Horario(EDiasSemana.lunes);
-    this.martes = new Horario(EDiasSemana.martes);
-    this.miercoles = new Horario(EDiasSemana.miercoles);
-    this.jueves = new Horario(EDiasSemana.jueves);
-    this.viernes = new Horario(EDiasSemana.viernes);
-    this.sabados = new Horario(EDiasSemana.sabado);
-    
-    this.CargarUsuario();
+    this.CargarTodo();
     
   }
+
 
   ngOnInit(): void {
     
 
   }
 
+  public CargarTodo()
+  {
+    this.CargarUsuario();
+  }
+  
+  public CargarHorarios()
+  {
+    this.servicioHorarios.TraerHorariosDeUnEspecialista(this.datosUsuario.correo)
+    .valueChanges().subscribe((data)=>{
+      this.horariosEspecialista=data;
+      
+      this.cargo = true;
+    });
+    
+  }
+  
   private CargarUsuario() {
-
-    this.servicioUsuario.TraerTodos().valueChanges().subscribe((data: Usuario[]) => {
-      for (let i = 0; i < data.length; i++) {
-        if (data[i].correo == this.usuarioLogeado.correo) {
-          this.datosUsuario = <Especialista>data[i];
-          this.cargo = true;
-          break;
-        }
-      }
+    
+    this.servicioUsuario.TraerUno(this.usuarioLogeado.correo).valueChanges().subscribe((data)=>{
+      
+      this.datosUsuario=<Especialista>data[0];
+      this.CargarHorarios();
+      
+      
     });
 
 
@@ -72,88 +80,103 @@ export class MiPerfilComponent implements OnInit {
 
   public Seleccionar($event) {
     this.especialidadSeleccionada = $event;
-    this.datosUsuario.especialidades.forEach(element => {
-      if (element.nombre == this.especialidadSeleccionada) {
-        this.especialidadSeleccionada = element;
-      }
+    this.horariosDeEspecialidad=false;
+    this.diasMostrar='';
+    this.trabajaSabado=false;
+    
+    this.horariosEspecialista.forEach((element)=>{
+          if(element.especialidad==this.especialidadSeleccionada)
+          {
+            this.horariosDeEspecialidad= element;
+          }
     });
+
+    if(this.horariosDeEspecialidad!=false)
+    {
+      this.horariosDeEspecialidad.dias.forEach(element => {
+
+        if(element!=EDiasSemana.sabado)
+        {
+          this.diasMostrar+=EInicialDIa[element] + ' ,';
+        }
+        else{
+          this.trabajaSabado=true;
+        }
+      });
+      this.diasMostrar=this.diasMostrar.slice(0,this.diasMostrar.length-2);
+    }
+      
+    //console.log(this.diasMostrar);
+
+    
   }
 
 
 
 
   public ModificarFechas() {
-    let inputInicio: any = document.getElementById('horaInicio');
+    let inputInicio: any =  document.getElementById('horaInicio');
     let inputFinal: any = document.getElementById('horaFin');
-
-    let dateInicio = new Date();
+   /* let dateInicio = new Date();
     let dateFin = new Date();
 
     dateInicio.setHours(inputInicio.value.slice(0, 2));
-    dateFin.setHours(inputFinal.value.slice(0, 2));
+    dateFin.setHours(inputFinal.value.slice(0, 2));*/
 
-    if (this.diasBool.lunes) {
-      this.especialidadSeleccionada.horarios.forEach((element: Horario) => {
-        if (element.dia == EDiasSemana.lunes) {
-          element.horaInicio = dateInicio.getHours();
-          element.horaFin = dateFin.getHours();
-        }
-      });
+    let horas:any={};
+
+    horas.desde=inputInicio.value.slice(0, 2) + ':00';
+    horas.hasta=inputFinal.value.slice(0, 2) + ':00';
+    horas.especialidad=this.especialidadSeleccionada;
+    horas.correoEspecialista=this.datosUsuario.correo;
+    horas.dias=[];
+    if(this.diasBool.lunes)
+    {
+      horas.dias.push(EDiasSemana.lunes);
     }
-
-    if (this.diasBool.martes) {
-      this.especialidadSeleccionada.horarios.forEach((element: Horario) => {
-        if (element.dia == EDiasSemana.martes) {
-          element.horaInicio = dateInicio.getHours();
-          element.horaFin = dateFin.getHours();
-        }
-      });
+    if(this.diasBool.martes)
+    {
+      horas.dias.push(EDiasSemana.martes);
     }
-
-    if (this.diasBool.miercoles) {
-      this.especialidadSeleccionada.horarios.forEach((element: Horario) => {
-        if (element.dia == EDiasSemana.miercoles) {
-          element.horaInicio = dateInicio.getHours();
-          element.horaFin = dateFin.getHours();
-        }
-      });
+    if(this.diasBool.miercoles)
+    {
+      horas.dias.push(EDiasSemana.miercoles);
     }
-
-    if (this.diasBool.jueves) {
-      this.especialidadSeleccionada.horarios.forEach((element: Horario) => {
-        if (element.dia == EDiasSemana.jueves) {
-          element.horaInicio = dateInicio.getHours();
-          element.horaFin = dateFin.getHours();
-        }
-      });
+    if(this.diasBool.jueves)
+    {
+      horas.dias.push(EDiasSemana.jueves);
     }
-
-    if (this.diasBool.viernes) {
-      this.especialidadSeleccionada.horarios.forEach((element: Horario) => {
-        if (element.dia == EDiasSemana.viernes) {
-          element.horaInicio = dateInicio.getHours();
-          element.horaFin = dateFin.getHours();
-        }
-      });
+    if(this.diasBool.viernes)
+    {
+      horas.dias.push(EDiasSemana.viernes);
     }
-
-    if (this.diasBool.sabados) {
-      this.especialidadSeleccionada.horarios.forEach((element: Horario) => {
-        if (element.dia == EDiasSemana.sabado) {
-          element.horaInicio = dateInicio.getHours();
-          element.horaFin = dateFin.getHours();
-        }
-      });
+    if(this.diasBool.sabados)
+    {
+      horas.desdeSabados=(<any>document.getElementById('horaInicioSabados')).value;
+      horas.hastaSabados=(<any>document.getElementById('horaFinSabados')).value;
+      
+      horas.dias.push(EDiasSemana.sabado);
     }
+   
+    if(!this.horariosDeEspecialidad){
+      this.servicioHorarios.AgregarHorarioEspecialista(horas);
 
-    this.datosUsuario.especialidades.forEach((element)=>{
-      if(element.nombre==this.especialidadSeleccionada.nombre)
-      {
-        element=this.especialidadSeleccionada;
-      }
-    });
+    }else
+    {
+      this.servicioHorarios.ModificarUno(this.horariosDeEspecialidad.id,horas);
+    }
+    
+
+
+
+    setTimeout(()=>{
+      this.CargarHorarios();
+      this.Seleccionar(this.especialidadSeleccionada);
+    },1000);
+    
 
   }
 
 }
+
 
