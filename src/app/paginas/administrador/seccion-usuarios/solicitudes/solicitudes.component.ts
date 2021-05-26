@@ -50,7 +50,7 @@ export class SolicitudesComponent implements OnInit {
       this.servicioUsuario.ModificarUno(this.especialistaSeleccionado);
 
       this.especialistaSeleccionado.especialidades.forEach(element => {
-        this.servicioEspecialidades.ModificarUno(element.nombre);
+        this.servicioEspecialidades.ModificarUno(element);
       });
   }
 
