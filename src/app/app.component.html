@@ -18,6 +18,14 @@
         <li *ngIf='this.usuarioLogeado.perfil=="Especialista"'>
           <a class="nav-link" routerLink="especialista/miPerfil">Mi Perfil</a>
         </li>	
+
+        <li *ngIf='this.usuarioLogeado.perfil=="Paciente"'>
+          <a class="nav-link" routerLink="paciente/miPerfil">Mi Perfil</a>
+        </li>	
+
+        <li *ngIf='this.usuarioLogeado.perfil=="Paciente"'>
+          <a class="nav-link" routerLink="paciente/solicitarTurno">Solicitar Turno</a>
+        </li>	
         
       </ul>
 

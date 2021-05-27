@@ -8,6 +8,7 @@ import { MisTurnosComponent } from './mis-turnos/mis-turnos.component';
 import { SolicitarTurnoComponent } from './solicitar-turno/solicitar-turno.component';
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 import { MiPerfilComponent } from './mi-perfil/mi-perfil.component';
+import { TablaEspecialidadesComponent } from './tabla-especialidades/tabla-especialidades.component';
 
 
 @NgModule({
@@ -15,12 +16,14 @@ import { MiPerfilComponent } from './mi-perfil/mi-perfil.component';
     PacienteComponent,
     MisTurnosComponent,
     SolicitarTurnoComponent,
-    MiPerfilComponent
+    MiPerfilComponent,
+    TablaEspecialidadesComponent
   ],
   imports: [
     CommonModule,
     PacienteRoutingModule,
-    AutocompleteLibModule
+    AutocompleteLibModule,
+    
 
   ]
 })

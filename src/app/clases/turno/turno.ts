@@ -1,5 +1,9 @@
+
 import { Especialidad } from "../especialidad/especialidad";
 import { Paciente } from "../paciente/paciente";
+
+
+export enum EestadoTurno{pendiente,aceptado,rechazado,cancelado,canceladoTotalmente,finalizado}
 
 export class Turno {
     public id:string;
@@ -8,5 +12,5 @@ export class Turno {
     public hora:Date;
     public especialidad:string;
     public especialista:Especialidad;
-    public estadoTurno:boolean=true;
+    public estadoTurno:EestadoTurno;
 }

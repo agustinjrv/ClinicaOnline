@@ -1,85 +1,82 @@
 
-<div class="row">
+<section class="container"  *ngIf='cargo'>
 
-    <label for="">Especialidades</label>
 
-    <div class="col">
-        <div class="ng-autocomplete"  >
-            <ng-autocomplete #auto 
-            [data]="this.listaEspecialidades"
-            [searchKeyword]="keyword"
-            placeholder="Especialidades"
-            (selected)="SeleccionarTurno($event)"
+    <div class="row">
+        <div class="col-2">
+
+            <div>
+                <app-tabla-especialidades  [listaEspecialidades]='this.listaEspecialidades' (seleccionar)='SeleccionarEspecialidad($event)'></app-tabla-especialidades>    
+            </div>
+
+        </div>
+
+        <div class="col bg-dark text-white h-100 pb-3 pl-0 pr-0">
+
+            <h1 *ngIf='this.especialidadSeleccionada' class="text-center text-white bg-primary p-0 m-0">{{this.especialidadSeleccionada}}</h1>
+           
+        <section class="row mt-2" *ngIf='this.especialidadSeleccionada'>
+
+            <div class="col-5 bg-dark form-control h-100 text-white border-success ml-4 lista">
+                <h5 class=" text-center ml-2">Seleccione un Especialista para ver horarios</h5>
+
+                <table class="table table-success table-hover table-bordered text-dark">
+                    <thead>
+                        <tr>
+                            <th>Apellido</th>
+                            <th>Nombre</th>
+                            <th>Imagen</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor='let unEspecialista of this.especialistasMostrar' (click)='SeleccionarEspecialista(unEspecialista)'>
+                            <td>{{unEspecialista.apellido}}</td>
+                            <td>{{unEspecialista.nombre}}</td>
+                            <td><img src="{{unEspecialista.imagenPrincipal}}" width="50px" height="50px" ></td>
+                        </tr>
+                    </tbody>
+                    
+                </table>
+                
+
+            </div>
+            <div class="col mr-3 lista">
+
+                <h5 class=" text-center ml-2" *ngIf='this.turnosMostrar'>Seleccione el horario que mas le convenga</h5>
+                <table class="table table-primary table-hover  ">
+
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Hora</th>
+                            
+                        </tr>
+                    </thead>
+                    
+                    <tbody *ngIf='this.turnosMostrar' >
+                        <tr *ngFor='let turno of this.turnosMostrar' (click)='SolicitarTurno(turno)' >
+                            <td>
+                                 {{turno.dia}}
+                            </td>
+                            <td>
+                                {{turno.hora}}
+                            </td>
+                        </tr>
+                    </tbody>
+                    
+
+                </table>
+
+            </div>
+
+        </section>
+
             
-            [itemTemplate]="itemTemplate"
-            [notFoundTemplate]="notFoundTemplate">
-            </ng-autocomplete>
 
-            <ng-template #itemTemplate let-item>
-            <a >{{item.nombre}}</a>
-            </ng-template>
-
-            <ng-template #notFoundTemplate let-notFound>
-            <div >{{notFound}}</div>
-            </ng-template>
         </div>
-
     </div>
     
-
-    <div class="col" >
-        Especialidad        
-        <table class="table table-dark table-hover " style="position: absolute;z-index: 100;" *ngIf='this.especialidadSeleccionada'>
-            <tr>
-                <td>{{especialidadSeleccionada}}</td>
-                <td class="text-right"><button (click)='especialidadSeleccionada=false' class="btn btn-secondary">❌</button></td>
-            </tr>
-            
-        </table>                         
-    
-    </div>
-    <div class="col-1"></div>
-
-</div>
-
-<section class="row">
-    <div class="col">
-
-        <table class="table table-dark  table-hover"  *ngIf='especialidadSeleccionada'>
-        
-            <tr>
-                <th>Nombre</th>
-                <th>Apellido</th>
-                <th>Especialidad</th>
-                <th>Correo</th>
-                <th>Imagen Principal</th>    
-            </tr>
-    
-            <tr *ngFor='let i of this.especialistasMostrar'>
-                <td>{{i.nombre}}</td>
-                <td>{{i.apellido}}</td>
-                <td>{{i.especialidad}}</td>
-                <td>{{i.correo}}</td>
-                <td><img src="{{i.imagenPrincipal}}" width="50px" height="50px" ></td>
-            </tr>
-    
-        </table>
-    
-    </div>
-
 </section>
+    
 
-<section>
-    <div class='row'>
-        <div class="col">
-            <button class="btn btn-success">Fecha1</button>
-        </div>
-        <div class="col">
-            <button class="btn btn-warning">Fecha2</button>
-        </div>
-        <div class="col">
-            <button class="btn btn-danger">Fecha3</button>
-        </div>
-    </div>
-</section>
-
+    

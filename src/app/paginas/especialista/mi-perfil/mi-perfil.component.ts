@@ -91,6 +91,9 @@ export class MiPerfilComponent implements OnInit {
           }
     });
 
+    
+
+
     if(this.horariosDeEspecialidad!=false)
     {
       this.horariosDeEspecialidad.dias.forEach(element => {
