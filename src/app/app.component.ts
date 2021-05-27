@@ -11,19 +11,27 @@ import { AuthService } from './servicios/auth/auth.service';
 })
 export class AppComponent {
 
-  public usuarioLogeado:any=false;
+  public usuarioLogeado:any={};
  
 
   public constructor(private servicioAuth:AuthService){
+
     this.usuarioLogeado={};
     this.usuarioLogeado.correo='';
     this.usuarioLogeado.perfil='';
-    let aux= localStorage.getItem('usuarioLogeado');
     
     try {
+      let aux= localStorage.getItem('usuarioLogeado');
       this.usuarioLogeado =JSON.parse(aux);  
-    } catch (error) {
       
+      if(this.usuarioLogeado==null)
+      {
+        this.usuarioLogeado={};
+        this.usuarioLogeado.correo='';
+        this.usuarioLogeado.perfil='';
+      }
+    } catch (error) {
+    
     }
     
     
