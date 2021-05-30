@@ -1,152 +1,164 @@
 
-
-<form class=' mt-3' novalidate  [formGroup]="pacienteRegForm">
-    <div class="row pb-1 form-group">
-        <div class="col ">
-            <label for="">Nombre</label>
-            <input type="text" class='form-control' placeholder="Nombre" formControlName='nombre' [class]="isValidPaciente('nombre')">
-
-            <div class="invalid-feedback" style="font-family: sans-serif;position: absolute;">
-                <span style="text-shadow: 1px 1px black; font-weight:800;"
-                    *ngIf="pacienteRegForm.controls.nombre.errors?.required && pacienteRegForm.controls.nombre.touched">
-                    *Por favor ingrese su Nombre
-                    </span>
-            </div>
-        </div>
-
-        <div class="col">
-            <label for="">Apellido</label>
-            <input type="text"  class='form-control' placeholder="Apellido" formControlName='apellido' [class]="isValidPaciente('apellido')">
-
-            <div class="invalid-feedback" style="font-family: sans-serif;" style="font-family: sans-serif;position: absolute;">
-                <span style="text-shadow: 1px 1px black; font-weight:800;"
-                    *ngIf="pacienteRegForm.controls.apellido.errors?.required && pacienteRegForm.controls.apellido.touched">
-                    *Por favor ingrese su Apellido
-                </span>
-            </div>
-        </div>
+<div class="image" style="height: 100vh;width:100vw;" [ngStyle]="{'background': 'url(assets/paciente/fondoPacientes.jpg) no-repeat 0 0','background-size':'cover'}">
+    <div style="height: 75px;">
 
     </div>
 
-    <div class="row pb-1 form-group">
-        <div class="col">
-            <label for="">Edad</label>
-            <input type="number"  class='form-control' placeholder="Edad" formControlName='edad' [class]="isValidPaciente('edad')">
+    <section class="container  form-control text-dark form-signin border-danger "  style="background-color: rgba(109, 159, 206, 0.747);height: 75vh; ">
 
-            <div class="invalid-feedback" style="font-family: sans-serif;" style="font-family: sans-serif;position: absolute;">
-                <span style="text-shadow: 1px 1px black; font-weight:800;"
-                    *ngIf="pacienteRegForm.controls.edad.errors?.required && pacienteRegForm.controls.edad.touched">
-                    *Por favor ingrese su Edad
-                </span>
+        <div class="bg-dark text-center  form-control  border-dark" style="height: 12vh;">
+            <div class="text-right">
+                <a routerLink='/bienvenida/login' class="text-danger h4" style="text-shadow: 1px 1px black;">Ir a LOGIN</a>
             </div>
-
+            <h1 class="text-white">REGISTRO {{titulo}}</h1>
+        
         </div>
-
-        <div class="col">
-            <label for="">DNI</label>
-            <input type="number"  class='form-control' placeholder="DNI" formControlName='dni' [class]="isValidPaciente('dni')">
-
+        
+            <form class=' mt-3' novalidate  [formGroup]="pacienteRegForm">
+                <div class="row pb-1 form-group">
+                    <div class="col ">
+                        <label for="">Nombre</label>
+                        <input type="text" class='form-control' placeholder="Nombre" formControlName='nombre' [class]="isValidPaciente('nombre')">
             
-            <div class="invalid-feedback" style="font-family: sans-serif;" style="font-family: sans-serif;position: absolute;">
-                <span style="text-shadow: 1px 1px black; font-weight:800;"
-                    *ngIf="pacienteRegForm.controls.dni.errors?.required && pacienteRegForm.controls.dni.touched">
-                    *Por favor ingrese su DNI
-                </span>
-            </div>
-        </div>
-    </div>
+                        <div class="invalid-feedback" style="font-family: sans-serif;position: absolute;">
+                            <span style="text-shadow: 1px 1px black; font-weight:800;"
+                                *ngIf="pacienteRegForm.controls.nombre.errors?.required && pacienteRegForm.controls.nombre.touched">
+                                *Por favor ingrese su Nombre
+                                </span>
+                        </div>
+                    </div>
+            
+                    <div class="col">
+                        <label for="">Apellido</label>
+                        <input type="text"  class='form-control' placeholder="Apellido" formControlName='apellido' [class]="isValidPaciente('apellido')">
+            
+                        <div class="invalid-feedback" style="font-family: sans-serif;" style="font-family: sans-serif;position: absolute;">
+                            <span style="text-shadow: 1px 1px black; font-weight:800;"
+                                *ngIf="pacienteRegForm.controls.apellido.errors?.required && pacienteRegForm.controls.apellido.touched">
+                                *Por favor ingrese su Apellido
+                            </span>
+                        </div>
+                    </div>
+            
+                </div>
+            
+                <div class="row pb-1 form-group">
+                    <div class="col">
+                        <label for="">Edad</label>
+                        <input type="number"  class='form-control' placeholder="Edad" formControlName='edad' [class]="isValidPaciente('edad')">
+            
+                        <div class="invalid-feedback" style="font-family: sans-serif;" style="font-family: sans-serif;position: absolute;">
+                            <span style="text-shadow: 1px 1px black; font-weight:800;"
+                                *ngIf="pacienteRegForm.controls.edad.errors?.required && pacienteRegForm.controls.edad.touched">
+                                *Por favor ingrese su Edad
+                            </span>
+                        </div>
+            
+                    </div>
+            
+                    <div class="col">
+                        <label for="">DNI</label>
+                        <input type="number"  class='form-control' placeholder="DNI" formControlName='dni' [class]="isValidPaciente('dni')">
+            
+                        
+                        <div class="invalid-feedback" style="font-family: sans-serif;" style="font-family: sans-serif;position: absolute;">
+                            <span style="text-shadow: 1px 1px black; font-weight:800;"
+                                *ngIf="pacienteRegForm.controls.dni.errors?.required && pacienteRegForm.controls.dni.touched">
+                                *Por favor ingrese su DNI
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            
+                
+            
+                <div class="row pb-1 form-group">
+            
+                    <div class="col">
+                        <label for="">Correo</label>
+                        <input type='email'  class='form-control' placeholder="Correo" formControlName='correo' [class]="isValidPaciente('correo')">
+            
+                        <div class="invalid-feedback" style="font-family: sans-serif;" style="font-family: sans-serif;position: absolute;">
+                            <span style="text-shadow: 1px 1px black; font-weight:800;"
+                                *ngIf="pacienteRegForm.controls.correo.errors?.required && pacienteRegForm.controls.correo.touched">
+                                *Por favor ingrese su Correo
+                            </span>
+                            <span style="text-shadow: 1px 1px black; font-weight:800;"
+                                *ngIf="pacienteRegForm.controls.correo.errors?.pattern && pacienteRegForm.controls.correo.touched">
+                                Correo invalido
+                            </span>
+                        </div>
+                    </div>
+            
+                    <div class="col">
+                        <label for="">Obra Social</label>
+                        <input type="text"  class='form-control' placeholder="Obra Social" formControlName='obraSocial' [class]="isValidPaciente('obraSocial')">
+            
+                        <div class="invalid-feedback" style="font-family: sans-serif;" style="font-family: sans-serif;position: absolute;">
+                            <span style="text-shadow: 1px 1px black; font-weight:800;"
+                                *ngIf="pacienteRegForm.controls.obraSocial.errors?.required && pacienteRegForm.controls.obraSocial.touched">
+                                *Por favor ingrese su Obra Social
+                            </span>
+                        </div>
+                    </div>
+            
+                </div>
+            
+                <div class="row pb-1 form-group">
+                    
+            
+                    <div class="col">
+                        <label for="">Clave</label>
+                        <input type="password"  class='form-control mb-0' placeholder="Clave" formControlName='clave' [class]="isValidPaciente('clave')">
+            
+                        <div class="invalid-feedback"  style="font-family: sans-serif;position: absolute;">
+                            <span style="text-shadow: 1px 1px black; font-weight:800;"
+                                *ngIf="pacienteRegForm.controls.clave.errors?.required && pacienteRegForm.controls.clave.touched">
+                                *Por favor ingrese su Clave
+                            </span>
+                        </div>
+                    </div>
+            
+                    <div class="col"></div>
+            
+                </div>
+            
+            
+                <div class="row pb-1 form-group">
+                    <div class="col">
+                        <label for="">Foto de perfil Principal</label><br>
+                        <input type="file" class="btn btn-dark" accept=".png, .jpg" 
+                        (change)='SubirFoto1($event)'
+                        formControlName='imagenPrincipal' 
+                        [class]="isValidPaciente('imagenPrincipal')">
+            
+                        <div class="invalid-feedback"  style="font-family: sans-serif;position: absolute;">
+                            <span style="text-shadow: 1px 1px black; font-weight:800;"
+                                *ngIf="pacienteRegForm.controls.imagenPrincipal.errors?.required && pacienteRegForm.controls.imagenPrincipal.touched">
+                                *Por favor ingrese una foto
+                            </span>
+                        </div>
+                    </div>
+            
+                    <div class="col">
+                        <label for="">Foto de perfil Secundaria(Opcional)</label><br>
+                        <input type="file" class="btn btn-dark" accept=".png, .jpg" 
+                        (change)='SubirFoto2($event)'
+                        formControlName='imagenPrincipal' 
+                        [class]="isValidPaciente('imagenPrincipal')">
+                    </div>
+                </div>
+            
+                <div class="row mt-4 ">
+                    <div class="col"> 
+                        <button class="btn btn-danger btn-block" (click)='this.RegistrarPaciente()' [disabled]="this.pacienteRegForm.invalid" >REGISTRARSE!!!</button>
+                    </div>
+                </div>
+            
+            </form>
+    
+    </section>
+    
+</div>
 
     
-
-    <div class="row pb-1 form-group">
-
-        <div class="col">
-            <label for="">Correo</label>
-            <input type='email'  class='form-control' placeholder="Correo" formControlName='correo' [class]="isValidPaciente('correo')">
-
-            <div class="invalid-feedback" style="font-family: sans-serif;" style="font-family: sans-serif;position: absolute;">
-                <span style="text-shadow: 1px 1px black; font-weight:800;"
-                    *ngIf="pacienteRegForm.controls.correo.errors?.required && pacienteRegForm.controls.correo.touched">
-                    *Por favor ingrese su Correo
-                </span>
-                <span style="text-shadow: 1px 1px black; font-weight:800;"
-                    *ngIf="pacienteRegForm.controls.correo.errors?.pattern && pacienteRegForm.controls.correo.touched">
-                    Correo invalido
-                </span>
-            </div>
-        </div>
-
-        <div class="col">
-            <label for="">Obra Social</label>
-            <input type="text"  class='form-control' placeholder="Obra Social" formControlName='obraSocial' [class]="isValidPaciente('obraSocial')">
-
-            <div class="invalid-feedback" style="font-family: sans-serif;" style="font-family: sans-serif;position: absolute;">
-                <span style="text-shadow: 1px 1px black; font-weight:800;"
-                    *ngIf="pacienteRegForm.controls.obraSocial.errors?.required && pacienteRegForm.controls.obraSocial.touched">
-                    *Por favor ingrese su Obra Social
-                </span>
-            </div>
-        </div>
-
-    </div>
-
-    <div class="row pb-1 form-group">
-        
-
-        <div class="col">
-            <label for="">Clave</label>
-            <input type="password"  class='form-control mb-0' placeholder="Clave" formControlName='clave' [class]="isValidPaciente('clave')">
-
-            <div class="invalid-feedback"  style="font-family: sans-serif;position: absolute;">
-                <span style="text-shadow: 1px 1px black; font-weight:800;"
-                    *ngIf="pacienteRegForm.controls.clave.errors?.required && pacienteRegForm.controls.clave.touched">
-                    *Por favor ingrese su Clave
-                </span>
-            </div>
-        </div>
-
-        <div class="col"></div>
-
-    </div>
-
-
-    <div class="row pb-1 form-group">
-        <div class="col">
-            <label for="">Foto de perfil Principal</label><br>
-            <input type="file" class="btn btn-dark" accept=".png, .jpg" 
-            (change)='SubirFoto1($event)'
-            formControlName='imagenPrincipal' 
-            [class]="isValidPaciente('imagenPrincipal')">
-
-            <div class="invalid-feedback"  style="font-family: sans-serif;position: absolute;">
-                <span style="text-shadow: 1px 1px black; font-weight:800;"
-                    *ngIf="pacienteRegForm.controls.imagenPrincipal.errors?.required && pacienteRegForm.controls.imagenPrincipal.touched">
-                    *Por favor ingrese una foto
-                </span>
-            </div>
-        </div>
-
-        <div class="col">
-            <label for="">Foto de perfil Secundaria(Opcional)</label><br>
-            <input type="file" class="btn btn-dark" accept=".png, .jpg" 
-            (change)='SubirFoto2($event)'
-            formControlName='imagenPrincipal' 
-            [class]="isValidPaciente('imagenPrincipal')">
-        </div>
-    </div>
-
-    <div class="row mt-4 ">
-        <div class="col">
-            
-            <button class="btn btn-danger btn-block" (click)='this.RegistrarPaciente()' [disabled]="this.pacienteRegForm.invalid" >REGISTRARSE!!!</button>
-        </div>
-    </div>
-
-</form>
-
-
-
-
-
-
-

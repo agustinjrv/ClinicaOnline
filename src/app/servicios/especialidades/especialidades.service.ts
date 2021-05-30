@@ -20,8 +20,7 @@ export class EspecialidadesService {
     this.coleccionEspecialidades=this.bd.collection(this.pathEspecialidad);
     
     this.TraerTodos().valueChanges().subscribe((data)=>{
-      
-   
+
       this.listaEspecialidades=data;
     });
   }

@@ -17,7 +17,7 @@ import { TablaEspecialidadesComponent } from './tabla-especialidades/tabla-espec
     MisTurnosComponent,
     SolicitarTurnoComponent,
     MiPerfilComponent,
-    TablaEspecialidadesComponent
+    TablaEspecialidadesComponent,
   ],
   imports: [
     CommonModule,

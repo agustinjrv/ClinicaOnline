@@ -1,19 +1,35 @@
+<div style="height: 70px;">
+
+</div>
+
+
 <section   class="container h-100 form-control text-dark form-signin border-danger "  style="background-color: rgba(109, 159, 206, 0.747); ">
 
 
-<div class="bg-dark text-center mb-3 form-control  h-100 border-dark">
+<div class="bg-dark text-center mb-3 form-control h-100  border-dark">
     <div class="text-right">
         <a routerLink='/bienvenida/login' class="text-danger h4" style="text-shadow: 1px 1px black;">Ir a LOGIN</a>
     </div>
 
     <h1 class="text-white">REGISTRO {{titulo}}</h1>
-    <button class="btn btn-success ml-3" (click)='this.titulo="PACIENTES"'>Pacientes</button>
-    <button class="btn btn-warning ml-3" (click)='this.titulo="ESPECIALISTAS"'>Especialistas</button>
+
+    
+        <div class="row bt" >
+            <div class="col">
+                <button class="btn btn-success ml-3" routerLink='/bienvenida/registro/paciente'><img  src="assets/paciente/paciente_03.svg" height='400vh'></button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <button class="btn btn-warning ml-3" routerLink='/bienvenida/registro/especialista'><img src="assets/Especialista/especialista05.png" height='400vh'></button>
+            </div>
+        </div>
+    
 
 </div>        
     
-<app-registro-pacientes *ngIf='titulo=="PACIENTES"'></app-registro-pacientes>
-<app-registro-especialistas  *ngIf='titulo=="ESPECIALISTAS"'></app-registro-especialistas>
+
+
 
 
 </section>        

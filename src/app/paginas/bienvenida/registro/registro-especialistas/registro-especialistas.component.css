@@ -1,6 +1,6 @@
 .ng-autocomplete {
     width:100%;
-    max-width: 200px;
+    
     display: table;
     
   }
@@ -8,6 +8,7 @@
   .lista {
     
     overflow: auto;
+    overflow-x: hidden;
     width: 100%;
 
     height: 30vh;

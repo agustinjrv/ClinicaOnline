@@ -7,23 +7,34 @@
         
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item ">
-          <a class="nav-link" routerLink="home">Home</a>
-        </li>
 
-        <li *ngIf='this.usuarioLogeado.perfil=="Administrador"'>
+
+
+        <li class="nav-item" *ngIf='this.usuarioLogeado.perfil=="Administrador"'>
+          <a class="nav-link" routerLink="administrador">Home</a>
+        </li>	
+
+        <li class="nav-item" *ngIf='this.usuarioLogeado.perfil=="Administrador"'>
           <a class="nav-link" routerLink="administrador/seccionUsuarios">Administrar Usuarios</a>
         </li>	
+
+        <li class="nav-item" *ngIf='this.usuarioLogeado.perfil=="Especialista"'>
+          <a class="nav-link" routerLink="especialista">Home</a>
+        </li>	
         
-        <li *ngIf='this.usuarioLogeado.perfil=="Especialista"'>
+        <li class="nav-item" *ngIf='this.usuarioLogeado.perfil=="Especialista"'>
           <a class="nav-link" routerLink="especialista/miPerfil">Mi Perfil</a>
         </li>	
 
-        <li *ngIf='this.usuarioLogeado.perfil=="Paciente"'>
+        <li class="nav-item" *ngIf='this.usuarioLogeado.perfil=="Paciente"'>
+          <a class="nav-link" routerLink="paciente">Home</a>
+        </li>	
+
+        <li class="nav-item"*ngIf='this.usuarioLogeado.perfil=="Paciente"'>
           <a class="nav-link" routerLink="paciente/miPerfil">Mi Perfil</a>
         </li>	
 
-        <li *ngIf='this.usuarioLogeado.perfil=="Paciente"'>
+        <li class="nav-item" *ngIf='this.usuarioLogeado.perfil=="Paciente"'>
           <a class="nav-link" routerLink="paciente/solicitarTurno">Solicitar Turno</a>
         </li>	
         
@@ -42,9 +53,11 @@
 
 </nav>
 
-    <div style="height:70px;"></div>
+    
 
-<router-outlet></router-outlet>
+
+      <router-outlet></router-outlet>
+
 
 
 

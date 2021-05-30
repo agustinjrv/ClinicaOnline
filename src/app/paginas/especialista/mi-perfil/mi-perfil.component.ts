@@ -8,6 +8,7 @@ import { HorariosService } from 'src/app/servicios/horarios/horarios.service';
 
 import { UsuarioService } from 'src/app/servicios/usuario/usuario.service';
 
+
 @Component({
   selector: 'app-mi-perfil',
   templateUrl: './mi-perfil.component.html',
@@ -25,6 +26,20 @@ export class MiPerfilComponent implements OnInit {
   public horariosDeEspecialidad: any = false;
   public diasMostrar='';
   public trabajaSabado=false;
+
+  public claseBoton1='btn btn-danger';
+  public claseBoton2='btn btn-danger';
+  public claseBoton3='btn btn-danger';
+  public claseBotonSabados1='btn btn-danger';
+  public claseBotonSabados2='btn btn-danger';
+
+
+  
+  public horaDesde:string='';
+  public horaHasta:string='';
+  public horaDesdeSabados:string='';
+  public horaHastaSabados:string='';
+
 
 
   public diasBool: any = {};
@@ -114,25 +129,73 @@ export class MiPerfilComponent implements OnInit {
     
   }
 
+  public SeleccionarHorario(numeroBoton:number)
+  {
+      switch(numeroBoton)
+      {
+        case 1:
+              this.claseBoton1='btn btn-success';
+              this.claseBoton2='btn btn-danger';
+              this.claseBoton3='btn btn-danger';
+              this.horaDesde='08';
+              this.horaHasta='12';
+              
+          break;
+        case 2:
+              this.claseBoton1='btn btn-danger';
+              this.claseBoton2='btn btn-success';
+              this.claseBoton3='btn btn-danger';
+              this.horaDesde='08';
+              this.horaHasta='17';
+          break;
+          case 3:
+              this.claseBoton1='btn btn-danger';
+              this.claseBoton2='btn btn-danger';
+              this.claseBoton3='btn btn-success';
+              this.horaDesde='13';
+              this.horaHasta='19';
+          break;
+      }
+
+  }
+
+  public SeleccionarHorarioSabados(numeroBoton:number)
+  {
+    switch(numeroBoton)
+    {
+      case 1:
+            this.claseBotonSabados1='btn btn-success';
+            this.claseBotonSabados2='btn btn-danger';
+            this.horaDesdeSabados='08';
+            this.horaHastaSabados='12';
+            
+        break;
+      case 2:
+            this.claseBotonSabados1='btn btn-danger';
+            this.claseBotonSabados2='btn btn-success';
+            this.horaDesdeSabados='08';
+            this.horaHastaSabados='14';
+        break;
+    }
+
+
+  }
+
 
 
 
   public ModificarFechas() {
-    let inputInicio: any =  document.getElementById('horaInicio');
-    let inputFinal: any = document.getElementById('horaFin');
-   /* let dateInicio = new Date();
-    let dateFin = new Date();
-
-    dateInicio.setHours(inputInicio.value.slice(0, 2));
-    dateFin.setHours(inputFinal.value.slice(0, 2));*/
 
     let horas:any={};
 
-    horas.desde=inputInicio.value.slice(0, 2) + ':00';
-    horas.hasta=inputFinal.value.slice(0, 2) + ':00';
+    horas.desde=this.horaDesde + ':00';
+    horas.hasta=this.horaHasta + ':00';
+
     horas.especialidad=this.especialidadSeleccionada;
     horas.correoEspecialista=this.datosUsuario.correo;
+
     horas.dias=[];
+
     if(this.diasBool.lunes)
     {
       horas.dias.push(EDiasSemana.lunes);
@@ -155,8 +218,8 @@ export class MiPerfilComponent implements OnInit {
     }
     if(this.diasBool.sabados)
     {
-      horas.desdeSabados=(<any>document.getElementById('horaInicioSabados')).value;
-      horas.hastaSabados=(<any>document.getElementById('horaFinSabados')).value;
+      horas.desdeSabados=this.horaDesdeSabados + ':00';
+      horas.hastaSabados=this.horaHastaSabados + ':00';
       
       horas.dias.push(EDiasSemana.sabado);
     }
@@ -169,8 +232,6 @@ export class MiPerfilComponent implements OnInit {
       this.servicioHorarios.ModificarUno(this.horariosDeEspecialidad.id,horas);
     }
     
-
-
 
     setTimeout(()=>{
       this.CargarHorarios();

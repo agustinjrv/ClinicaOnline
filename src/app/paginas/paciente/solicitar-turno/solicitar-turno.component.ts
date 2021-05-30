@@ -244,11 +244,6 @@ export class SolicitarTurnoComponent implements OnInit {
 
               if(value.fecha==turno.dia && value.hora==turno.hora)
               {
-                  
-                  console.log(value.fecha);
-                  console.log(turno.dia);
-                  console.log(value.hora);
-                  console.log(turno.hora);
                   existe=true;
               }
             });

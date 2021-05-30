@@ -1,18 +1,39 @@
+<div style="height: 75px;">
 
-    <section class="container h-100 form-control text-dark form-signin border-danger "  style="background-color: rgba(109, 159, 206, 0.747); ">
-    
-            <h1 class=" text-center">REGISTRO {{titulo}}</h1>
+</div>
+<section   class="container h-100 form-control text-dark form-signin border-danger "  style="background-color: rgba(109, 159, 206, 0.747); ">
+
+
+<div class="bg-dark text-center mb-3 form-control h-100  border-dark">
+    <div class="text-right">
+        <a routerLink='/bienvenida/login' class="text-danger h4" style="text-shadow: 1px 1px black;">Ir a LOGIN</a>
+    </div>
+
+    <h1 class="text-white">REGISTRO</h1>
+
         
-            <section class="text-center">
-                <button class="btn btn-success ml-3" (click)='this.titulo="PACIENTES"'>Pacientes</button>
-                <button class="btn btn-warning ml-3" (click)='this.titulo="ESPECIALISTAS"'>Especialistas</button>
-                <button class="btn btn-danger ml-3" (click)='this.titulo="ADMINISTRADORES"'>Administradores</button>
-                
-            </section>
+        <div class="row mb-3">
+            <div class="col">
+                <button class="btn btn-primary ml-3" routerLink='/administrador/seccionUsuarios/registro/administradores'><img  src="assets/admin.png" height='400vh'></button>
+            </div>
+        </div>
+        <div class="row" >
+            <div class="col-6">
+                <button class="btn btn-success ml-3" routerLink='/administrador/seccionUsuarios/registro/pacientes'><img  src="assets/paciente/paciente_03.svg" height='400vh'></button>
+            </div>
+            <div class="col-6">
+                <button class="btn btn-warning ml-3" routerLink='/administrador/seccionUsuarios/registro/especialistas'><img src="assets/Especialista/especialista05.png" height='400vh'></button>
+            </div>
+        </div>
+        
     
-            <app-registro-pacientes *ngIf='titulo=="PACIENTES"'></app-registro-pacientes>
-            <app-registro-especialistas  *ngIf='titulo=="ESPECIALISTAS"'></app-registro-especialistas>
-            <app-registro-administradores *ngIf='titulo=="ADMINISTRADORES"'></app-registro-administradores>
+
+</div>        
     
-    </section>        
+
+
+
+
+</section>        
+
 

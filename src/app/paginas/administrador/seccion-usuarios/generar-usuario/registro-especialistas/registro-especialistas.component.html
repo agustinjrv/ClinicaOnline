@@ -1,178 +1,217 @@
+<div class="image" style="height: 100vh;width:100vw;"
+    [ngStyle]="{'background': 'url(assets/Especialista/fondoEspecialistas.jpg) no-repeat 0 0','background-size':'cover'}">
 
-  
-    
-    <div class=' mt-3' novalidate  [formGroup]="especialistaRegForm">
-        <div class="row pb-1 form-group">
-            <div class="col ">
-                <label for="">Nombre</label>
-                <input type="text" class='form-control' placeholder="Nombre" formControlName='nombre' [class]="isValidPaciente('nombre')">
-    
+    <div style="height: 75px;"></div>
+
+
+    <section class="container  form-control text-dark form-signin border-danger "
+        style="background-color: rgba(109, 159, 206, 0.747);height: 80vh;">
+
+        <div class="bg-dark text-center mb-3 form-control  border-dark" style="height: 15%;">
+            <div class="text-right">
+                <a routerLink='/bienvenida/login' class="text-danger h4" style="text-shadow: 1px 1px black;">Ir a
+                    LOGIN</a>
+            </div>
+
+            <h1 class="text-white">REGISTRO ESPECIALISTAS</h1>
+        </div>
+
+
+
+        <div class=' mt-3' novalidate [formGroup]="especialistaRegForm">
+            <div class="row pb-1 form-group">
+                <div class="col ">
+                    <label for="">Nombre</label>
+                    <input type="text" class='form-control' placeholder="Nombre" formControlName='nombre'
+                        [class]="isValidPaciente('nombre')">
+
                     <div class="invalid-feedback" style="font-family: sans-serif;position: absolute;">
                         <span style="text-shadow: 1px 1px black; font-weight:800;"
                             *ngIf="especialistaRegForm.controls.nombre.errors?.required && especialistaRegForm.controls.nombre.touched">
                             *Por favor ingrese su Nombre
                         </span>
                     </div>
-            </div>
-    
-            <div class="col">
-                <label for="">Apellido</label>
-                <input type="text"  class='form-control' placeholder="Apellido" formControlName='apellido' [class]="isValidPaciente('apellido')">
-    
-                <div class="invalid-feedback" style="font-family: sans-serif;" style="font-family: sans-serif;position: absolute;">
-                    <span style="text-shadow: 1px 1px black; font-weight:800;"
-                        *ngIf="especialistaRegForm.controls.apellido.errors?.required && especialistaRegForm.controls.apellido.touched">
-                        *Por favor ingrese su Apellido
-                    </span>
                 </div>
-            </div>
-    
-        </div>
-    
-        <div class="row pb-1 form-group">
-            <div class="col">
-                <label for="">Edad</label>
-                <input type="number"  class='form-control' placeholder="Edad" formControlName='edad' [class]="isValidPaciente('edad')">
-    
-                <div class="invalid-feedback" style="font-family: sans-serif;" style="font-family: sans-serif;position: absolute;">
-                    <span style="text-shadow: 1px 1px black; font-weight:800;"
-                        *ngIf="especialistaRegForm.controls.edad.errors?.required && especialistaRegForm.controls.edad.touched">
-                        *Por favor ingrese su Edad
-                    </span>
-                </div>
-    
-            </div>
-    
-            <div class="col">
-                <label for="">DNI</label>
-                <input type="number"  class='form-control' placeholder="DNI" formControlName='dni' [class]="isValidPaciente('dni')">
-    
-                
-                <div class="invalid-feedback" style="font-family: sans-serif;" style="font-family: sans-serif;position: absolute;">
-                    <span style="text-shadow: 1px 1px black; font-weight:800;"
-                        *ngIf="especialistaRegForm.controls.dni.errors?.required && especialistaRegForm.controls.dni.touched">
-                        *Por favor ingrese su DNI
-                    </span>
-                </div>
-            </div>
-        </div>
-    
-        
-    
-        <div class="row pb-1 form-group">
-    
-            <div class="col">
-                <label for="">Correo</label>
-                <input type='email'  class='form-control' placeholder="Correo" formControlName='correo' [class]="isValidPaciente('correo')">
-    
-                <div class="invalid-feedback" style="font-family: sans-serif;" style="font-family: sans-serif;position: absolute;">
-                    <span style="text-shadow: 1px 1px black; font-weight:800;"
-                        *ngIf="especialistaRegForm.controls.correo.errors?.required && especialistaRegForm.controls.correo.touched">
-                        *Por favor ingrese su Correo
-                    </span>
-                    <span style="text-shadow: 1px 1px black; font-weight:800;"
-                        *ngIf="especialistaRegForm.controls.correo.errors?.pattern && especialistaRegForm.controls.correo.touched">
-                        Correo invalido
-                    </span>
-                </div>
-            </div>
-    
-    
-            <div class="col">
-                
-                <div class="row">
-                    <div class="col">
-                        <label for="">Especialidades</label>
 
-                        <div class="ng-autocomplete"  >
-                            <ng-autocomplete #auto (keyup.enter)="onEnter()"  [(ngModel)]='this.inputEspecialidades' [ngModelOptions]="{standalone: true}" 
-                            [data]="this.listaEspecialidades"
-                            [searchKeyword]="keyword"
-                            placeholder="Especialidades"
-                            (selected)="AgregarALista($event)"
-                            
-                            [itemTemplate]="itemTemplate"
-                            [notFoundTemplate]="notFoundTemplate">
-                            </ng-autocomplete>
-                        
-                            <ng-template #itemTemplate let-item>
-                            <a >{{item.nombre}}</a>
-                            </ng-template>
-                        
-                            <ng-template #notFoundTemplate let-notFound>
-                            <div >{{notFound}}</div>
-                            </ng-template>
+                <div class="col">
+                    <label for="">Apellido</label>
+                    <input type="text" class='form-control' placeholder="Apellido" formControlName='apellido'
+                        [class]="isValidPaciente('apellido')">
+
+                    <div class="invalid-feedback" style="font-family: sans-serif;"
+                        style="font-family: sans-serif;position: absolute;">
+                        <span style="text-shadow: 1px 1px black; font-weight:800;"
+                            *ngIf="especialistaRegForm.controls.apellido.errors?.required && especialistaRegForm.controls.apellido.touched">
+                            *Por favor ingrese su Apellido
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row pb-1 form-group">
+                <div class="col">
+                    <label for="">Edad</label>
+                    <input type="number" class='form-control' placeholder="Edad" formControlName='edad'
+                        [class]="isValidPaciente('edad')">
+
+                    <div class="invalid-feedback" style="font-family: sans-serif;"
+                        style="font-family: sans-serif;position: absolute;">
+                        <span style="text-shadow: 1px 1px black; font-weight:800;"
+                            *ngIf="especialistaRegForm.controls.edad.errors?.required && especialistaRegForm.controls.edad.touched">
+                            *Por favor ingrese su Edad
+                        </span>
+                    </div>
+
+                </div>
+
+                <div class="col">
+                    <label for="">DNI</label>
+                    <input type="number" class='form-control' placeholder="DNI" formControlName='dni'
+                        [class]="isValidPaciente('dni')">
+
+
+                    <div class="invalid-feedback" style="font-family: sans-serif;"
+                        style="font-family: sans-serif;position: absolute;">
+                        <span style="text-shadow: 1px 1px black; font-weight:800;"
+                            *ngIf="especialistaRegForm.controls.dni.errors?.required && especialistaRegForm.controls.dni.touched">
+                            *Por favor ingrese su DNI
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="row pb-1 form-group">
+
+                <div class="col">
+                    <label for="">Correo</label>
+                    <input type='email' class='form-control' placeholder="Correo" formControlName='correo'
+                        [class]="isValidPaciente('correo')">
+
+                    <div class="invalid-feedback" style="font-family: sans-serif;"
+                        style="font-family: sans-serif;position: absolute;">
+                        <span style="text-shadow: 1px 1px black; font-weight:800;"
+                            *ngIf="especialistaRegForm.controls.correo.errors?.required && especialistaRegForm.controls.correo.touched">
+                            *Por favor ingrese su Correo
+                        </span>
+                        <span style="text-shadow: 1px 1px black; font-weight:800;"
+                            *ngIf="especialistaRegForm.controls.correo.errors?.pattern && especialistaRegForm.controls.correo.touched">
+                            Correo invalido
+                        </span>
+                    </div>
+                </div>
+
+
+                <div class="col">
+
+                    <div class="row">
+                        <div class="col">
+                            <label for="">Especialidades</label>
+
+                            <div class="ng-autocomplete">
+                                <ng-autocomplete #auto (keyup.enter)="onEnter()" [(ngModel)]='this.inputEspecialidades'
+                                    [ngModelOptions]="{standalone: true}" [data]="this.listaEspecialidades"
+                                    [searchKeyword]="keyword" placeholder="Especialidades"
+                                    (selected)="AgregarALista($event)" [itemTemplate]="itemTemplate"
+                                    [notFoundTemplate]="notFoundTemplate">
+                                </ng-autocomplete>
+
+                                <ng-template #itemTemplate let-item>
+                                    <a>{{item.nombre}}</a>
+                                </ng-template>
+
+                                <ng-template #notFoundTemplate let-notFound>
+                                    <div>{{notFound}}</div>
+                                </ng-template>
+                            </div>
+
                         </div>
 
                     </div>
 
-                    <div class="col " >
-                        Lista Especialidades
-                        
-                        <table class="table table-dark table-hover " style="position: absolute;z-index: 100;">
-                            <tr *ngFor='let i of this.unEspecialista.especialidades'>
-                                <td>{{i}}</td>
-                                <td class="text-right"><button (click)='BorrarDeLaLista(i)' class="btn btn-secondary">❌</button></td>
-                            </tr>
-                            
-                        </table>                         
+                </div>
 
+
+
+
+            </div>
+
+            <div class="row pb-1 form-group">
+
+
+                <div class="col-6">
+                    <label for="">Clave</label>
+                    <input type="password" class='form-control mb-0' placeholder="Clave" formControlName='clave'
+                        [class]="isValidPaciente('clave')">
+
+                    <div class="invalid-feedback" style="font-family: sans-serif;position: absolute;">
+                        <span style="text-shadow: 1px 1px black; font-weight:800;"
+                            *ngIf="especialistaRegForm.controls.clave.errors?.required && especialistaRegForm.controls.clave.touched">
+                            *Por favor ingrese su Clave
+                        </span>
                     </div>
-                    <div class="col-1"></div>
+
+
+                    <div>
+                        <label for="">Foto de perfil principal</label><br>
+                        <label class="btn btn-dark w-75" for="foto">
+                            <h1 class="mt-4">📷</h1>
+
+                            <input type="file" style='visibility: hidden;' accept=".png, .jpg"
+                                (change)='SubirFotoEspecialista($event)' formControlName='imagenPrincipal' id='foto'
+                                [class]="isValidPaciente('imagenPrincipal')">
+                        </label>
+
+
+                        <div class="invalid-feedback" style="font-family: sans-serif;position: absolute;">
+                            <span style="text-shadow: 1px 1px black; font-weight:800;"
+                                *ngIf="especialistaRegForm.controls.imagenPrincipal.errors?.required && especialistaRegForm.controls.imagenPrincipal.touched">
+                                *Por favor ingrese una foto
+                            </span>
+                        </div>
+                    </div>
+
 
                 </div>
 
-            </div>
-    
-    
-    
-    
-        </div>
-    
-        <div class="row pb-1 form-group">
-            
-    
-            <div class="col">
-                <label for="">Clave</label>
-                <input type="password"  class='form-control mb-0' placeholder="Clave" formControlName='clave' [class]="isValidPaciente('clave')">
-    
-                <div class="invalid-feedback"  style="font-family: sans-serif;position: absolute;">
-                    <span style="text-shadow: 1px 1px black; font-weight:800;"
-                        *ngIf="especialistaRegForm.controls.clave.errors?.required && especialistaRegForm.controls.clave.touched">
-                        *Por favor ingrese su Clave
-                    </span>
-                </div>
-            </div>
-    
-            <div class="col"></div>
-     
-        </div>
-    
-    
-        <div class="row pb-1 form-group">
-            <div class="col">
-                <label for="">Foto de perfil principal</label><br>
-                <input type="file" class="btn btn-dark" accept=".png, .jpg" 
-                        (change)='SubirFotoEspecialista($event)'
-                        formControlName='imagenPrincipal' 
-                        [class]="isValidPaciente('imagenPrincipal')">
-    
-                <div class="invalid-feedback"  style="font-family: sans-serif;position: absolute;">
-                    <span style="text-shadow: 1px 1px black; font-weight:800;"
-                        *ngIf="especialistaRegForm.controls.imagenPrincipal.errors?.required && especialistaRegForm.controls.imagenPrincipal.touched">
-                        *Por favor ingrese una foto
-                    </span>
-                </div>
-            </div>
-        </div>
-    
-        <div class="row mt-4 ">
-            <div class="col">
-                <button class="btn btn-danger btn-block" (click)='this.RegistrarEspecialista()' [disabled]="this.especialistaRegForm.invalid">REGISTRARSE!!!</button>
-            </div>
-        </div>   
-        
-    
-    </div>
 
 
+
+                <div class="col lista mr-4">
+                    <p class="text-center"> Lista Especialidades</p>
+
+                    <table class="table table-dark table-hover">
+                        <tr *ngFor='let i of this.unEspecialista.especialidades'>
+                            <td>{{i}}</td>
+                            <td class="text-right ">
+                                <button (click)='BorrarDeLaLista(i)' class="btn btn-secondary mr-3">❌</button>
+                            </td>
+                        </tr>
+
+                    </table>
+
+                </div>
+
+
+
+            </div>
+
+
+
+
+            <div class="row mt-4 ">
+                <div class="col">
+                    <button class="btn btn-danger btn-block" (click)='this.RegistrarEspecialista()'
+                        [disabled]="this.especialistaRegForm.invalid">REGISTRARSE!!!</button>
+                </div>
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+</div>

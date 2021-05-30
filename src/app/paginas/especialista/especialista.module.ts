@@ -9,12 +9,14 @@ import { CheckboxComponent } from 'src/app/componentes/checkbox/checkbox.compone
 
 
 
+
 @NgModule({
   declarations: [
     EspecialistaComponent,
     TablaEspecialidadesComponent,
     MiPerfilComponent,
-    CheckboxComponent
+    CheckboxComponent,
+    
   ],
   imports: [
     CommonModule,
