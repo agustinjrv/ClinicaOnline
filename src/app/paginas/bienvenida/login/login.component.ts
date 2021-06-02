@@ -27,10 +27,13 @@ export class LoginComponent implements OnInit {
                   this.listaUsuarios=data;
                 });
                }
+               
 
   ngOnInit(): void {
     this.initForm();
   }
+
+ 
 
   isValid(field: string): string {
     const validateField = this.usuarioValidacion.get(field);
@@ -68,7 +71,20 @@ export class LoginComponent implements OnInit {
         
         
         localStorage.setItem('usuarioLogeado',JSON.stringify(usuarioLogin));
-        location.href="/home"; 
+
+        switch(usuarioLogin.perfil)
+        {
+            case 'Paciente':
+              location.href="/paciente"; 
+              break;
+            case 'Especialista':
+              location.href="/especialista"; 
+              break;
+             case 'Administrador':
+              location.href="/administrador"; 
+              break;
+              
+        }
         
       });
 

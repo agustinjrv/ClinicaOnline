@@ -2,10 +2,12 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { EspecialistaComponent } from './especialista.component';
 import { MiPerfilComponent } from './mi-perfil/mi-perfil.component';
+import { TurnosComponent } from './turnos/turnos.component';
 
 const routes: Routes = [
                           { path:'', component: EspecialistaComponent },
                           { path:'miPerfil', component: MiPerfilComponent},
+                          { path:'turnos', component: TurnosComponent},
 
                        ];
 
@@ -14,3 +16,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class EspecialistaRoutingModule { }
+

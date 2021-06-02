@@ -38,6 +38,11 @@ export class TurnosService {
   {
     return this.coleccionTurnos;    
   }
+
+  public ModificarUno(unTurno)
+  {
+    this.coleccionTurnos.doc(unTurno.id).set({...unTurno});
+  }
   
 }
 

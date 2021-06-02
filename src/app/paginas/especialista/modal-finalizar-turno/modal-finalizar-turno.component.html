@@ -1,0 +1,32 @@
+<div class="modal fade" id="modalFinalizar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+aria-hidden="true" data-backdrop="static" data-keyboard="false">
+
+<div class="modal-dialog" role="document">
+    <div *ngIf="true">
+        <div class="modal-content">
+
+            <div class="modal-header">
+				<h1 class="modal-title text-dark" id="exampleModalLabel">Cancelar turno</h1>
+				<button type="button" class="btn btn-outline-danger" data-dismiss="modal">X</button>
+			</div>
+
+            <div class="modal-body text-dark">
+                <h3 >Reseña</h3>
+                <textarea name="" id="" cols="57" rows="10" style="resize: none;" [(ngModel)]="resenia"></textarea>
+
+                <h3>Diagnostico</h3>
+                <textarea name="" id="" cols="57" rows="10" style="resize: none;" [(ngModel)]="diagnostico"></textarea>
+               
+
+            </div>
+
+            <div class="modal-footer">
+                <div>
+                    <button type="button" class="btn btn-outline-success"  (click)="this.FinalizarTurno()" >Aceptar</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>

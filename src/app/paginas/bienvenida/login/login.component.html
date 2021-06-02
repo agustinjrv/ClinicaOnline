@@ -1,71 +1,98 @@
-<section class="container   w-50 h-100 form-control text-dark form-signin border-danger "  style="background-color: rgba(109, 159, 206, 0.747);">
+<div style="height: 75px;">
+
+</div>
+
+<section class="container   w-50 h-100 form-control text-dark form-signin border-danger "
+    style="background-color: rgba(109, 159, 206, 0.747);">
     <div class="text-right bg-dark form-control h-100 border-dark">
+        
+        <div class="contenedor" appOcultar>
+            <button class="botonF1" appMostrar >
+                <span>+</span>
+                br
+            </button>
+            <button class="btn-flotante  botonF2" (click)='this.InicioRapido("admin@admin.com","123456")'>
+                <img class="mb-2" src="assets/admin.png" width="30px" >
+            </button>
+            <button class="btn-flotante botonF3"  (click)='this.InicioRapido("paciente@paciente.com","123456")'>
+                <img class="mb-3" src="assets/paciente/paciente_02.svg" width="30px" >
+            </button>
+            <button class="btn-flotante botonF4" (click)='this.InicioRapido("paciente2@paciente2.com","123456")'>
+                <img class="mb-3" src="assets/paciente/paciente_06.svg" width="30px" >
+            </button>
+            <button class="btn-flotante botonF5" (click)='this.InicioRapido("especialista3@especialista3.com","123456")'>
+                <img class="mb-3" src="assets/Especialista/especialista04.png" width="30px" >
+            </button>
+            <button class="btn-flotante botonF6" (click)='this.InicioRapido("especialista1@especialista1.com","123456")'>
+                <img class="mb-3" src="assets/Especialista/especialista04.png" width="30px" >
+            </button>
+            
+        </div>
+        
         <a routerLink='/bienvenida/registro' class="text-danger h4" style="text-shadow: 1px 1px black;">Ir a Registro</a>
-        <h1 class=" text-center text-white">INGRESAR</h1>  
+        
+
+
+        <h1 class=" text-center text-white">INGRESAR</h1>
     </div>
 
-    
-        <form class=' mt-3' novalidate  [formGroup]="this.usuarioValidacion" >
 
-            <div class="row pb-1 form-group">
-                <div class="col">
-                    <label for="">Correo</label>
-                    <input type='email'  class='form-control' placeholder="Correo" formControlName='correo'  [class]='this.isValid("correo")'>
-    
-                    <div class="invalid-feedback" style="font-family: sans-serif;" style="font-family: sans-serif;position: absolute;">
-                        <span style="text-shadow: 1px 1px black; font-weight:800;"
-                          *ngIf="usuarioValidacion.controls.correo.errors?.required && usuarioValidacion.controls.correo.touched">
-                          *Por favor ingrese su Correo
-                        </span>
-                        <span style="text-shadow: 1px 1px black; font-weight:800;"
-                          *ngIf="usuarioValidacion.controls.correo.errors?.pattern && usuarioValidacion.controls.correo.touched">
-                          Correo invalido
-                        </span>
-                    </div>
+    <form class=' mt-3' novalidate [formGroup]="this.usuarioValidacion">
+
+        <div class="row pb-1 form-group">
+            <div class="col">
+                <label for="">Correo</label>
+                <input type='email' class='form-control' placeholder="Correo" formControlName='correo'
+                    [class]='this.isValid("correo")'>
+
+                <div class="invalid-feedback" style="font-family: sans-serif;"
+                    style="font-family: sans-serif;position: absolute;">
+                    <span style="text-shadow: 1px 1px black; font-weight:800;"
+                        *ngIf="usuarioValidacion.controls.correo.errors?.required && usuarioValidacion.controls.correo.touched">
+                        *Por favor ingrese su Correo
+                    </span>
+                    <span style="text-shadow: 1px 1px black; font-weight:800;"
+                        *ngIf="usuarioValidacion.controls.correo.errors?.pattern && usuarioValidacion.controls.correo.touched">
+                        Correo invalido
+                    </span>
                 </div>
-    
             </div>
 
-            
-            <div class="row pb-1 form-group">
-               
-    
-                <div class="col">
-                    <label for="">Clave</label>
-                    <input type="password"  class='form-control mb-0' placeholder="Clave" formControlName='clave' [class]='this.isValid("clave")' >
-                    
-                    <div class="invalid-feedback"  style="font-family: sans-serif;position: absolute;">
-                        <span style="text-shadow: 1px 1px black; font-weight:800;"
-                          *ngIf="usuarioValidacion.controls.clave.errors?.required && usuarioValidacion.controls.clave.touched">
-                          *Por favor ingrese su Clave
-                        </span>
-                    </div>
-                </div>
-    
-                
-    
-            </div>
-    
-            <div class="row mt-4 ">
-                <div class="col">
-                    <button class="btn btn-danger btn-block" (click)="this.Ingresar()" [disabled]="this.usuarioValidacion.invalid">Ingresar!!!</button>
-                    
-                </div>
-            </div>
-            <div class="row mt-2">
-                <div class="col">
-                    <button class="btn btn-dark btn-block" (click)='this.InicioRapido("admin@admin.com","123456")' >Admin</button>
-                </div>
-                <div class="col">
-                    <button class="btn btn-dark btn-block" (click)='this.InicioRapido("paciente@paciente.com","123456")' >Paciente</button>
-                </div>
-                <div class="col">
-                    <button class="btn btn-dark btn-block" (click)='this.InicioRapido("especialista3@especialista3.com","123456")' >Especialista</button>
-                </div>               
+        </div>
 
+
+        <div class="row pb-1 form-group">
+
+
+            <div class="col">
+                <label for="">Clave</label>
+                <input type="password" class='form-control mb-0' placeholder="Clave" formControlName='clave'
+                    [class]='this.isValid("clave")'>
+
+                <div class="invalid-feedback" style="font-family: sans-serif;position: absolute;">
+                    <span style="text-shadow: 1px 1px black; font-weight:800;"
+                        *ngIf="usuarioValidacion.controls.clave.errors?.required && usuarioValidacion.controls.clave.touched">
+                        *Por favor ingrese su Clave
+                    </span>
+                </div>
             </div>
 
-        </form>
+
+
+        </div>
+
+        <div class="row mt-4 ">
+            <div class="col">
+                <button class="btn btn-danger btn-block" (click)="this.Ingresar()"
+                    [disabled]="this.usuarioValidacion.invalid">Ingresar!!!</button>
+
+            </div>
+        </div>
         
+
+                
+        
+
+    </form>
+
 </section>
-    

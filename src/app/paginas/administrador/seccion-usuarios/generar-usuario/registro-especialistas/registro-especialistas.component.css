@@ -1,19 +1,19 @@
 .ng-autocomplete {
     width:100%;
-    max-width: 200px;
+    
     display: table;
     
   }
 
-  .listadoEsp {
-    margin-top: -2%;
+  .lista {
+    
     overflow: auto;
     overflow-x: hidden;
     width: 100%;
-    max-width: 300px;
-    
+
     height: 30vh;
     border: solid 1px #0069D7;
 
     
+
   }

@@ -1,0 +1,28 @@
+<div class="modal fade" id="modalRechazar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+aria-hidden="true" data-backdrop="static" data-keyboard="false">
+
+<div class="modal-dialog" role="document">
+    <div *ngIf="true">
+        <div class="modal-content">
+
+            <div class="modal-header">
+				<h1 class="modal-title text-dark" id="exampleModalLabel">Cancelar turno</h1>
+				<button type="button" class="btn btn-outline-danger" data-dismiss="modal">X</button>
+			</div>
+
+            <div class="modal-body text-dark">
+                <h3 >Razon por la que se rechaza el turno</h3>
+
+                <textarea name="" id="" cols="57" rows="10" style="resize: none;" [(ngModel)]="razonDeRechazo"></textarea>
+               
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-success" data-dismiss="modal" (click)="RechazarTurno()" >Aceptar</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>

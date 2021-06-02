@@ -1,4 +1,6 @@
+<div style="height: 75px;">
 
+</div>
 <section class="container"  *ngIf='cargo'>
 
     <div class="row">
@@ -76,46 +78,28 @@
     
                 <section class="row mt-3">
     
-                    <div class="col text-right">
-                        <label for="horaInicio mr-5">Inicio</label>
-                        <br>
-                        <input type="time" name="" id="horaInicio" min="08:00">
-                    </div>
-                    
-                    <span>A</span>
-
-                    <div class="col text-left">
-                        <label for="horaFin" >Fin</label>
-                        <br>
-                        <input type="time" name="" id="horaFin" max="19">
+                    <div class="col text-center">
+                        <h3>Horario</h3>
+                        <button  [class]="claseBoton1" (click)='SeleccionarHorario(1)' >8 a 12</button>
+                        <button class="ml-2" [class]="claseBoton2" (click)='SeleccionarHorario(2)'>8 a 17</button>
+                        <button class="ml-2" [class]="claseBoton3" (click)='SeleccionarHorario(3)'> 13 a 19</button>
+                        
                     </div>
       
                 </section>
     
                 <section *ngIf='diasBool.sabados'>       
     
-                    <section class="row mt-3">
-                        <div class="col">
-                            <h3 class="text-center">Sabados</h3>
-                        </div>
-                    </section>
         
                     <section class="row mt-3">
     
-                        <div class="col text-right">
-                            <label for="horaInicio mr-5">Inicio</label>
-                            <br>
-                            <input type="time" name="" id="horaInicioSabados" min="08:00">
+                        <div class="col text-center">
+                            <h3>Horario Sabados</h3>
+                            <button  [class]="claseBotonSabados1" (click)='SeleccionarHorarioSabados(1)'>8 a 12</button>
+                            <button class="ml-2" [class]="claseBotonSabados2" (click)='SeleccionarHorarioSabados(2)' >8 a 14</button>
+
                         </div>
-                        
-                        <span>A</span>
-    
-                        <div class="col text-left">
-                            <label for="horaFin" >Fin</label>
-                            <br>
-                            <input type="time" name="" id="horaFinSabados" max="19">
-                        </div>
-          
+
                     </section>
                 </section>
 

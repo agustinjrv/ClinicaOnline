@@ -8,8 +8,8 @@ import { Component, OnInit } from '@angular/core';
 export class RegistroComponent implements OnInit {
 
   //public titulo:string='PACIENTES';
-  public titulo:string='ESPECIALISTAS';
-
+  public titulo:string='';
+  key='6LeRO_UaAAAAAEloc6hOZf0LkiqBIfB9A3ZzlMek';
   public condicion=true;
   
   constructor() { 
@@ -20,6 +20,8 @@ export class RegistroComponent implements OnInit {
 
     
   }
+
+  
 
 
 

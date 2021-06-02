@@ -1,4 +1,8 @@
+import { EestadoTurno, Turno } from './../../../clases/turno/turno';
+import { Paciente } from './../../../clases/paciente/paciente';
 import { Component, OnInit } from '@angular/core';
+import { TurnosService } from 'src/app/servicios/turnos/turnos.service';
+
 
 @Component({
   selector: 'app-mis-turnos',
@@ -7,9 +11,53 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MisTurnosComponent implements OnInit {
 
-  constructor() { }
+  public listaTurnos:any[]=[];
+  public usuarioLogeado;
+  public listaMostrar:any=false;
+  public cargo=false;
+  public turnoCancelar;
+
+  
+
+  constructor(private servicioTurnos:TurnosService) { 
+  
+
+
+  }
 
   ngOnInit(): void {
+    this.usuarioLogeado=JSON.parse(localStorage.getItem('usuarioLogeado'));
+    
+    this.servicioTurnos.TraerTodos().valueChanges().subscribe((data)=>{
+      this.listaTurnos=data;
+      
+      this.listaMostrar=this.listaTurnos.filter((value,index,array)=>{
+        return value.paciente==this.usuarioLogeado.correo;
+      });
+      this.listaMostrar.forEach((element) => {
+          element.estadoTurno=EestadoTurno[element.estadoTurno];
+      });
+      this.cargo=true;
+  
+      
+    });
+
+
+
+  }
+
+  public AbrirModalCancelarTurno(unTurno:any)
+  {
+    this.turnoCancelar=unTurno;
+    var objO:any = document.getElementById("botonModalCancelar")??"";
+    objO.click();
+  }
+
+  public CancelarTurno(razonCancelacion:string)
+  {
+    this.turnoCancelar.estadoTurno=EestadoTurno.cancelado;
+    this.turnoCancelar.razonCancelacion=razonCancelacion;
+    this.servicioTurnos.ModificarUno(this.turnoCancelar);
   }
 
 }

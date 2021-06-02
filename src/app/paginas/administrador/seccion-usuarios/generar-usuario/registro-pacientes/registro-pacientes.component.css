@@ -1,0 +1,8 @@
+body{
+    
+    background:url('/assets/paciente/fondoPacientes.jpg') !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-attachment:fixed !important;
+    background-size:cover !important;
+}

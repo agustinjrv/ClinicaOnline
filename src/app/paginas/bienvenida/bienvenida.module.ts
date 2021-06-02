@@ -12,7 +12,9 @@ import { RegistroPacientesComponent } from './registro/registro-pacientes/regist
 
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 import { RegistroEspecialistasComponent } from './registro/registro-especialistas/registro-especialistas.component';
-
+import { NgxCaptchaModule } from 'ngx-captcha';
+import { MostrarDirective } from 'src/app/directivas/mostrar.directive';
+import { OcultarDirective } from 'src/app/directivas/Ocultar/ocultar.directive';
 
 
 
@@ -23,7 +25,9 @@ import { RegistroEspecialistasComponent } from './registro/registro-especialista
     LoginComponent,
     RegistroComponent,
     RegistroPacientesComponent,
-    RegistroEspecialistasComponent
+    RegistroEspecialistasComponent,
+    MostrarDirective,
+    OcultarDirective
     
     
     
@@ -34,6 +38,7 @@ import { RegistroEspecialistasComponent } from './registro/registro-especialista
     FormsModule,
     ReactiveFormsModule,  
     BienvenidaRoutingModule,
+    NgxCaptchaModule
     
      
     

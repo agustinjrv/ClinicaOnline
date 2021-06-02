@@ -9,6 +9,8 @@ import { SolicitarTurnoComponent } from './solicitar-turno/solicitar-turno.compo
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 import { MiPerfilComponent } from './mi-perfil/mi-perfil.component';
 import { TablaEspecialidadesComponent } from './tabla-especialidades/tabla-especialidades.component';
+import { ModalCancelarTurnoComponent } from 'src/app/componentes/modal-cancelar-turno/modal-cancelar-turno.component';
+
 
 
 @NgModule({
@@ -17,7 +19,8 @@ import { TablaEspecialidadesComponent } from './tabla-especialidades/tabla-espec
     MisTurnosComponent,
     SolicitarTurnoComponent,
     MiPerfilComponent,
-    TablaEspecialidadesComponent
+    TablaEspecialidadesComponent,
+    ModalCancelarTurnoComponent
   ],
   imports: [
     CommonModule,

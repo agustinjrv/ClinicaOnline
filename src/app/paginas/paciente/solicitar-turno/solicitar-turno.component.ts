@@ -32,13 +32,22 @@ export class SolicitarTurnoComponent implements OnInit {
   public horariosDeEspecialista:any=false;
   public horariosMostrar:any;
   public diasMostrar:any[]=[];
-  public turnosMostrar:any[]=[];
+  public turnosMostrar:any=false;
 
 
   public listaTurnosPorEspecialidad:Turno[]=[];
   public listaTurnosPorEspecialista:Turno[]=[];
 
   public cargo=false;
+
+
+  public listaFechasMostrar:any[]=[];
+
+  public eligioEspecialidad:boolean=false;
+  public eligioEspecialista:boolean=false;
+  public eligioFecha:boolean=false;
+  public eligioTurno:boolean=false;
+
 
   keyword = 'nombre';
   public inputEspecialidades: any = '';
@@ -53,7 +62,13 @@ export class SolicitarTurnoComponent implements OnInit {
     ) {
       
     this.unEspecialista = new Especialista();
+    
+  }
+
+  ngOnInit(): void {
+    //this.initForm();
     this.CargarTodo();
+    
   }
 
   private CargarTodo() {
@@ -61,12 +76,14 @@ export class SolicitarTurnoComponent implements OnInit {
     this.CargarEspecialistas();
     this.CargarHorarios();
     this.CargarTurnos();
+    
   }
 
   private CargarTurnos()
   {
       this.servicioTurnos.TraerTodos().valueChanges().subscribe((data)=>{
           this.listaTurnos=data;
+          
       });
   }
 
@@ -78,7 +95,7 @@ export class SolicitarTurnoComponent implements OnInit {
       }).map((value,index,array)=>{
         return value.nombre;
       });
-      
+      this.cargo=true;
     })
   }
 
@@ -92,7 +109,7 @@ export class SolicitarTurnoComponent implements OnInit {
         }
 
       });
-      this.cargo=true;
+      
     });
 
   }
@@ -107,15 +124,14 @@ export class SolicitarTurnoComponent implements OnInit {
 
 
 
-  ngOnInit(): void {
-    //this.initForm();
-  }
+ 
 
   LimpiarPanel(): void {
     this.auto.clear();
   }
 
   public SeleccionarEspecialidad($event) {
+    
     this.especialidadSeleccionada = $event; 
     this.especialistaSeleccionado=false;
     this.horariosMostrar=false;
@@ -123,6 +139,7 @@ export class SolicitarTurnoComponent implements OnInit {
     this.listaTurnosPorEspecialidad=[];
     this.listaTurnosPorEspecialista=[];
     this.diasMostrar=[];
+    
 
 
     
@@ -135,12 +152,16 @@ export class SolicitarTurnoComponent implements OnInit {
           encontro = true;
         }
       });
-
-    
-
+      
+      
       return encontro
     });
+   
+      
     
+    this.eligioEspecialidad=true;
+    console.log(this.eligioEspecialidad);
+    console.log(this.eligioEspecialista);
     this.BuscarTurnosDeEspecialidad()
     
     
@@ -187,7 +208,6 @@ export class SolicitarTurnoComponent implements OnInit {
           }
       }
 
-      console.log(this.horariosDeEspecialista);
       
       this.horariosDeEspecialista.dias.forEach(element => {
           this.diasMostrar.push(EDiasSemana[element]);
@@ -206,9 +226,12 @@ export class SolicitarTurnoComponent implements OnInit {
       for(let dia=0;dia<15;dia++)
       {
         fecha.setTime(Date.now());
+        
         let esUnDiaValido=false;
         fecha.setDate(fecha.getDate()+dia);
-      
+
+        
+            
         
 
         this.diasMostrar.forEach(element => {
@@ -221,13 +244,14 @@ export class SolicitarTurnoComponent implements OnInit {
 
         if(esUnDiaValido)
         {
-            
+          let nuevaFecha:any={};
+          nuevaFecha.horarios=[];
+
           for(let i=0;i<rangoHoras;i++)
           {
             let turno:any={};
-            turno.dia=EDiasSemana[fecha.getDay()] +' '+fecha.getDate() +'/'+fecha.getMonth() + '/' + fecha.getFullYear();
-            
-            
+            turno.dia=EDiasSemana[fecha.getDay()] +' '+fecha.getDate() +'/'+(fecha.getMonth()+1) + '/' + fecha.getFullYear();
+            nuevaFecha.dia =turno.dia;
 
   
             if(EDiasSemana[fecha.getDay()]=='sabado')
@@ -244,33 +268,28 @@ export class SolicitarTurnoComponent implements OnInit {
 
               if(value.fecha==turno.dia && value.hora==turno.hora)
               {
-                  
-                  console.log(value.fecha);
-                  console.log(turno.dia);
-                  console.log(value.hora);
-                  console.log(turno.hora);
                   existe=true;
               }
             });
             
             if(!existe)
             {
-              this.turnosMostrar.push(turno)
+              nuevaFecha.horarios.push(turno);
             }
 
           }
           
+          this.listaFechasMostrar.push(nuevaFecha);
         }
-        
-  
-        
 
       }
+      this.eligioEspecialista=true;
+  }
 
 
-
-
-
+  public SeleccionarFecha(fecha)
+  {
+      console.log(fecha);
   }
 
   public SolicitarTurno(turnoSeleccionado)
@@ -285,16 +304,42 @@ export class SolicitarTurnoComponent implements OnInit {
 
 
       this.servicioTurnos.AgregarUno(nuevoTurno);
-
-      this.CargarTurnos();
-      this.turnosMostrar=[];
-      this.diasMostrar=[];
-      this.especialistasMostrar=[];
-      this.listaTurnosPorEspecialidad=[];
-      this.listaTurnosPorEspecialista=[];
-      this.especialistaSeleccionado=false;
-      this.especialidadSeleccionada=false;
       
+        this.Reiniciar();
+
+      
+      
+      alert('Turno Cargado');
+      
+  }
+
+  public Reiniciar()
+  {
+    this.unEspecialista=new Especialista();
+    this.listaEspecialidades= [];
+    this.listaEspecialistas= [];
+    this.listaHorarios=[];
+    this.listaTurnos=[];
+  
+    this.especialistasMostrar= [];
+    this.especialidadSeleccionada= '';
+    this.especialistaSeleccionado=false;
+    this.horariosDeEspecialista=false;
+    this.horariosMostrar=false;
+    this.diasMostrar=[];
+    this.turnosMostrar=false;
+  
+  
+    this.listaTurnosPorEspecialidad=[];
+    this.listaTurnosPorEspecialista=[];
+  
+    this.cargo=false;
+    this.listaFechasMostrar=[];
+    this.eligioEspecialidad=false;
+    this.eligioEspecialista=false;
+    this.eligioFecha=false;
+    this.eligioTurno=false;
+    this.CargarTodo();
   }
 
 

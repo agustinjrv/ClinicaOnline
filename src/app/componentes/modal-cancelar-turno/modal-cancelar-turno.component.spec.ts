@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HomeComponent } from './home.component';
+import { ModalCancelarTurnoComponent } from './modal-cancelar-turno.component';
 
-describe('HomeComponent', () => {
-  let component: HomeComponent;
-  let fixture: ComponentFixture<HomeComponent>;
+describe('ModalCancelarTurnoComponent', () => {
+  let component: ModalCancelarTurnoComponent;
+  let fixture: ComponentFixture<ModalCancelarTurnoComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HomeComponent ]
+      declarations: [ ModalCancelarTurnoComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HomeComponent);
+    fixture = TestBed.createComponent(ModalCancelarTurnoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
