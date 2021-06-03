@@ -15,6 +15,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
+
 @NgModule({
   declarations: [
     EspecialistaComponent,
@@ -24,7 +25,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     TurnosComponent,
     ModalCancelarTurnoComponent,
     ModalRechazarTurnoComponent,
-    ModalFinalizarTurnoComponent
+    ModalFinalizarTurnoComponent,
     
   ],
   imports: [

@@ -2,6 +2,8 @@
 
 </div>
 
+<section class="container" *ngIf='this.cargo'>
+
     <table class="table table-dark table-hover  text-white " *ngIf='datosUsuario'>
         
 
@@ -29,3 +31,39 @@
 
     </table>
 
+    <h1>Historia Clinica</h1>
+
+
+    <table class="table table-dark">
+        <thead>
+            <tr>  
+                <th>Fecha</th>
+                <th>CorreoEspecialista</th>
+                <th>Altura</th>
+                <th>Peso</th>
+                <th>Temperatura</th>
+                <th>Presion</th>
+                <th>datos dinamico 1</th>
+                <th>datos dinamico 2</th>
+                <th>datos dinamico 3</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor='let unaHistoria of this.listaHistoriaClinica'>
+                <td>{{unaHistoria.fecha}}</td>
+                <td>{{unaHistoria.correoEspecialista}}</td>
+                <td>{{unaHistoria.altura}}</td>
+                <td>{{unaHistoria.peso}}</td>
+                <td>{{unaHistoria.temperatura}}</td>
+                <td>{{unaHistoria.presion}}</td>
+                <td *ngFor='let dato of unaHistoria.datosDinamicos'>{{dato.nombre + ' : ' +dato.valor }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+
+</section>
+
+
+    

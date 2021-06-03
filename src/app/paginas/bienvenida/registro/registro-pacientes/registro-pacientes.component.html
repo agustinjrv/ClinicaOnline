@@ -4,7 +4,7 @@
 
     </div>
 
-    <section class="container  form-control text-dark form-signin border-danger "  style="background-color: rgba(109, 159, 206, 0.747);height: 75vh; ">
+    <section class="container pt-3   text-dark form-signin border-danger "  style="background-color: rgba(109, 159, 206, 0.747); ">
 
         <div class="bg-dark text-center  form-control  border-dark" style="height: 12vh;">
             <div class="text-right">
@@ -148,13 +148,19 @@
                         [class]="isValidPaciente('imagenPrincipal')">
                     </div>
                 </div>
-            
-                <div class="row mt-4 ">
-                    <div class="col"> 
-                        <button class="btn btn-danger btn-block" (click)='this.RegistrarPaciente()' [disabled]="this.pacienteRegForm.invalid" >REGISTRARSE!!!</button>
-                    </div>
+                <div align='center'>
+
+                    <ngx-recaptcha2 (success)="Captcha($event)" #captchaElem [siteKey]="siteKey"></ngx-recaptcha2>
                 </div>
             
+                <div class="row mt-4  pb-3 ">
+                    <div class="col"> 
+                        <button class="btn btn-danger btn-block" (click)='this.RegistrarPaciente()' [disabled]="this.pacienteRegForm.invalid || !captcha" >REGISTRARSE!!!</button>
+                    </div>
+                </div>
+
+                
+                
             </form>
     
     </section>

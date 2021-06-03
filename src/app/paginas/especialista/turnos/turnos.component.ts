@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { HistoriaClinica } from 'src/app/clases/historiaClinica/historia-clinica';
 import { EestadoTurno } from 'src/app/clases/turno/turno';
+import { HistoriaClinicaService } from 'src/app/servicios/historiaClinica/historia-clinica.service';
 import { TurnosService } from 'src/app/servicios/turnos/turnos.service';
 
 @Component({
@@ -17,7 +19,8 @@ export class TurnosComponent implements OnInit {
 
   
 
-  constructor(private servicioTurnos:TurnosService) { 
+  constructor(private servicioTurnos:TurnosService,
+              private servicioHistoriaClinica:HistoriaClinicaService) { 
   EestadoTurno.rechazado
   }
 
@@ -87,14 +90,22 @@ export class TurnosComponent implements OnInit {
     objO.click();
   }
 
-  public FinalizarTurno(datos:any)
+  public FinalizarTurno(nuevaHistoria:HistoriaClinica)
   {
-    console.log('estoy en main');
-    console.log(datos);
+    
     this.turnoSeleccionado.estadoTurno=EestadoTurno.finalizado;
-    this.turnoSeleccionado.resenia=datos.resenia;
-    this.turnoSeleccionado.diagnostico=datos.diagnostico;
+    this.turnoSeleccionado.resenia=nuevaHistoria.resenia;
+    this.turnoSeleccionado.diagnostico=nuevaHistoria.diagnostico;
     this.servicioTurnos.ModificarUno(this.turnoSeleccionado);
+
+    nuevaHistoria.correoPaciente=this.turnoSeleccionado.paciente;
+    nuevaHistoria.correoEspecialista=this.usuarioLogeado.correo;
+    nuevaHistoria.fecha=this.turnoSeleccionado.fecha;
+
+    
+    this.servicioHistoriaClinica.AgregarUno(nuevaHistoria);
+
+
   }
 
 }

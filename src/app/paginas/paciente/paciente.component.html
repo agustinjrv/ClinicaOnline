@@ -2,19 +2,23 @@
 
 </div>
 
-<section class="container-fluid bg-dark">
+<section class="container bg-dark pt-2 pb-2">
     <div class="row">
         <div class="col">
-            <button routerLink='/paciente/miPerfil'><img src="assets/administrador/usuario.svg" height="300vh"></button>
+            <button class="btn btn-primary btn-lg btn-block" routerLink='/paciente/miPerfil'>Perfil</button>
         </div>
-
-        <div class="col">
-            <button routerLink='/paciente/misTurnos'><img src="assets/administrador/listaUsuarios.svg" height="300vh"></button>
-        </div>
-
-        <div class="col">
-            <button routerLink='/paciente/solicitarTurno'><img src="assets/administrador/solicitud.svg" height="300vh"></button>
-        </div>
-
     </div>
+
+    <div class="row mt-2">
+        <div class="col">
+            <button class="btn btn-primary btn-lg btn-block" routerLink='/paciente/misTurnos'>Mis Turnos</button>
+        </div>
+    </div>
+
+    <div class="row mt-2">
+        <div class="col">
+            <button class="btn btn-primary btn-lg btn-block" routerLink='/paciente/solicitarTurno'>Solicitar Turno</button>
+        </div>
+    </div>
+    
 </section>

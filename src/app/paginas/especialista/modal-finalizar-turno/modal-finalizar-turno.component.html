@@ -1,28 +1,94 @@
-<div class="modal fade" id="modalFinalizar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<div class="modal fade bd-example-modal-lg" id="modalFinalizar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
 aria-hidden="true" data-backdrop="static" data-keyboard="false">
 
-<div class="modal-dialog" role="document">
+<div class="modal-dialog modal-lg" role="document">
     <div *ngIf="true">
         <div class="modal-content">
 
             <div class="modal-header">
-				<h1 class="modal-title text-dark" id="exampleModalLabel">Cancelar turno</h1>
+				<h1 class="modal-title text-dark" id="exampleModalLabel">Finalizar turno</h1>
 				<button type="button" class="btn btn-outline-danger" data-dismiss="modal">X</button>
 			</div>
 
             <div class="modal-body text-dark">
                 <h3 >Reseña</h3>
-                <textarea name="" id="" cols="57" rows="10" style="resize: none;" [(ngModel)]="resenia"></textarea>
+                <textarea  cols="57" rows="10" style="resize: none;" [(ngModel)]="resenia"></textarea>
 
                 <h3>Diagnostico</h3>
-                <textarea name="" id="" cols="57" rows="10" style="resize: none;" [(ngModel)]="diagnostico"></textarea>
-               
+                <textarea cols="57" rows="10" style="resize: none;" [(ngModel)]="diagnostico"></textarea>
+
+                <div class="row">
+                    <div class="col">
+                        <label for="textAltura">Altura</label>
+                        <input type="text" id="textAltura" class="form-control" [(ngModel)]="nuevaHistoria.altura">
+                    </div>
+
+                    <div class="col">
+                        <label for="textPeso">Peso</label>
+                        <input type="text" id="textPeso" class="form-control" [(ngModel)]="nuevaHistoria.peso">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <label for="textTemperatura">Temperatura</label>
+                        <input type="text" id="textTemperatura" class="form-control" [(ngModel)]="nuevaHistoria.temperatura">
+                    </div>
+
+                    <div class="col">
+                        <label for="textPresion">Presion</label>
+                        <input type="text" id="textPresion" class="form-control" [(ngModel)]="nuevaHistoria.presion">
+                    </div>
+                </div>
+
+                <h3>NUEVOS DATOS</h3>
+                <div class="row">
+                    <div class="col">
+                        <div class="row">
+                            <div class="col form-inline">
+                                <label for="">Nuevo Dato: </label><input type="text" id="" class="form-control w-50" [(ngModel)]="this.nuevoDatoDinamico">
+                            </div>                    
+                        </div>
+        
+                        <div class="row">
+                            <div class="col form-inline">
+                                <label for="">Valor: </label><input type="text" class="form-control w-50 ml-5" [(ngModel)]="this.nuevoValorDinamico">
+                                <button class="btn btn-outline-success rounded-circle" (click)='AgregarALista()'>+</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col">
+
+                        <table class="table table-dark table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Dato</th>
+                                    <th>Valor</th>
+                                    <th>Eliminar</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr *ngFor='let unDato of this.nuevaHistoria.datosDinamicos'>
+                                    <td>{{unDato.nombre}}</td>
+                                    <td>{{unDato.valor}}</td>
+                                    <td class="text-right ">
+                                        <button (click)='BorrarDeLaLista(unDato)' class="btn btn-secondary mr-3">❌</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                </div>
 
             </div>
 
             <div class="modal-footer">
                 <div>
-                    <button type="button" class="btn btn-outline-success"  (click)="this.FinalizarTurno()" >Aceptar</button>
+                    <button type="button" class="btn btn-outline-success"  (click)="this.FinalizarTurno()"  data-dismiss="modal">Aceptar</button>
                 </div>
             </div>
 

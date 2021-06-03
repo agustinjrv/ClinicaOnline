@@ -17,6 +17,8 @@ export class RegistroPacientesComponent implements OnInit {
   private isEmail =/\S+@\S+\.\S+/;
   public foto1:any;
   public foto2:any;
+  public siteKey='6LeRO_UaAAAAAEloc6hOZf0LkiqBIfB9A3ZzlMek';
+  public captcha=false;
 
 
   constructor( private fb: FormBuilder,private router: Router,private servicioUsuario:UsuarioService) { 
@@ -79,6 +81,12 @@ export class RegistroPacientesComponent implements OnInit {
       //this.unPaciente.imagenSecundaria=this.pacienteRegForm.value.imagenSecundaria;
 
     this.servicioUsuario.AgregarUno(this.unPaciente,this.foto1,this.foto2);
+  }
+
+  public Captcha(algo)
+  {
+    this.captcha=true;
+    console.log(this.captcha);
   }
 
 

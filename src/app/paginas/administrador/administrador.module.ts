@@ -1,3 +1,4 @@
+import { TablaEspecialidadesTurnosComponent } from './tabla-especialidades-turnos/tabla-especialidades.component';
 
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -12,11 +13,13 @@ import { TablaEspecialidadesComponent } from 'src/app/componentes/tabla-especial
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
-import { SolicitarTurnoComponent } from './solicitar-turno/solicitar-turno.component';
+
 import { GenericosModule } from 'src/app/genericos/genericos.module';
 import { RegistroAdministradoresComponent } from './seccion-usuarios/generar-usuario/registro-administradores/registro-administradores.component';
 import { RegistroEspecialistasComponent } from './seccion-usuarios/generar-usuario/registro-especialistas/registro-especialistas.component';
 import { RegistroPacientesComponent } from './seccion-usuarios/generar-usuario/registro-pacientes/registro-pacientes.component';
+import { SolicitarTurnoComponent } from './solicitar-turno/solicitar-turno.component';
+import { MisTurnosComponent } from './mis-turnos/mis-turnos.component';
 
 
 
@@ -36,6 +39,9 @@ import { RegistroPacientesComponent } from './seccion-usuarios/generar-usuario/r
     RegistroEspecialistasComponent,
     RegistroPacientesComponent,
     SolicitarTurnoComponent,
+    MisTurnosComponent,
+    TablaEspecialidadesTurnosComponent
+    
     
 
   ],

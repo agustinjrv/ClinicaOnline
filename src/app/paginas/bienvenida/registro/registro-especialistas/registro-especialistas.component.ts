@@ -28,6 +28,9 @@ export class RegistroEspecialistasComponent implements OnInit {
   private isEmail =/\S+@\S+\.\S+/;
   keyword = 'nombre';
   public inputEspecialidades:any='';
+  public captcha=false;
+  public siteKey='6LeRO_UaAAAAAEloc6hOZf0LkiqBIfB9A3ZzlMek';
+  public subioFoto=false;
   
   
 
@@ -121,6 +124,7 @@ export class RegistroEspecialistasComponent implements OnInit {
   public SubirFotoEspecialista($event)
   {
     this.foto1 = $event.target.files[0];
+    this.subioFoto=true;
   }
  
 
@@ -140,6 +144,13 @@ export class RegistroEspecialistasComponent implements OnInit {
     this.servicioUsuario.AgregarUno(this.unEspecialista,this.foto1);
     
   }
+
+  public Captcha(algo)
+  {
+    this.captcha=true;
+    console.log(this.captcha);
+  }
+
 
 
 }

@@ -4,8 +4,8 @@
     <div style="height: 75px;"></div>
 
 
-    <section class="container  form-control text-dark form-signin border-danger "
-        style="background-color: rgba(109, 159, 206, 0.747);height: 80vh;">
+    <section class="container pt-2 text-dark form-signin border-danger "
+        style="background-color: rgba(109, 159, 206, 0.747);">
 
         <div class="bg-dark text-center mb-3 form-control  border-dark" style="height: 15%;">
             <div class="text-right">
@@ -117,9 +117,10 @@
                                     (selected)="AgregarALista($event)" [itemTemplate]="itemTemplate"
                                     [notFoundTemplate]="notFoundTemplate">
                                 </ng-autocomplete>
-
+                                
+                                
                                 <ng-template #itemTemplate let-item>
-                                    <a>{{item.nombre}}</a>
+                                    <a [innerHTML]="item.nombre"></a>
                                 </ng-template>
 
                                 <ng-template #notFoundTemplate let-notFound>
@@ -164,13 +165,17 @@
                                 [class]="isValidPaciente('imagenPrincipal')">
                         </label>
 
-
-                        <div class="invalid-feedback" style="font-family: sans-serif;position: absolute;">
-                            <span style="text-shadow: 1px 1px black; font-weight:800;"
-                                *ngIf="especialistaRegForm.controls.imagenPrincipal.errors?.required && especialistaRegForm.controls.imagenPrincipal.touched">
+                            <br>
+                        
+                            <span style="color:red; text-shadow: 1px 1px black; font-weight:800;"
+                                *ngIf="!subioFoto">
                                 *Por favor ingrese una foto
                             </span>
-                        </div>
+                            <span style="color:red; text-shadow: 1px 1px black; font-weight:800;"
+                                *ngIf="subioFoto">
+                                *Por favor ingrese una foto
+                            </span>
+                        
                     </div>
 
 
@@ -198,13 +203,16 @@
 
             </div>
 
+            <div align='center'>
+
+                <ngx-recaptcha2 (success)="Captcha($event)" #captchaElem [siteKey]="siteKey"></ngx-recaptcha2>
+            </div>
 
 
-
-            <div class="row mt-4 ">
+            <div class="row mt-4 pb-3">
                 <div class="col">
                     <button class="btn btn-danger btn-block" (click)='this.RegistrarEspecialista()'
-                        [disabled]="this.especialistaRegForm.invalid">REGISTRARSE!!!</button>
+                        [disabled]="this.especialistaRegForm.invalid || !captcha">REGISTRARSE!!!</button>
                 </div>
             </div>
 

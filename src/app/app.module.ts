@@ -15,11 +15,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RadioButtonComponent } from './componentes/radio-button/radio-button.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
     PaginaNoEncontradaComponent,
     RadioButtonComponent,
+
     
   ],
   imports: [
@@ -31,7 +33,7 @@ import { RadioButtonComponent } from './componentes/radio-button/radio-button.co
     AdministradorModule,
     FormsModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
     
     
   ],  

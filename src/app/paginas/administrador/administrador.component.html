@@ -2,22 +2,35 @@
 
 </div>
 
-<section class="container-fluid bg-dark">
+<section class="container pt-3 pb-3 bg-dark">
     <div class="row">
         <div class="col">
-            <button routerLink='/administrador/miPerfil'><img src="assets/administrador/usuario.svg" height="300vh"></button>
-        </div>
-
-        <div class="col">
-            <button routerLink='/administrador/seccionUsuarios/lista'><img src="assets/administrador/listaUsuarios.svg" height="300vh"></button>
-        </div>
-
-        <div class="col">
-            <button routerLink='/administrador/seccionUsuarios/solicitudes'><img src="assets/administrador/solicitud.svg" height="300vh"></button>
-        </div>
-
-        <div class="col">
-            <button routerLink='/administrador/seccionUsuarios/registro'><img src="assets/administrador/curriculum.svg" height="300vh"></button>
+            <button class="btn btn-primary btn-lg btn-block" routerLink='/administrador/miPerfil'>Mi perfil</button>
         </div>
     </div>
+
+    <div class="row mt-2">
+        <div class="col">
+            <button class="btn btn-primary btn-lg btn-block" routerLink='/administrador/solicitarTurno'>Turnos</button>
+        </div>
+    </div>
+
+    <div class="row mt-2">
+        <div class="col">
+            <button class="btn btn-primary btn-lg btn-block" routerLink='/administrador/seccionUsuarios/lista'>Seccion Usuarios</button>
+        </div>
+    </div>
+
+    <div class="row mt-2">
+        <div class="col">
+            <button class="btn btn-primary btn-lg btn-block" routerLink='/administrador/seccionUsuarios/solicitudes'>Solicitudes Especialistas</button>
+        </div>
+    </div>
+
+    <div class="row mt-2">
+        <div class="col">
+            <button class="btn btn-primary btn-lg btn-block" routerLink='/administrador/seccionUsuarios/registro'>Registrar Usuarios</button>
+        </div>
+    </div>
+
 </section>
