@@ -34,6 +34,17 @@ Desde aqui el especialista podra indicar que dias y en que horarios trabajara se
 <li>En el registro de administradores podremos registrar nuevos administradores para que manejen la clinica</li>
 </ul>
 
+<h3>Sacar turno como admin</h3>
+
+<img src="./Readme/admin-turnos.gif">
+
+El admin tambien puede sacarle turno a los pacientes que estan registrados en el sistema 
+
+
+
+
+
+
 
 
 
