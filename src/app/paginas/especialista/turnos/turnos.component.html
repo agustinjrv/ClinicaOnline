@@ -11,9 +11,8 @@
                 <th>Especialidad</th>
                 <th>Paciente</th>
                 <th>Estado</th>
-                <th>Cancelar</th>
-                <th>Rechazar</th>
-                <th>Aceptar</th>
+                <th>Accion 1</th>
+                <th>Accion 2</th>
             </tr>
 
         </thead>
@@ -23,31 +22,19 @@
                 <td>{{unTurno.especialidad}}</td>
                 <td>{{unTurno.paciente}}</td>
                 <td>{{unTurno.estadoTurno}}</td>
-                <td *ngIf='unTurno.estadoTurno!="aceptado" &&
-                     unTurno.estadoTurno!="finalizado" && 
-                     unTurno.estadoTurno!="cancelado" && 
-                     unTurno.estadoTurno!="canceladoTotalmente"'>
+
+                <td *ngIf='unTurno.estadoTurno=="aceptado"'>
                     <button class="btn btn-outline-danger" (click)='AbrirModalCancelarTurno(unTurno)'>Cancelar</button>
                 </td>
-                <td
-                    *ngIf='unTurno.estadoTurno!="aceptado" && 
-                    unTurno.estadoTurno!="finalizado" && 
-                    unTurno.estadoTurno!="rechazado" && 
-                    unTurno.estadoTurno!="canceladoTotalmente"'>
+                <td *ngIf='unTurno.estadoTurno=="pendiente"'>
                     <button class="btn btn-outline-danger" (click)='AbrirModalRechazarTurno(unTurno)'>Rechazar</button>
                 </td>
-                <td
-                    *ngIf='unTurno.estadoTurno!="aceptado" && 
-                    unTurno.estadoTurno!="finalizado" && 
-                    unTurno.estadoTurno!="rechazado" && 
-                    unTurno.estadoTurno!="canceladoTotalmente" && 
-                    unTurno.estadoTurno!="cancelado"' >
+                <td *ngIf='unTurno.estadoTurno=="pendiente" ' >
                     <button class="btn btn-outline-success" (click)='AceptarTurno(unTurno)'>Aceptar</button>
                 </td>
                 <td *ngIf='unTurno.estadoTurno=="aceptado"'>
                     <button class="btn btn-outline-success" (click)='AbrirModalFinalizarTurno(unTurno)'>Finalizar</button>
                 </td>
-                
 
             </tr>
 
