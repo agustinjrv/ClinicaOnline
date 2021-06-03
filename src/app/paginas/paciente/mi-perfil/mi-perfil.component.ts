@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Columns, PdfMakeWrapper, Table, Txt } from 'pdfmake-wrapper';
 import { Paciente } from 'src/app/clases/paciente/paciente';
 import { Usuario } from 'src/app/clases/usuario/usuario';
 import { HistoriaClinicaService } from 'src/app/servicios/historiaClinica/historia-clinica.service';
@@ -51,6 +52,35 @@ export class MiPerfilComponent implements OnInit {
         this.cargo=true;
     });
 
+  }
+
+  public GenerarPDF()
+  {
+      
+      const pdf= new PdfMakeWrapper();
+
+      pdf.add(new Txt('Historia clinica de Paciente: ' + this.datosUsuario.apellido + " " + this.datosUsuario.nombre  ).style('algin="center"').end)
+
+      
+      let tabla:any[]=[];
+      tabla.push(['Fecha','CorreoEspecialista','Altura','Peso','Temperatura','Presion']);
+
+      this.listaHistoriaClinica.forEach(unaHistoria => {
+        let fila:any[]=[];
+        fila.push(unaHistoria.fecha);
+        fila.push(unaHistoria.correoEspecialista);
+        fila.push(unaHistoria.altura);
+        fila.push(unaHistoria.peso);
+        fila.push(unaHistoria.temperatura);
+        fila.push(unaHistoria.presion);
+        tabla.push(fila);
+      });//falta los datos adicionales
+
+      pdf.add(new Table(tabla).end);
+    
+     
+
+      pdf.create().open();
   }
       
         

@@ -10,8 +10,11 @@ import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 import { MiPerfilComponent } from './mi-perfil/mi-perfil.component';
 import { TablaEspecialidadesComponent } from './tabla-especialidades/tabla-especialidades.component';
 import { ModalCancelarTurnoComponent } from 'src/app/componentes/modal-cancelar-turno/modal-cancelar-turno.component';
+import { PdfMakeWrapper } from 'pdfmake-wrapper';
+import * as pdfFonts from 'pdfmake/build/vfs_fonts';
 
 
+PdfMakeWrapper.setFonts(pdfFonts);
 
 @NgModule({
   declarations: [
