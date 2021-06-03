@@ -8,7 +8,7 @@
 <li>Administrador</li>
 </ul>
 
-Está abierta al público de lunesaviernes en el horario de 8:00 a 19:00, y los sábadosen el horario de 8:00 a 14:00
+Está abierta al público de lunesaviernes en el horario de 8:00 a 19:00, y los sábados en el horario de 8:00 a 14:00
 
 <h2>Pagina de Bienvenida y registro</h2>
 
