@@ -35,6 +35,15 @@
                 <td *ngIf='unTurno.estadoTurno=="aceptado"'>
                     <button class="btn btn-outline-success" (click)='AbrirModalFinalizarTurno(unTurno)'>Finalizar</button>
                 </td>
+                <td *ngIf='unTurno.estadoTurno=="cancelado"'>
+                    <button class="btn btn-outline-danger" (click)='AbrirModalVerDetalles(unTurno)'>Ver Detalles</button>
+                </td>
+                <td *ngIf='unTurno.estadoTurno=="finalizado"'>
+                    <button class="btn btn-outline-danger" (click)='AbrirModalVerDetalles(unTurno)'>Ver Detalles</button>
+                </td>
+                <td *ngIf='unTurno.estadoTurno=="rechazado"'>
+                    <button class="btn btn-outline-danger" (click)='AbrirModalVerDetalles(unTurno)'>Ver Detalles</button>
+                </td>
 
             </tr>
 
@@ -51,10 +60,13 @@
 
     <button style="visibility: hidden;" id='botonModalFinalizar' data-toggle="modal"
         data-target="#modalFinalizar">ModalFinalizar</button>
+
+        <button style="visibility: hidden;" id='botonModalDetalles' data-toggle="modal" data-target="#modalDetalles">ModalDetalles</button>
         
     <app-modal-cancelar-turno (cancelarTurno)='CancelarTurno($event)'></app-modal-cancelar-turno>
     <app-modal-rechazar-turno (rechazarTurno)='RechazarTurno($event)'></app-modal-rechazar-turno>
     <app-modal-finalizar-turno (finalizarTurno)='this.FinalizarTurno($event)'></app-modal-finalizar-turno>
+    <app-modal-detalles [turnoDetalle]='this.turnoDetalle' [estadoTurno]='this.estadoTurno' ></app-modal-detalles>
 
 
 </div>

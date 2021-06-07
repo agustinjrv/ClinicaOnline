@@ -12,6 +12,9 @@ import { TablaEspecialidadesComponent } from './tabla-especialidades/tabla-espec
 import { ModalCancelarTurnoComponent } from 'src/app/componentes/modal-cancelar-turno/modal-cancelar-turno.component';
 import { PdfMakeWrapper } from 'pdfmake-wrapper';
 import * as pdfFonts from 'pdfmake/build/vfs_fonts';
+import { ModalEncuestaComponent } from './modal-encuesta/modal-encuesta.component';
+import { ModalDetallesComponent } from './modal-detalles/modal-detalles.component';
+import { FormsModule } from '@angular/forms';
 
 
 PdfMakeWrapper.setFonts(pdfFonts);
@@ -23,12 +26,15 @@ PdfMakeWrapper.setFonts(pdfFonts);
     SolicitarTurnoComponent,
     MiPerfilComponent,
     TablaEspecialidadesComponent,
-    ModalCancelarTurnoComponent
+    ModalCancelarTurnoComponent,
+    ModalEncuestaComponent,
+    ModalDetallesComponent
   ],
   imports: [
     CommonModule,
     PacienteRoutingModule,
     AutocompleteLibModule,
+    FormsModule
     
 
   ]

@@ -11,6 +11,7 @@ import { ModalCancelarTurnoComponent } from './modal-cancelar-turno/modal-cancel
 import { ModalRechazarTurnoComponent } from './modal-rechazar-turno/modal-rechazar-turno.component';
 import { ModalFinalizarTurnoComponent } from './modal-finalizar-turno/modal-finalizar-turno.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ModalDetallesComponent } from './modal-detalles/modal-detalles.component';
 
 
 
@@ -26,6 +27,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ModalCancelarTurnoComponent,
     ModalRechazarTurnoComponent,
     ModalFinalizarTurnoComponent,
+    ModalDetallesComponent
     
   ],
   imports: [

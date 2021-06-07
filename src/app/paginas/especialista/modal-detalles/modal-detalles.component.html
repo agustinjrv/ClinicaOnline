@@ -1,0 +1,161 @@
+<div class="modal fade bd-example-modal-lg" id="modalDetalles" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+
+    <div class="modal-dialog modal-lg" role="document">
+
+
+        <section *ngIf='estadoTurno=="cancelado"'>
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h1 class="modal-title text-danger" id="exampleModalLabel">Turno Cancelado</h1>
+                    <button type="button" class="btn btn-outline-danger" data-dismiss="modal">X</button>
+                </div>
+
+                <div class="modal-body text-dark">
+
+                    <h2 class="text-danger">Fecha:</h2>
+                    <h4>{{turnoDetalle.fecha +' - '+ turnoDetalle.hora}} </h4>
+
+                    <h2 class="text-danger">Especialidad:</h2>
+                    <h4>{{turnoDetalle.especialidad}}</h4>
+
+                    <hr class="bg-danger">
+                    <h2 class="text-danger">Razon Cancelacion:</h2>
+                    <h4>{{turnoDetalle.razonCancelacion}}</h4>
+
+                </div>
+
+                <div class="modal-footer">
+                    <div>
+                        <button type="button" class="btn btn-outline-success" data-dismiss="modal">Aceptar</button>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+        <section *ngIf='estadoTurno=="finalizado"'>
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h1 class="modal-title text-primary" id="exampleModalLabel">Detalles Del turno</h1>
+                    <button type="button" class="btn btn-outline-danger" data-dismiss="modal">X</button>
+                </div>
+
+                <div class="modal-body text-dark">
+
+                    <h2 class="text-primary">Fecha:</h2>
+                    <h4>{{turnoDetalle.fecha +' - '+ turnoDetalle.hora+' hs' }} </h4>
+
+                    <h2 class="text-primary">Especialidad:</h2>
+                    <h4>{{turnoDetalle.especialidad}}</h4>
+
+                    <div *ngIf='turnoDetalle.resenia'>
+                        <hr>
+                        <h2 class="text-primary">Reseña:</h2>
+                        <h4>{{turnoDetalle.resenia}}</h4>
+                    </div>
+
+                    <h2 class="text-primary ">Diagnostico:</h2>
+                    <h4>{{turnoDetalle.diagnostico}}</h4>
+
+                    <hr class="bg-danger">
+
+                    <section class="row">
+                        <div class="col">
+                            <div class="form-inline">
+                                <h4 class="text-primary">Altura:</h4>
+                                <h4>{{turnoDetalle.altura}}</h4>
+                            </div>
+                        </div>
+
+                        <div class="col">
+                            <div class="form-inline">
+                                <h4 class="text-primary">Peso:</h4>
+                                <h4>{{turnoDetalle.peso}}</h4>
+                            </div>
+                        </div>
+
+                        <div class="col">
+                            <div class="form-inline">
+                                <h4 class="text-primary">Presion:</h4>
+                                <h4>{{turnoDetalle.presion}}</h4>
+                            </div>
+                        </div>
+
+                        <div class="col">
+                            <div class="form-inline">
+                                <h4 class="text-primary">Temp:</h4>
+                                <h4>{{turnoDetalle.temperatura}}</h4>
+
+                            </div>
+                        </div>
+
+                        <div class="col">
+                            <div class="form-inline">
+                                <h4 class="text-primary">Peso:</h4>
+                                <h4>{{turnoDetalle.peso}}</h4>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="row" *ngIf='turnoDetalle.datosDinamicos'>
+                        <div class="col">
+                            <hr class="bg-danger">
+                            <div class="form-inline" *ngFor='let dato of turnoDetalle.datosDinamicos'>
+                                <h4 class="text-primary">{{dato.nombre+": "}}</h4>
+                                <h4>{{dato.valor}}</h4>
+                            </div>
+                        </div>
+                    </section>
+
+                    
+
+                </div>
+
+                <div class="modal-footer">
+                    <div >
+                        <button type="button" class="btn  btn-outline-success" data-dismiss="modal">Aceptar</button>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+        <section *ngIf='estadoTurno=="rechazado"'>
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h1 class="modal-title text-danger" id="exampleModalLabel">Turno rechazado</h1>
+                    <button type="button" class="btn btn-outline-danger" data-dismiss="modal">X</button>
+                </div>
+
+                <div class="modal-body text-dark">
+
+                    <h2 class="text-danger">Fecha:</h2>
+                    <h4>{{turnoDetalle.fecha +' - '+ turnoDetalle.hora}} </h4>
+
+                    <h2 class="text-danger">Especialidad:</h2>
+                    <h4>{{turnoDetalle.especialidad}}</h4>
+
+                    <hr class="bg-danger">
+                    <h2 class="text-danger">Razon Rechazo:</h2>
+                    <h4>{{turnoDetalle.razonRechazo}}</h4>
+
+                </div>
+
+                <div class="modal-footer">
+                    <div>
+                        <button type="button" class="btn btn-outline-success" data-dismiss="modal">Aceptar</button>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+    </div>
+</div>

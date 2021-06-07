@@ -17,6 +17,10 @@ export class TurnosComponent implements OnInit {
   public cargo=false;
   public turnoSeleccionado;
 
+  public turnoDetalle;
+  public listaHistoriasClinicas:any[]=[];
+  public estadoTurno;
+
   
 
   constructor(private servicioTurnos:TurnosService,
@@ -41,8 +45,9 @@ export class TurnosComponent implements OnInit {
       
     });
 
-
-
+    this.servicioHistoriaClinica.TraerTodos().valueChanges().subscribe((data)=>{
+        this.listaHistoriasClinicas=data; 
+    });
   }
 
   public AbrirModalCancelarTurno(unTurno:any)
@@ -101,11 +106,45 @@ export class TurnosComponent implements OnInit {
     nuevaHistoria.correoPaciente=this.turnoSeleccionado.paciente;
     nuevaHistoria.correoEspecialista=this.usuarioLogeado.correo;
     nuevaHistoria.fecha=this.turnoSeleccionado.fecha;
+    nuevaHistoria.idTurno=this.turnoSeleccionado.id;
 
     
     this.servicioHistoriaClinica.AgregarUno(nuevaHistoria);
 
 
+  }
+
+  
+  public AbrirModalVerDetalles(unTurno)
+  {
+
+    
+    this.estadoTurno=unTurno.estadoTurno;
+    
+    switch(this.estadoTurno)
+    {
+        case 'cancelado':
+            this.turnoDetalle=unTurno;
+              break;
+        
+        case 'finalizado':
+          
+          this.listaHistoriasClinicas.forEach(element => {
+            if(element.idTurno==unTurno.id)
+            {
+              this.turnoDetalle=element;
+            }
+          });
+          
+          break;
+        case 'rechazado':
+          this.turnoDetalle=unTurno;
+            break;
+    }
+        
+    
+    var objO:any = document.getElementById("botonModalDetalles")??"";
+    objO.click();
   }
 
 }

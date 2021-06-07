@@ -1,13 +1,20 @@
+<div style="height: 75px;">
 
-<div class="lista" *ngIf='this.cargo'>
-    <table class="table table-primary table-hover table-responsive ">
+</div>
+
+
+<section class="container">
+    
+<div class="table-responsive" *ngIf='this.cargo'>
+    <table class="table table-primary table-hover  ">
         <thead>
             <tr>
                 <th>Fecha</th>
                 <th>Especialidad</th>
                 <th>Especialista</th>
                 <th>Estado</th>
-                <th>Cancelar</th>
+                <th>Accion</th>
+                <th>Encuesta</th>
             </tr>
 
         </thead>
@@ -17,7 +24,8 @@
                 <td>{{unTurno.especialidad}}</td>
                 <td>{{unTurno.especialista}}</td>
                 <td>{{unTurno.estadoTurno}}</td>
-                <td *ngIf='unTurno.estadoTurno=="pendiente"' ><button class="btn btn-outline-danger" (click)='AbrirModalCancelarTurno(unTurno)'>Cancelar</button></td>
+                <td *ngIf='unTurno.estadoTurno=="pendiente" || unTurno.estadoTurno=="aceptado"' ><button class="btn btn-outline-danger" (click)='AbrirModalCancelarTurno(unTurno)'>Cancelar</button></td>
+                <td *ngIf='unTurno.estadoTurno=="finalizado" || unTurno.estadoTurno=="rechazado" || unTurno.estadoTurno=="cancelado"' ><button class="btn btn-outline-danger" (click)='AbrirModalVerDetalles(unTurno)'>Ver Detalles</button></td>
             </tr>
 
         </tbody>
@@ -26,11 +34,17 @@
     </table>
 
     <button style="visibility: hidden;" id='botonModalCancelar' data-toggle="modal" data-target="#modalCancelar">ModalCancelar</button>
+    <button style="visibility: hidden;" id='botonModalDetalles' data-toggle="modal" data-target="#modalDetalles">ModalDetalles</button>
 
     <app-modal-cancelar-turno (cancelarTurno)='CancelarTurno($event)'></app-modal-cancelar-turno>
+    <app-modal-detalles [turnoDetalle]='this.turnoDetalle' [estadoTurno]='this.estadoTurno' (calificarAtencion)='CalificarAtencion($event)' ></app-modal-detalles>
 
 
 </div>
+
+
+</section>
+
 
 
 

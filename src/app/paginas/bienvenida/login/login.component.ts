@@ -69,7 +69,7 @@ export class LoginComponent implements OnInit {
         usuarioLogin.correo= this.unUsuario.correo;
         usuarioLogin.perfil= datosUsuario[0].perfil;
         
-        
+        console.log(usuarioLogin);
         localStorage.setItem('usuarioLogeado',JSON.stringify(usuarioLogin));
 
         switch(usuarioLogin.perfil)

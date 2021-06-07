@@ -1,3 +1,4 @@
+import { ModalEncuestaComponent } from './modal-encuesta/modal-encuesta.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MiPerfilComponent } from './mi-perfil/mi-perfil.component';
@@ -9,7 +10,8 @@ const routes: Routes = [
                         { path: '', component: PacienteComponent },
                         { path:'miPerfil', component: MiPerfilComponent},
                         { path:'solicitarTurno',component:SolicitarTurnoComponent},
-                        { path:'misTurnos',component:MisTurnosComponent}
+                        { path:'misTurnos',component:MisTurnosComponent},
+                        { path:'Encuesta',component:ModalEncuestaComponent},
                        ];
 
 

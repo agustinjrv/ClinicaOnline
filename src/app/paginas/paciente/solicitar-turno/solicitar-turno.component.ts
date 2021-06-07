@@ -92,8 +92,6 @@ export class SolicitarTurnoComponent implements OnInit {
 
       this.listaEspecialidades = data.filter((value: Especialidad, index, array) => {
         return value.mostrar == true;
-      }).map((value,index,array)=>{
-        return value.nombre;
       });
       this.cargo=true;
     })
@@ -132,7 +130,7 @@ export class SolicitarTurnoComponent implements OnInit {
 
   public SeleccionarEspecialidad($event) {
     
-    this.especialidadSeleccionada = $event; 
+    this.especialidadSeleccionada = $event.nombre; 
     this.especialistaSeleccionado=false;
     this.horariosMostrar=false;
     this.horariosDeEspecialista=false;
@@ -160,9 +158,10 @@ export class SolicitarTurnoComponent implements OnInit {
       
     
     this.eligioEspecialidad=true;
-    console.log(this.eligioEspecialidad);
-    console.log(this.eligioEspecialista);
     this.BuscarTurnosDeEspecialidad()
+
+    this.SeleccionarEspecialista(this.especialistasMostrar[1]);
+    
     
     
   }
@@ -220,15 +219,18 @@ export class SolicitarTurnoComponent implements OnInit {
       let rangoHoras= horaHasta-horaDesde;
       
       let fecha=new Date();
+      let horaActual=new Date();
       
       
       
-      for(let dia=0;dia<15;dia++)
+      
+      for(let dia=1;dia<15;dia++)
       {
         fecha.setTime(Date.now());
         
         let esUnDiaValido=false;
         fecha.setDate(fecha.getDate()+dia);
+        
 
         
             
@@ -256,7 +258,6 @@ export class SolicitarTurnoComponent implements OnInit {
   
             if(EDiasSemana[fecha.getDay()]=='sabado')
             {
-              console.log(this.horariosDeEspecialista);
               turno.hora= parseInt(this.horariosDeEspecialista.desdeSabados) + i + ':00';
             }
             else{

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Columns, PdfMakeWrapper, Table, Txt } from 'pdfmake-wrapper';
+import { Columns, Img, PdfMakeWrapper, Table, Txt } from 'pdfmake-wrapper';
 import { Paciente } from 'src/app/clases/paciente/paciente';
 import { Usuario } from 'src/app/clases/usuario/usuario';
 import { HistoriaClinicaService } from 'src/app/servicios/historiaClinica/historia-clinica.service';
@@ -54,12 +54,22 @@ export class MiPerfilComponent implements OnInit {
 
   }
 
-  public GenerarPDF()
+  public async GenerarPDF()
   {
       
       const pdf= new PdfMakeWrapper();
 
-      pdf.add(new Txt('Historia clinica de Paciente: ' + this.datosUsuario.apellido + " " + this.datosUsuario.nombre  ).style('algin="center"').end)
+      pdf.images({
+        logoEmpresa: await new Img('assets/icono.svg').build(),        
+     });
+
+      pdf.add(new Txt('Clinica Espora').fontSize(40).alignment('center') .end);  
+      pdf.add(await new Img('logoEmpresa',true).width(50).absolutePosition(125,30).build());
+      
+      
+
+
+      pdf.add(new Txt('Historia clinica de Paciente: ' + this.datosUsuario.apellido + " " + this.datosUsuario.nombre  ).fontSize(20).alignment('center').end);
 
       
       let tabla:any[]=[];
