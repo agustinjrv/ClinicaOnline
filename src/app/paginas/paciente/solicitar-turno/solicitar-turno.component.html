@@ -16,7 +16,7 @@
         <div class="col-xl-4 mt-2 bg-dark form-control h-100 text-white border-success ml-4 pr-5">
             <h3>Especialidades</h3>
             <section *ngIf='this.listaEspecialidades!=false'>
-
+                
                 <div class="row mt-2" *ngFor='let i of this.listaEspecialidades'>
                     <div class="col">
                         <button class="btn btn-primary btn-block" (click)='SeleccionarEspecialidad(i)'>{{i.nombre}}</button>

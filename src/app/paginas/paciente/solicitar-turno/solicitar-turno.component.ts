@@ -137,6 +137,7 @@ export class SolicitarTurnoComponent implements OnInit {
     this.listaTurnosPorEspecialidad=[];
     this.listaTurnosPorEspecialista=[];
     this.diasMostrar=[];
+
     
 
 
@@ -160,7 +161,7 @@ export class SolicitarTurnoComponent implements OnInit {
     this.eligioEspecialidad=true;
     this.BuscarTurnosDeEspecialidad()
 
-    this.SeleccionarEspecialista(this.especialistasMostrar[1]);
+    this.SeleccionarEspecialista(this.especialistasMostrar[0]);
     
     
     
@@ -191,6 +192,11 @@ export class SolicitarTurnoComponent implements OnInit {
       this.horariosMostrar=false;
       this.horariosDeEspecialista=false;
       this.diasMostrar=[];
+      this.listaFechasMostrar=[];
+
+
+    
+
       
       
       this.BuscarTurnosDeEspecialista();
