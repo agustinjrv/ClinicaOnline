@@ -1,9 +1,12 @@
+import { element } from 'protractor';
 
 import { EestadoTurno, Turno } from './../../../clases/turno/turno';
 import { Component, OnInit } from '@angular/core';
 import { TurnosService } from 'src/app/servicios/turnos/turnos.service';
 
 import { HistoriaClinicaService } from 'src/app/servicios/historiaClinica/historia-clinica.service';
+import { UsuarioService } from 'src/app/servicios/usuario/usuario.service';
+import { Especialista } from 'src/app/clases/especialista/especialista';
 
 
 @Component({
@@ -23,19 +26,29 @@ export class MisTurnosComponent implements OnInit {
   public turnoDetalle;
   public estadoTurno:string;
   public listaHistoriasClinicas:any=[];
-  
 
- 
-  
 
-  constructor(private servicioTurnos:TurnosService,private servicioHistoria:HistoriaClinicaService) { 
+  public inputEspecialidad:string;
+  public inputEspecialista:string;
+  public listaAux:any[]=[];
+
+  public listaDeEspecialistas:Especialista[]=[];
+
+  constructor(private servicioTurnos:TurnosService,
+    private servicioHistoria:HistoriaClinicaService,
+    private servicioUsuario:UsuarioService) { 
     
-
-
-  }
+   }
 
   ngOnInit(): void {
     this.usuarioLogeado=JSON.parse(localStorage.getItem('usuarioLogeado'));
+
+    this.servicioUsuario.TraerTodos().valueChanges().subscribe((data)=>{
+      this.listaDeEspecialistas=data.filter((value,index,array)=>{
+        return value.perfil=='Especialista';
+      });
+      this.cargo=true; 
+    });
     
     this.servicioTurnos.TraerTodos().valueChanges().subscribe((data)=>{
       this.listaTurnos=data;
@@ -46,8 +59,19 @@ export class MisTurnosComponent implements OnInit {
       this.listaMostrar.forEach((element) => {
           element.estadoTurno=EestadoTurno[element.estadoTurno];
       });
-      this.cargo=true;
-  
+
+      this.listaAux=this.listaMostrar;
+
+      this.listaAux.forEach((element)=>{
+
+        this.listaDeEspecialistas.forEach(especialista => {
+          if(element.especialista==especialista.correo)
+          {
+
+          }
+        });
+      })
+
       
     });
 
@@ -55,6 +79,7 @@ export class MisTurnosComponent implements OnInit {
         this.listaHistoriasClinicas=data;
     });
 
+    
 
 
   }
@@ -78,8 +103,6 @@ export class MisTurnosComponent implements OnInit {
 
   public AbrirModalVerDetalles(unTurno)
   {
-
-    console.log(unTurno);
     this.estadoTurno=unTurno.estadoTurno;
     
     switch(this.estadoTurno)
@@ -114,6 +137,56 @@ export class MisTurnosComponent implements OnInit {
       this.turnoDetalle.calificacion=$event.calificacion;
       this.turnoDetalle.encuesta=true;
       this.servicioHistoria.ModificarUno(this.turnoDetalle);
+  }
+
+  public BuscarPorEspecialidad()
+  {    
+
+    if(this.inputEspecialidad!='')
+    {
+      setTimeout(()=>{
+        this.listaMostrar=this.listaAux.filter((value,index,array)=>{
+          return value.especialidad.toLocaleLowerCase().includes(this.inputEspecialidad.toLocaleLowerCase());
+          });
+      },500);
+    }
+    
+      
+  }
+
+  public BuscarPorEspecialista()
+  {
+    
+    if(this.inputEspecialista!='')
+    {
+      
+
+      setTimeout(()=>{
+
+        let listaEspecialistaAux=this.listaDeEspecialistas.filter((value,index,array)=>{
+          let aux=value.apellido +' '+ value.nombre;
+            return aux.includes(this.inputEspecialista.toLocaleLowerCase());
+        }).map((value,index,array)=>{
+          return value.correo;
+        });
+        this.listaMostrar=[];
+
+        for(let i=0;i<listaEspecialistaAux.length;i++)
+        {
+            for(let j=0;j<this.listaAux.length;j++)
+            {
+                if(listaEspecialistaAux[i]==this.listaAux[j].especialista)
+                {
+                  this.listaMostrar.push(this.listaAux[j]);
+                }
+            }
+        }
+
+      },500);
+      
+    }
+    
+    
   }
 
 }

@@ -4,6 +4,34 @@
 
 
 <section class="container">
+
+    <section class='bg-dark pl-3 pt-3 pb-3 rounded'>
+
+        
+
+        <div class="row">
+            <div class="col-5">
+
+                <div class="form-row ">
+                    <div class="col input-group mb-2"> 
+                        <input type="text" id="textEspecialidad" class="form-control form-text"  placeholder="Especialidad"  [(ngModel)]="inputEspecialidad" appEscucharTeclado>
+                        <button (click)='BuscarPorEspecialidad()' id='btnEspecialidad' class="mt-1 btn btn-success"> <img src="assets/buscar.svg" width="20px"></button>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-5">
+                <div class="form-row ">
+                    <div class="col input-group mb-2"> 
+                        <input type="text" id="textEspecialista" class="form-control form-text"  placeholder="Especialista"  [(ngModel)]="inputEspecialista" appEscucharTeclado>
+                        <button (click)='BuscarPorEspecialista()' id='btnEspecialista' class="mt-1 btn btn-success"> <img src="assets/buscar.svg" width="20px"></button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
     
 <div class="table-responsive" *ngIf='this.cargo'>
     <table class="table table-primary table-hover  ">
@@ -14,16 +42,15 @@
                 <th>Especialista</th>
                 <th>Estado</th>
                 <th>Accion</th>
-                <th>Encuesta</th>
             </tr>
 
         </thead>
         <tbody>
             <tr *ngFor='let unTurno of this.listaMostrar'>
-                <td>{{unTurno.fecha}}</td>
+                <td>{{unTurno.fecha | primeraLetraMayuscula}}</td>
                 <td>{{unTurno.especialidad}}</td>
-                <td>{{unTurno.especialista}}</td>
-                <td>{{unTurno.estadoTurno}}</td>
+                <td>{{unTurno.especialista | cambiarDatoPersonal:this.listaDeEspecialistas |primeraLetraMayuscula}}</td>
+                <td>{{unTurno.estadoTurno | uppercase }}</td>
                 <td *ngIf='unTurno.estadoTurno=="pendiente" || unTurno.estadoTurno=="aceptado"' ><button class="btn btn-outline-danger" (click)='AbrirModalCancelarTurno(unTurno)'>Cancelar</button></td>
                 <td *ngIf='unTurno.estadoTurno=="finalizado" || unTurno.estadoTurno=="rechazado" || unTurno.estadoTurno=="cancelado"' ><button class="btn btn-outline-danger" (click)='AbrirModalVerDetalles(unTurno)'>Ver Detalles</button></td>
             </tr>

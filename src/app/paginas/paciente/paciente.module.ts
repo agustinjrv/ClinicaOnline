@@ -15,6 +15,10 @@ import * as pdfFonts from 'pdfmake/build/vfs_fonts';
 import { ModalEncuestaComponent } from './modal-encuesta/modal-encuesta.component';
 import { ModalDetallesComponent } from './modal-detalles/modal-detalles.component';
 import { FormsModule } from '@angular/forms';
+import { EscucharTecladoDirective } from 'src/app/directivas/escucharTeclado/escuchar-teclado.directive';
+import { PrimeraLetraMayusculaPipe } from 'src/app/pipes/primera-letra-mayuscula/primera-letra-mayuscula.pipe';
+import { CambiarDatoPersonalPipe } from 'src/app/pipes/cambiarDatoPersonal/cambiar-dato-personal.pipe';
+
 
 
 PdfMakeWrapper.setFonts(pdfFonts);
@@ -28,13 +32,17 @@ PdfMakeWrapper.setFonts(pdfFonts);
     TablaEspecialidadesComponent,
     ModalCancelarTurnoComponent,
     ModalEncuestaComponent,
-    ModalDetallesComponent
+    ModalDetallesComponent,
+    EscucharTecladoDirective,
+    PrimeraLetraMayusculaPipe,
+    CambiarDatoPersonalPipe
+    
   ],
   imports: [
     CommonModule,
     PacienteRoutingModule,
     AutocompleteLibModule,
-    FormsModule
+    FormsModule,
     
 
   ]

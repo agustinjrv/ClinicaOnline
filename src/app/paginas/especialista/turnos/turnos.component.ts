@@ -141,7 +141,6 @@ export class TurnosComponent implements OnInit {
           this.turnoDetalle=unTurno;
             break;
     }
-        
     
     var objO:any = document.getElementById("botonModalDetalles")??"";
     objO.click();
