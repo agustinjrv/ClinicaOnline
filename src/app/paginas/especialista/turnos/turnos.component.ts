@@ -98,7 +98,7 @@ export class TurnosComponent implements OnInit {
 
   public RechazarTurno(razonRechazo:string)
   {
-    console.log(razonRechazo);
+    
     this.turnoSeleccionado.estadoTurno=EestadoTurno.rechazado;
     this.turnoSeleccionado.razonRechazo=razonRechazo;
     this.servicioTurnos.ModificarUno(this.turnoSeleccionado);
@@ -114,6 +114,7 @@ export class TurnosComponent implements OnInit {
   public AbrirModalFinalizarTurno(unTurno:any)
   {
     this.turnoSeleccionado=unTurno;
+    
     var objO:any = document.getElementById("botonModalFinalizar")??"";
     objO.click();
   }
@@ -157,6 +158,14 @@ export class TurnosComponent implements OnInit {
             if(element.idTurno==unTurno.id)
             {
               this.turnoDetalle=element;
+              this.turnoDetalle.hora=unTurno.hora;
+
+            /*  if(unTurno.comentarios != undefined)
+              {
+                this.turnoDetalle.comentarios=unTurno.comentarios;
+                this.turnoDetalle.c =unTurno.comentarios;
+              }*/
+              
             }
           });
           

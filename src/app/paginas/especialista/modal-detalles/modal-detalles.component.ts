@@ -128,4 +128,9 @@ export class ModalDetallesComponent implements OnInit {
      this.calificarAtencion.emit(retorno);
   }
 
+  public Mostrar()
+  {
+     console.log(this.turnoDetalle);
+  }
+
 }

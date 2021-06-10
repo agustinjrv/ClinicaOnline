@@ -41,13 +41,17 @@
 
                 <div class="modal-header">
                     <h1 class="modal-title text-primary" id="exampleModalLabel">Detalles Del turno</h1>
+                    <div class="form-inline mt-1">
+                        <h4 class="text-primary mt-1">Calificacion:</h4>
+                        <h4 class="mt-3 ml-1">{{turnoDetalle.calificacion}} <img class="mb-2" src="assets/Calificar/estrellaLlena.png" width="35px"></h4>
+                    </div>
                     <button type="button" class="btn btn-outline-danger" data-dismiss="modal">X</button>
                 </div>
 
                 <div class="modal-body text-dark">
 
                     <h2 class="text-primary">Fecha:</h2>
-                    <h4>{{turnoDetalle.fecha +' - '+ turnoDetalle.hora+' hs' }} </h4>
+                    <h4>{{turnoDetalle.fecha +' - '+ turnoDetalle.hora +' hs' }} </h4>
 
                     <h2 class="text-primary">Especialidad:</h2>
                     <h4>{{turnoDetalle.especialidad}}</h4>
@@ -109,6 +113,21 @@
                                 <h4>{{dato.valor}}</h4>
                             </div>
                         </div>
+                    </section>
+
+                    <section class="row" *ngIf='turnoDetalle.comentarios'>
+                        <div class="col">
+                            <hr class="bg-danger">
+                            <div class="form-inline">
+                                <h4 class="text-primary">Comentarios:</h4>
+                                <h4>{{turnoDetalle.comentarios}}</h4>
+                            </div>
+
+
+                            
+                        
+                        </div>                        
+                            
                     </section>
 
                     
