@@ -1,0 +1,35 @@
+<div class="modal fade bd-example-modal-lg" id="modalGrafico" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true" data-backdrop="static" data-keyboard="false">
+
+  <div class="modal-dialog modal-lg" role="document">
+    <div *ngIf="true">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h1 class="modal-title text-dark" id="exampleModalLabel">Estados de turnos</h1>
+          <button type="button" class="btn btn-outline-danger" data-dismiss="modal">X</button>
+        </div>
+
+        <div class="modal-body ">
+
+          <div *ngIf='this.cargo2'>
+            <div>
+              <div style="display: block;">
+                <canvas baseChart [data]="doughnutChartData" [labels]="doughnutChartLabels"
+                  [chartType]="doughnutChartType" class="bg-dark">
+                </canvas>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-success" data-dismiss="modal">Aceptar</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

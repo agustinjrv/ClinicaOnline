@@ -68,18 +68,20 @@ export class PacientesComponent implements OnInit {
           });
 
           return false;
-      })
-      
-
-
+      });
+      this.cargo = true;
     })
 
 
-    this.servicioHistoriaClinica.BuscarUnaHistoriaPorCorreo(this.usuarioLogeado.correo).valueChanges().subscribe((data: any) => {
-      this.listaHistoriaClinica = data;
-      console.log(this.listaHistoriaClinica);
-      this.cargo = true;
-    });
+    
+  }
+
+  public SeleccionarPaciente(unPaciente:Paciente)
+  {
+      this.usuarioSeleccionado=unPaciente;
+      this.listaHistoriaClinica=this.listaHistoriaClinica.filter((value,index,array)=>{
+        return value.paciente=unPaciente.correo;
+      })
   }
 
   private onlyUnique(value, index, self) {

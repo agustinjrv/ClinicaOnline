@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdministradorComponent } from './administrador.component';
+import { GraficosComponent } from './graficos/graficos.component';
 import { MiPerfilComponent } from './mi-perfil/mi-perfil.component';
 import { GenerarUsuarioComponent } from './seccion-usuarios/generar-usuario/generar-usuario.component';
 import { RegistroAdministradoresComponent } from './seccion-usuarios/generar-usuario/registro-administradores/registro-administradores.component';
@@ -10,11 +11,14 @@ import { ListaUsuariosComponent } from './seccion-usuarios/lista-usuarios/lista-
 import { SeccionUsuariosComponent } from './seccion-usuarios/seccion-usuarios.component';
 import { SolicitudesComponent } from './seccion-usuarios/solicitudes/solicitudes.component';
 import { SolicitarTurnoComponent } from './solicitar-turno/solicitar-turno.component';
+import { TurnosComponent } from './turnos/turnos.component';
 
 const routes: Routes = [
                           {path:'', component: AdministradorComponent},
                           {path:'miPerfil', component: MiPerfilComponent},
                           {path:'solicitarTurno', component:SolicitarTurnoComponent},
+                          {path:'turnos', component:TurnosComponent},
+                          {path:'graficos', component:GraficosComponent},
                           {path:'seccionUsuarios',
                           children:[
                             {path:'',component:SeccionUsuariosComponent},

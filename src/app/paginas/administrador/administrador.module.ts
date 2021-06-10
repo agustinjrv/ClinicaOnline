@@ -19,8 +19,16 @@ import { RegistroAdministradoresComponent } from './seccion-usuarios/generar-usu
 import { RegistroEspecialistasComponent } from './seccion-usuarios/generar-usuario/registro-especialistas/registro-especialistas.component';
 import { RegistroPacientesComponent } from './seccion-usuarios/generar-usuario/registro-pacientes/registro-pacientes.component';
 import { SolicitarTurnoComponent } from './solicitar-turno/solicitar-turno.component';
-import { MisTurnosComponent } from './mis-turnos/mis-turnos.component';
 import { Workbook } from 'exceljs';
+import { TurnosComponent } from './turnos/turnos.component';
+
+import { ModalCancelarTurnoComponent } from './modal-cancelar-turno/modal-cancelar-turno.component';
+import { PrimeraLetraMayusculaPipe } from './primera-letra-mayuscula/primera-letra-mayuscula.pipe';
+import { CambiarDatoPacientePipe } from './cambiarDatoPaciente/cambiar-dato-paciente.pipe';
+import { GraficoDonaComponent } from './grafico-dona/grafico-dona.component';
+import { ChartsModule } from 'ng2-charts';
+import { GraficosComponent } from './graficos/graficos.component';
+import { GraficoTurnosDiasComponent } from './grafico-turnos-dias/grafico-turnos-dias.component';
 
 
 
@@ -40,8 +48,14 @@ import { Workbook } from 'exceljs';
     RegistroEspecialistasComponent,
     RegistroPacientesComponent,
     SolicitarTurnoComponent,
-    MisTurnosComponent,
-    TablaEspecialidadesTurnosComponent
+    TablaEspecialidadesTurnosComponent,
+    TurnosComponent,
+    ModalCancelarTurnoComponent,
+    PrimeraLetraMayusculaPipe,
+    CambiarDatoPacientePipe,
+    GraficoDonaComponent,
+    GraficosComponent,
+    GraficoTurnosDiasComponent,
     
     
 
@@ -52,6 +66,7 @@ import { Workbook } from 'exceljs';
     FormsModule,
     ReactiveFormsModule,
     AutocompleteLibModule,
+    ChartsModule,
     GenericosModule,    
   
   ]

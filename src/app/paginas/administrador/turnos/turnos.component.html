@@ -35,7 +35,7 @@
                 </div>
             </div>
             <div class="col">
-                <button class="btn btn-success" data-toggle="modal" data-target="#modalGrafico">Graficar</button>
+                <button class="btn btn-success" data-toggle="modal" data-target="#modalGrafico">Graficar Estados</button>
             </div>
 
         </div>
@@ -43,7 +43,7 @@
     </section>
 
 
-    <div class="lista" *ngIf='this.cargo'>
+    <div  *ngIf='this.cargo'>
         <table class="table table-primary table-hover">
             <thead>
                 <tr>
@@ -51,8 +51,7 @@
                     <th>Especialidad</th>
                     <th>Paciente</th>
                     <th>Estado</th>
-                    <th>Accion 1</th>
-                    <th>Accion 2</th>
+                    <th>Cancelar</th>
                 </tr>
 
             </thead>
@@ -67,31 +66,7 @@
                         <button class="btn btn-outline-danger"
                             (click)='AbrirModalCancelarTurno(unTurno)'>Cancelar</button>
                     </td>
-                    <td *ngIf='unTurno.estadoTurno=="pendiente"'>
-                        <button class="btn btn-outline-danger"
-                            (click)='AbrirModalRechazarTurno(unTurno)'>Rechazar</button>
-                    </td>
-                    <td *ngIf='unTurno.estadoTurno=="pendiente" '>
-                        <button class="btn btn-outline-success" (click)='AceptarTurno(unTurno)'>Aceptar</button>
-                    </td>
-                    <td *ngIf='unTurno.estadoTurno=="aceptado"'>
-                        <button class="btn btn-outline-success"
-                            (click)='AbrirModalFinalizarTurno(unTurno)'>Finalizar</button>
-                    </td>
-                    <td *ngIf='unTurno.estadoTurno=="cancelado"'>
-                        <button class="btn btn-outline-danger" (click)='AbrirModalVerDetalles(unTurno)'>Ver
-                            Detalles</button>
-                    </td>
-                    <td *ngIf='unTurno.estadoTurno=="finalizado"'>
-                        <button class="btn btn-outline-danger" (click)='AbrirModalVerDetalles(unTurno)'>Ver
-                            Detalles</button>
-                    </td>
-                    <td *ngIf='unTurno.estadoTurno=="rechazado"'>
-                        <button class="btn btn-outline-danger" (click)='AbrirModalVerDetalles(unTurno)'>Ver
-                            Detalles</button>
-                    </td>
-                    <td *ngIf='unTurno.estadoTurno=="rechazado" || unTurno.estadoTurno=="finalizado" || unTurno.estadoTurno=="cancelado"'>
-                    </td>
+                    <td *ngIf='unTurno.estadoTurno!="aceptado"'></td>
 
 
                 </tr>

@@ -13,7 +13,7 @@ import { AdministradorModule } from './paginas/administrador/administrador.modul
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RadioButtonComponent } from './componentes/radio-button/radio-button.component';
-import { CambiarDatoPacientePipe } from './pipes/cambiarDatoPaciente/cambiar-dato-paciente.pipe';
+
 
 
 

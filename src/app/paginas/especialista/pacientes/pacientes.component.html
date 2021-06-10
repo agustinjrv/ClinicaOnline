@@ -16,7 +16,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor='let unPaciente of this.listaPacientes'>
+                    <tr *ngFor='let unPaciente of this.listaPacientes' (click)='SeleccionarPaciente(unPaciente)'>
                         <td>{{unPaciente.apellido}}</td>
                         <td>{{unPaciente.nombre}}</td>
                         <td>{{unPaciente.correo}}</td>
@@ -31,7 +31,7 @@
 
     <section *ngIf='usuarioSeleccionado'>
 
-        <table class="table table-dark table-hover  text-white " *ngIf='datosUsuario'>
+        <table class="table table-dark table-hover text-white " >
 
 
             <tr>
@@ -46,27 +46,26 @@
             </tr>
 
             <tr>
-                <td>{{datosUsuario.nombre}}</td>
-                <td>{{datosUsuario.apellido}}</td>
-                <td>{{datosUsuario.edad}}</td>
-                <td>{{datosUsuario.dni}}</td>
-                <td>{{datosUsuario.obraSocial}}</td>
-                <td>{{datosUsuario.correo}}</td>
-                <td><img src="{{datosUsuario.imagenPrincipal}}" width="50px" height="50px"></td>
-                <td><img src="{{datosUsuario.imagenSecundaria}}" width="50px" height="50px" alt='Foto2'></td>
+                <td>{{usuarioSeleccionado.nombre}}</td>
+                <td>{{usuarioSeleccionado.apellido}}</td>
+                <td>{{usuarioSeleccionado.edad}}</td>
+                <td>{{usuarioSeleccionado.dni}}</td>
+                <td>{{usuarioSeleccionado.obraSocial}}</td>
+                <td>{{usuarioSeleccionado.correo}}</td>
+                <td><img src="{{usuarioSeleccionado.imagenPrincipal}}" width="50px" height="50px"></td>
+                <td><img src="{{usuarioSeleccionado.imagenSecundaria}}" width="50px" height="50px" alt='Foto2'></td>
             </tr>
 
         </table>
 
         <label class="h1 bg-primary">Historia Clinica</label>
 
-        <div class="row">
+        <div class="row" *ngIf='this.listaHistoriaClinica'>
             <div class="col-12 col-xl-6">
-                <table class="table table-dark table-hover">
+                <table class="table table-dark table-hover" >
                     <thead>
                         <tr>
                             <th>Fecha</th>
-                            <th>Especialista</th>
                             <th>Especialidad</th>
                         </tr>
                     </thead>
@@ -74,8 +73,6 @@
                         <tr *ngFor='let unaHistoria of this.listaHistoriaClinica'
                             (click)='historiaSeleccionada=unaHistoria'>
                             <td>{{unaHistoria.fecha}}</td>
-                            <td>{{unaHistoria.correoEspecialista | cambiarDatoPersonal:this.listaEspecialistas |
-                                primeraLetraMayuscula}}</td>
                             <td>{{unaHistoria.especialidad}}</td>
                         </tr>
                     </tbody>

@@ -15,6 +15,9 @@ import { ModalDetallesComponent } from './modal-detalles/modal-detalles.componen
 import { CambiarDatoPacientePipe } from 'src/app/pipes/cambiarDatoPaciente/cambiar-dato-paciente.pipe';
 import { PrimeraLetraMayusculaPipe } from './primera-letra-mayuscula/primera-letra-mayuscula.pipe';
 import { PacientesComponent } from './pacientes/pacientes.component';
+import { GraficoDonaComponent } from 'src/app/componentes/grafico-dona/grafico-dona.component';
+import { ChartsModule } from 'ng2-charts';
+
 
 
 
@@ -33,14 +36,19 @@ import { PacientesComponent } from './pacientes/pacientes.component';
     ModalDetallesComponent,
     CambiarDatoPacientePipe,
     PrimeraLetraMayusculaPipe,
-    PacientesComponent
+    PacientesComponent,
+    GraficoDonaComponent,
+    
+
     
   ],
   imports: [
     CommonModule,
     EspecialistaRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ChartsModule
+    
     
     
   ]

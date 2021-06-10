@@ -43,32 +43,29 @@ export class TurnosComponent implements OnInit {
     this.usuarioLogeado=JSON.parse(localStorage.getItem('usuarioLogeado'));
 
     
+    this.servicioTurnos.TraerTodos().valueChanges().subscribe((data)=>{
+      
+      this.listaTurnos=data;
+      this.listaMostrar=this.listaTurnos;
+      
+      this.listaMostrar.forEach((element) => {
+        element.estadoTurno=EestadoTurno[element.estadoTurno];
+      });
+      this.listaAux=this.listaMostrar;
+      //this.cargo=true;
+      
+    });
+    
     this.servicioUsuario.TraerTodos().valueChanges().subscribe((data)=>{
       this.listaPacientes=data.filter((value,index,array)=>{
         return value.perfil=='Paciente';
       });
-      this.cargo=true;
-      
-    });
-
+      this.cargo=true;      
+    });    
     
-    
-    this.servicioTurnos.TraerTodos().valueChanges().subscribe((data)=>{
-      this.listaTurnos=data;
-      
-      this.listaMostrar=this.listaTurnos.filter((value,index,array)=>{
-        return value.especialista==this.usuarioLogeado.correo;
-      });
-      this.listaMostrar.forEach((element) => {
-          element.estadoTurno=EestadoTurno[element.estadoTurno];
-      });
-      this.listaAux=this.listaMostrar;
-      
-    });
-
     this.servicioHistoriaClinica.TraerTodos().valueChanges().subscribe((data)=>{
-        this.listaHistoriasClinicas=data; 
-        
+      this.listaHistoriasClinicas=data; 
+      
     });
 
   }
@@ -87,55 +84,6 @@ export class TurnosComponent implements OnInit {
     this.turnoSeleccionado.estadoTurno=EestadoTurno.cancelado;
     this.turnoSeleccionado.razonCancelacion=razonCancelacion;
     this.servicioTurnos.ModificarUno(this.turnoSeleccionado);
-  }
-
-  public AbrirModalRechazarTurno(unTurno:any)
-  {
-    this.turnoSeleccionado=unTurno;
-    var objO:any = document.getElementById("botonModalRechazar")??"";
-    objO.click();
-  }
-
-  public RechazarTurno(razonRechazo:string)
-  {
-    console.log(razonRechazo);
-    this.turnoSeleccionado.estadoTurno=EestadoTurno.rechazado;
-    this.turnoSeleccionado.razonRechazo=razonRechazo;
-    this.servicioTurnos.ModificarUno(this.turnoSeleccionado);
-  }
-
-  public AceptarTurno(unTurno)
-  {
-    this.turnoSeleccionado=unTurno;
-    this.turnoSeleccionado.estadoTurno=EestadoTurno.aceptado;
-    this.servicioTurnos.ModificarUno(this.turnoSeleccionado);
-  }
-
-  public AbrirModalFinalizarTurno(unTurno:any)
-  {
-    this.turnoSeleccionado=unTurno;
-    var objO:any = document.getElementById("botonModalFinalizar")??"";
-    objO.click();
-  }
-
-  public FinalizarTurno(nuevaHistoria:HistoriaClinica)
-  {
-    
-    this.turnoSeleccionado.estadoTurno=EestadoTurno.finalizado;
-    this.turnoSeleccionado.resenia=nuevaHistoria.resenia;
-    this.turnoSeleccionado.diagnostico=nuevaHistoria.diagnostico;
-    this.servicioTurnos.ModificarUno(this.turnoSeleccionado);
-    
-    nuevaHistoria.especialidad=this.turnoSeleccionado.especialidad;
-    nuevaHistoria.correoPaciente=this.turnoSeleccionado.paciente;
-    nuevaHistoria.correoEspecialista=this.usuarioLogeado.correo;
-    nuevaHistoria.fecha=this.turnoSeleccionado.fecha;
-    nuevaHistoria.idTurno=this.turnoSeleccionado.id;
-
-    
-    this.servicioHistoriaClinica.AgregarUno(nuevaHistoria);
-
-
   }
 
   
