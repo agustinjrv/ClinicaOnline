@@ -16,3 +16,35 @@
     
 
   }
+
+  .centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.829);
+    padding: 1px;
+    border-radius: 10%;
+    padding-left: 2%;
+    padding-right: 2%;
+    font-size:x-large;
+  
+  }
+
+  .centered-especialista{
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.829);
+    padding: 1px;
+    border-radius: 10%;
+    padding-left: 2%;
+    padding-right: 2%;
+    font-size:x-large;
+
+  }
