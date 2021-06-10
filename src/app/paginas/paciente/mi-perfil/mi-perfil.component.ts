@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Columns, Img, PdfMakeWrapper, Table, Txt } from 'pdfmake-wrapper';
+import { Especialista } from 'src/app/clases/especialista/especialista';
 import { Paciente } from 'src/app/clases/paciente/paciente';
 import { Usuario } from 'src/app/clases/usuario/usuario';
 import { HistoriaClinicaService } from 'src/app/servicios/historiaClinica/historia-clinica.service';
@@ -17,6 +18,8 @@ export class MiPerfilComponent implements OnInit {
   public usuarioLogeado=JSON.parse(localStorage.getItem('usuarioLogeado'));
   public listaHistoriaClinica:any[]=[];
   public cargo=false;
+  public listaEspecialistas:Especialista[]=[];
+  public historiaSeleccionada:any=false;
 
   constructor( private servicioUsuario:UsuarioService,
                private servicioHistoriaClinica:HistoriaClinicaService) { 
@@ -41,6 +44,10 @@ export class MiPerfilComponent implements OnInit {
               break;
           }
         }  
+
+        this.listaEspecialistas=(<Especialista[]>data).filter((value,index,array)=>{
+          return value.perfil=='Especialista'
+        })
     });
     
   }
@@ -48,7 +55,7 @@ export class MiPerfilComponent implements OnInit {
   private CargarHistoria(){
     this.servicioHistoriaClinica.BuscarUnaHistoriaPorCorreo(this.usuarioLogeado.correo).valueChanges().subscribe((data:any)=>{
         this.listaHistoriaClinica=data;
-        console.log(data[0].datosDinamicos[0].valor);
+        console.log(this.listaHistoriaClinica);
         this.cargo=true;
     });
 

@@ -35,7 +35,8 @@ PdfMakeWrapper.setFonts(pdfFonts);
     ModalDetallesComponent,
     EscucharTecladoDirective,
     PrimeraLetraMayusculaPipe,
-    CambiarDatoPersonalPipe
+    CambiarDatoPersonalPipe,
+
     
   ],
   imports: [

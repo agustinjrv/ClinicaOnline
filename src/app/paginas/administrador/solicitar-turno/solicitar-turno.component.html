@@ -3,53 +3,62 @@
 </div>
 
 <section class="container-fluid text-white h-100 pb-3 pl-0 pr-0" *ngIf='cargo'>
-    
+
 
     <h1 *ngIf='this.especialidadSeleccionada' class="text-center text-white bg-primary p-0 m-0">
         {{this.especialidadSeleccionada}}</h1>
+
 
 
     <section class="row mt-2">
 
 
 
-        <div class="col-4 bg-dark form-control h-100 text-white border-success ml-4 ">
+        <div class="col-xl-4 col-12 mt-2 bg-dark form-control h-100 text-white border-success ml-4 pr-5">
 
-            <label for="autocompletado">Paciente</label>
-            <div class="ng-autocomplete mb-3">
-                <ng-autocomplete #auto id='autocompletado'
-                    [data]="this.listaPacientes"
-                    [searchKeyword]="keyword" placeholder="Paciente"
-                    (selected)="SeleccionarPaciente($event)" [itemTemplate]="itemTemplate"
-                    [notFoundTemplate]="notFoundTemplate">
-                </ng-autocomplete>
-            
-                <ng-template #itemTemplate let-item>
-                    <a ></a>
-                    <a [innerHTML]="item.apellido + ' ' + item.nombre"></a>
-                </ng-template>
-            
-                <ng-template #notFoundTemplate let-notFound>
-                    <div>{{notFound}}</div>
-                </ng-template>
-            </div>
-       
+            <ng-autocomplete #auto
+                [ngModelOptions]="{standalone: true}" [data]="this.listaPacientes" [searchKeyword]="keyword"
+                placeholder="Paciente" (selected)="SeleccionarPaciente($event)" [itemTemplate]="itemTemplate"
+                [notFoundTemplate]="notFoundTemplate">
+            </ng-autocomplete>
+
+            <ng-template #itemTemplate let-item>
+                <a [innerHTML]="item.apellido+' '+item.nombre"></a>
+            </ng-template>
+
+            <ng-template #notFoundTemplate let-notFound>
+                <div>{{notFound}}</div>
+            </ng-template>
 
 
-            <tabla-especialidades-turnos *ngIf='!eligioEspecialidad' [listaEspecialidades]='this.listaEspecialidades'
-                (seleccionar)='SeleccionarEspecialidad($event)'></tabla-especialidades-turnos>
+            <h3>Especialidades</h3>
+            <section *ngIf='this.listaEspecialidades!=false'>
 
-            <div *ngIf='!eligioEspecialista && eligioEspecialidad'>
-                <button class="btn btn-danger" (click)='eligioEspecialidad=false'>Volver</button>
+                <div class="row mt-2" *ngFor='let i of this.listaEspecialidades'>
+                    <div class="col">
+                        <button class="btn btn-primary btn-block"
+                            (click)='SeleccionarEspecialidad(i)'>{{i.nombre}}</button>
+                    </div>
+                    <div class="col-2">
+                        <img src={{i.imagen}} width="50px" height="50px">
+                    </div>
+                </div>
 
-                <h5 class=" text-center ml-2">Especialistas</h5>
+            </section>
+
+            <!--app-tabla-especialidades *ngIf='!eligioEspecialidad' [listaEspecialidades]='this.listaEspecialidades'
+                (seleccionar)='SeleccionarEspecialidad($event)'></app-tabla-especialidades-->
+
+            <div *ngIf='eligioEspecialidad'>
+                <hr class='bg-white'>
+                <h5 class=" text-center ml-2 ">Especialistas</h5>
                 <div class="lista">
                     <div class="card" style="width: 18rem;" *ngFor='let unEspecialista of this.especialistasMostrar'
                         (click)='SeleccionarEspecialista(unEspecialista)'>
                         <img src='{{unEspecialista.imagenPrincipal}}' class="card-img-top" height="200px">
                         <div class="card-body">
-                            <h5 class="card-title text-dark text-center">{{unEspecialista.apellido + ' ' +
-                                unEspecialista.nombre}}</h5>
+                            <h5 class="card-title text-dark text-center">{{unEspecialista.apellido |
+                                primeraLetraMayuscula}}{{' '}}{{unEspecialista.nombre | primeraLetraMayuscula}}</h5>
                         </div>
                     </div>
 
@@ -57,11 +66,36 @@
 
             </div>
 
-            <div *ngIf='!eligioFecha && eligioEspecialista && eligioEspecialidad'>
-                <button class="btn btn-danger" (click)='eligioEspecialista=false'>Volver</button>
-                <h5 class=" text-center ml-2" *ngIf='this.listaFechasMostrar'>Fechas</h5>
 
-                <div class="lista" *ngIf='this.listaFechasMostrar'>
+
+
+
+        </div>
+
+
+        <div class="col-xl-7 col-12 bg-dark mt-2 ml-4 pr-5">
+            <div *ngIf='!eligioFecha && eligioEspecialidad'>
+                <h3>Turnos Disponibles </h3>
+
+                <div class="form-control border-success h-100">
+                    <h5>Mas Proximo</h5>
+                    <button (click)='SolicitarTurno(this.listaFechasMostrar[0].horarios[0])'
+                        class="btn btn-success btn-block mt-1">{{this.listaFechasMostrar[0].dia + " - " +
+                        this.listaFechasMostrar[0].horarios[0].hora +' con '+ this.especialistaSeleccionado.apellido +"
+                        "+this.especialistaSeleccionado.nombre }}</button>
+
+                </div>
+
+            </div>
+
+            <div *ngIf='!eligioFecha && eligioEspecialidad'>
+                <hr class="bg-white">
+                <h5 class=" text-center ml-2 mt-2" *ngIf='this.listaFechasMostrar' style="text-transform: capitalize">
+                    Fechas de Especialista:{{" "+this.especialistaSeleccionado.apellido +"
+                    "+this.especialistaSeleccionado.nombre }}</h5>
+
+
+                <div style="overflow-y: auto; height: 50vh;" *ngIf='this.listaFechasMostrar'>
                     <div *ngFor='let unaFecha of this.listaFechasMostrar'>
                         <button (click)='this.turnosMostrar=unaFecha; this.eligioFecha=true'
                             class="btn btn-primary btn-block mt-1">{{unaFecha.dia}}</button>
@@ -80,15 +114,9 @@
             </div>
 
 
-
-        </div>
-
-    
-        <div class="col-7 border-success bg-dark ">
-            <h2>Tus Turnos</h2>
-            <div class="mb-2" *ngIf='this.pacienteSeleccionado'>
-                <app-mis-turnos [usuarioSeleccionado]='this.pacienteSeleccionado'></app-mis-turnos>
-            </div>
+            <!--div class="mb-2">
+                <app-mis-turnos></app-mis-turnos>
+            </div-->
         </div>
 
 

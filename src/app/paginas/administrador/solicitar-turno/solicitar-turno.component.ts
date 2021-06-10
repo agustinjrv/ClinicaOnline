@@ -12,6 +12,7 @@ import { EspecialidadesService } from 'src/app/servicios/especialidades/especial
 import { HorariosService } from 'src/app/servicios/horarios/horarios.service';
 import { TurnosService } from 'src/app/servicios/turnos/turnos.service';
 import { UsuarioService } from 'src/app/servicios/usuario/usuario.service';
+import { Paciente } from 'src/app/clases/paciente/paciente';
 
 @Component({
   selector: 'app-solicitar-turno',
@@ -48,11 +49,10 @@ export class SolicitarTurnoComponent implements OnInit {
   public eligioFecha:boolean=false;
   public eligioTurno:boolean=false;
 
-  public listaPacientes:any=false;
-  public pacienteSeleccionado:any=false;
+  public inputPaciente:any;
+  public listaPacientes:Paciente[]=[];
 
-
-  keyword = 'apellido';
+  keyword = 'nombreCompleto';
   public inputEspecialidades: any = '';
   @ViewChild('auto') auto;
 
@@ -75,18 +75,12 @@ export class SolicitarTurnoComponent implements OnInit {
   }
 
   private CargarTodo() {
+
     this.CargarEspecialidades();
     this.CargarEspecialistas();
     this.CargarHorarios();
     this.CargarTurnos();
     
-  }
-
-  private CargarPacientes(listaUsuarios:any[])
-  {
-      this.listaPacientes=listaUsuarios.filter((value,index,array)=>{
-          return value.perfil == 'Paciente'
-      })
   }
 
   private CargarTurnos()
@@ -102,8 +96,6 @@ export class SolicitarTurnoComponent implements OnInit {
 
       this.listaEspecialidades = data.filter((value: Especialidad, index, array) => {
         return value.mostrar == true;
-      }).map((value,index,array)=>{
-        return value.nombre;
       });
       this.cargo=true;
     })
@@ -117,10 +109,11 @@ export class SolicitarTurnoComponent implements OnInit {
         if (element.perfil == 'Especialista' && element.estadoCuenta) {
           this.listaEspecialistas.push(element);
         }
-        
-
+        if (element.perfil == 'Paciente') {
+          element.nombreCompleto=element.apellido +' '+element.nombre;
+          this.listaPacientes.push(element);
+        }
       });
-      this.CargarPacientes(data);
       
     });
 
@@ -133,6 +126,11 @@ export class SolicitarTurnoComponent implements OnInit {
     })
   }
 
+  public SeleccionarPaciente($event)
+  {
+    this.inputPaciente=$event;
+  }
+
 
 
 
@@ -142,21 +140,16 @@ export class SolicitarTurnoComponent implements OnInit {
     this.auto.clear();
   }
 
-  public SeleccionarPaciente(unPaciente)
-  {
-    console.log(unPaciente);
-    this.pacienteSeleccionado=unPaciente;
-  }
-
   public SeleccionarEspecialidad($event) {
     
-    this.especialidadSeleccionada = $event; 
+    this.especialidadSeleccionada = $event.nombre; 
     this.especialistaSeleccionado=false;
     this.horariosMostrar=false;
     this.horariosDeEspecialista=false;
     this.listaTurnosPorEspecialidad=[];
     this.listaTurnosPorEspecialista=[];
     this.diasMostrar=[];
+
     
 
 
@@ -178,9 +171,10 @@ export class SolicitarTurnoComponent implements OnInit {
       
     
     this.eligioEspecialidad=true;
-    console.log(this.eligioEspecialidad);
-    console.log(this.eligioEspecialista);
     this.BuscarTurnosDeEspecialidad()
+
+    this.SeleccionarEspecialista(this.especialistasMostrar[0]);
+    
     
     
   }
@@ -210,6 +204,11 @@ export class SolicitarTurnoComponent implements OnInit {
       this.horariosMostrar=false;
       this.horariosDeEspecialista=false;
       this.diasMostrar=[];
+      this.listaFechasMostrar=[];
+
+
+    
+
       
       
       this.BuscarTurnosDeEspecialista();
@@ -238,15 +237,18 @@ export class SolicitarTurnoComponent implements OnInit {
       let rangoHoras= horaHasta-horaDesde;
       
       let fecha=new Date();
+      let horaActual=new Date();
       
       
       
-      for(let dia=0;dia<15;dia++)
+      
+      for(let dia=1;dia<15;dia++)
       {
         fecha.setTime(Date.now());
         
         let esUnDiaValido=false;
         fecha.setDate(fecha.getDate()+dia);
+        
 
         
             
@@ -274,7 +276,6 @@ export class SolicitarTurnoComponent implements OnInit {
   
             if(EDiasSemana[fecha.getDay()]=='sabado')
             {
-              console.log(this.horariosDeEspecialista);
               turno.hora= parseInt(this.horariosDeEspecialista.desdeSabados) + i + ':00';
             }
             else{
@@ -318,7 +319,7 @@ export class SolicitarTurnoComponent implements OnInit {
       nuevoTurno.estadoTurno=EestadoTurno.pendiente;
       nuevoTurno.fecha=turnoSeleccionado.dia;
       nuevoTurno.hora=turnoSeleccionado.hora;
-      nuevoTurno.paciente=this.pacienteSeleccionado.correo;
+      nuevoTurno.paciente=this.inputPaciente.correo;
 
 
       this.servicioTurnos.AgregarUno(nuevoTurno);

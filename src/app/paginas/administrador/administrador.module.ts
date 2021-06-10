@@ -20,6 +20,7 @@ import { RegistroEspecialistasComponent } from './seccion-usuarios/generar-usuar
 import { RegistroPacientesComponent } from './seccion-usuarios/generar-usuario/registro-pacientes/registro-pacientes.component';
 import { SolicitarTurnoComponent } from './solicitar-turno/solicitar-turno.component';
 import { MisTurnosComponent } from './mis-turnos/mis-turnos.component';
+import { Workbook } from 'exceljs';
 
 
 
@@ -51,7 +52,8 @@ import { MisTurnosComponent } from './mis-turnos/mis-turnos.component';
     FormsModule,
     ReactiveFormsModule,
     AutocompleteLibModule,
-    GenericosModule
+    GenericosModule,    
+  
   ]
 })
 export class AdministradorModule { }

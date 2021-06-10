@@ -9,11 +9,13 @@
         <button class="btn btn-danger" (click)='this.mostrar="Administradores"'>Administradores</button>
         <button class="btn btn-warning ml-3" (click)='this.mostrar="Especialistas"'>Especialistas</button>
         <button class="btn btn-success ml-3" (click)='this.mostrar="Pacientes"'>Pacientes</button>
+        <button class="btn btn-success btn-block mb-2 mt-2" (click)="GenerarExcel()">Generar Excel</button>
     </div>
+
+    
 
     <app-spinner *ngIf='this.mostrarSpinner'></app-spinner>
 
-    
 
     <table class="table table-hover table-dark "  *ngIf='this.mostrar=="Administradores"'>
 
@@ -52,7 +54,6 @@
                 <th>Apellido</th>
                 <th>Edad</th>
                 <th>DNI</th>
-                <th>Especialidad</th>
                 <th>Correo</th>
                 <th>Clave</th>
                 <th class="bg-warning text-dark">Perfil</th>
@@ -66,7 +67,6 @@
                 <td>{{i.apellido}}</td>
                 <td>{{i.edad}}</td>
                 <td>{{i.dni}}</td>
-                <td>{{i.especialidad}}</td>
                 <td>{{i.correo}}</td>
                 <td>{{i.clave}}</td>
                 <td class="bg-warning text-dark">{{i.perfil}}</td>

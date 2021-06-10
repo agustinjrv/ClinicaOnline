@@ -34,33 +34,74 @@
     <label class="h1 bg-primary">Historia Clinica</label>
     <button class="btn btn-danger" (click)='GenerarPDF()'>Generar PDF</button>
 
+<div class="row">
+    <div class="col-12 col-xl-6">
+        <table class="table table-dark table-hover" >
+            <thead>
+                <tr>  
+                    <th>Fecha</th>
+                    <th>Especialista</th>
+                    <th>Especialidad</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor='let unaHistoria of this.listaHistoriaClinica' (click)='historiaSeleccionada=unaHistoria' >
+                    <td>{{unaHistoria.fecha}}</td>
+                    <td>{{unaHistoria.correoEspecialista | cambiarDatoPersonal:this.listaEspecialistas | primeraLetraMayuscula}}</td>
+                    <td>{{unaHistoria.especialidad}}</td>
+                </tr>
+            </tbody>
+        </table>
 
-    <table class="table table-dark" >
-        <thead>
-            <tr>  
-                <th>Fecha</th>
-                <th>CorreoEspecialista</th>
-                <th>Altura</th>
-                <th>Peso</th>
-                <th>Temperatura</th>
-                <th>Presion</th>
-                <th>datos dinamico 1</th>
-                <th>datos dinamico 2</th>
-                <th>datos dinamico 3</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor='let unaHistoria of this.listaHistoriaClinica'>
-                <td>{{unaHistoria.fecha}}</td>
-                <td>{{unaHistoria.correoEspecialista}}</td>
-                <td>{{unaHistoria.altura}}</td>
-                <td>{{unaHistoria.peso}}</td>
-                <td>{{unaHistoria.temperatura}}</td>
-                <td>{{unaHistoria.presion}}</td>
-                <td *ngFor='let dato of unaHistoria.datosDinamicos'>{{dato.nombre + ' : ' +dato.valor }}</td>
-            </tr>
-        </tbody>
-    </table>
+    </div>
+
+    <div class="col-12 col-xl-6">
+        <table class="table-dark table table-hover" *ngIf='historiaSeleccionada'>
+            <thead>
+                <tr>
+                    <th>Clave</th>
+                    <th>Valor</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Fecha</td>
+                    <td>{{historiaSeleccionada.fecha}}</td>
+                </tr>
+                <tr>
+                    <td>Especialista</td>
+                    <td>{{historiaSeleccionada.correoEspecialista}}</td>
+                </tr>
+                <tr>
+                    <td>Especialidad</td>
+                    <td>{{historiaSeleccionada.especialidad}}</td>
+                </tr>
+                <tr>
+                    <td>Altura</td>
+                    <td>{{historiaSeleccionada.altura}}</td>
+                </tr>
+                <tr>
+                    <td>Peso</td>
+                    <td>{{historiaSeleccionada.peso}}</td>
+                </tr>
+                <tr>
+                    <td>Presion</td>
+                    <td>{{historiaSeleccionada.presion}}</td>
+                </tr>
+                <tr *ngFor='let dato of historiaSeleccionada.datosDinamicos'>
+                    <td>{{dato.nombre}}</td>
+                    <td>{{dato.valor}}</td>
+                </tr>
+                
+            </tbody>
+        </table>
+    
+    
+
+    </div>
+
+</div>
+    
 
 
 

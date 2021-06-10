@@ -1,0 +1,139 @@
+<div style="height: 75px;">
+
+</div>
+
+<section class="container" *ngIf='this.cargo'>
+
+    <section *ngIf='usuarioSeleccionado==false'>
+        <div>
+            <table class=" table table-dark table-hover">
+                <thead>
+                    <tr>
+                        <th>Apellido</th>
+                        <th>Nombre</th>
+                        <th>Correo</th>
+                        <th>DNI</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor='let unPaciente of this.listaPacientes'>
+                        <td>{{unPaciente.apellido}}</td>
+                        <td>{{unPaciente.nombre}}</td>
+                        <td>{{unPaciente.correo}}</td>
+                        <td>{{unPaciente.dni}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </section>
+
+
+    <section *ngIf='usuarioSeleccionado'>
+
+        <table class="table table-dark table-hover  text-white " *ngIf='datosUsuario'>
+
+
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Edad</th>
+                <th>DNI</th>
+                <th>ObraSocial</th>
+                <th>Correo</th>
+                <th>Imagen Principal</th>
+                <th>ImagenSecundaria</th>
+            </tr>
+
+            <tr>
+                <td>{{datosUsuario.nombre}}</td>
+                <td>{{datosUsuario.apellido}}</td>
+                <td>{{datosUsuario.edad}}</td>
+                <td>{{datosUsuario.dni}}</td>
+                <td>{{datosUsuario.obraSocial}}</td>
+                <td>{{datosUsuario.correo}}</td>
+                <td><img src="{{datosUsuario.imagenPrincipal}}" width="50px" height="50px"></td>
+                <td><img src="{{datosUsuario.imagenSecundaria}}" width="50px" height="50px" alt='Foto2'></td>
+            </tr>
+
+        </table>
+
+        <label class="h1 bg-primary">Historia Clinica</label>
+
+        <div class="row">
+            <div class="col-12 col-xl-6">
+                <table class="table table-dark table-hover">
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Especialista</th>
+                            <th>Especialidad</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor='let unaHistoria of this.listaHistoriaClinica'
+                            (click)='historiaSeleccionada=unaHistoria'>
+                            <td>{{unaHistoria.fecha}}</td>
+                            <td>{{unaHistoria.correoEspecialista | cambiarDatoPersonal:this.listaEspecialistas |
+                                primeraLetraMayuscula}}</td>
+                            <td>{{unaHistoria.especialidad}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+            <div class="col-12 col-xl-6">
+                <table class="table-dark table table-hover" *ngIf='historiaSeleccionada'>
+                    <thead>
+                        <tr>
+                            <th>Clave</th>
+                            <th>Valor</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Fecha</td>
+                            <td>{{historiaSeleccionada.fecha}}</td>
+                        </tr>
+                        <tr>
+                            <td>Especialista</td>
+                            <td>{{historiaSeleccionada.correoEspecialista}}</td>
+                        </tr>
+                        <tr>
+                            <td>Especialidad</td>
+                            <td>{{historiaSeleccionada.especialidad}}</td>
+                        </tr>
+                        <tr>
+                            <td>Altura</td>
+                            <td>{{historiaSeleccionada.altura}}</td>
+                        </tr>
+                        <tr>
+                            <td>Peso</td>
+                            <td>{{historiaSeleccionada.peso}}</td>
+                        </tr>
+                        <tr>
+                            <td>Presion</td>
+                            <td>{{historiaSeleccionada.presion}}</td>
+                        </tr>
+                        <tr *ngFor='let dato of historiaSeleccionada.datosDinamicos'>
+                            <td>{{dato.nombre}}</td>
+                            <td>{{dato.valor}}</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+
+
+
+            </div>
+
+        </div>
+
+
+
+
+    </section>
+
+
+</section>

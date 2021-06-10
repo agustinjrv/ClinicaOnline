@@ -12,6 +12,9 @@ import { ModalRechazarTurnoComponent } from './modal-rechazar-turno/modal-rechaz
 import { ModalFinalizarTurnoComponent } from './modal-finalizar-turno/modal-finalizar-turno.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ModalDetallesComponent } from './modal-detalles/modal-detalles.component';
+import { CambiarDatoPacientePipe } from 'src/app/pipes/cambiarDatoPaciente/cambiar-dato-paciente.pipe';
+import { PrimeraLetraMayusculaPipe } from './primera-letra-mayuscula/primera-letra-mayuscula.pipe';
+import { PacientesComponent } from './pacientes/pacientes.component';
 
 
 
@@ -27,7 +30,10 @@ import { ModalDetallesComponent } from './modal-detalles/modal-detalles.componen
     ModalCancelarTurnoComponent,
     ModalRechazarTurnoComponent,
     ModalFinalizarTurnoComponent,
-    ModalDetallesComponent
+    ModalDetallesComponent,
+    CambiarDatoPacientePipe,
+    PrimeraLetraMayusculaPipe,
+    PacientesComponent
     
   ],
   imports: [
