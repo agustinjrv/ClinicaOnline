@@ -1,16 +1,9 @@
-<div style="height: 75px;">
-
-</div>
-
-
 <section class="container">
 
-    <section class='bg-dark pl-3 pt-3 pb-3 rounded'>
-
-        
+    <section class='bg-dark p-3 rounded mb-3 '>
 
         <div class="row">
-            <div class="col-5">
+            <div class="col-12 col-xl-6">
 
                 <div class="form-row ">
                     <div class="col input-group mb-2"> 
@@ -20,7 +13,7 @@
                 </div>
 
             </div>
-            <div class="col-5">
+            <div class="col-12 col-xl-6">
                 <div class="form-row ">
                     <div class="col input-group mb-2"> 
                         <input type="text" id="textEspecialista" class="form-control form-text"  placeholder="Especialista"  [(ngModel)]="inputEspecialista" appEscucharTeclado>
@@ -33,41 +26,41 @@
 
     </section>
     
-<div class="table-responsive" *ngIf='this.cargo'>
-    <table class="table table-primary table-hover  ">
-        <thead>
-            <tr>
-                <th>Fecha</th>
-                <th>Especialidad</th>
-                <th>Especialista</th>
-                <th>Estado</th>
-                <th>Accion</th>
-            </tr>
+    <div class="table-responsive" *ngIf='this.cargo'>
+        <table class="table table-primary table-hover  ">
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Especialidad</th>
+                    <th>Especialista</th>
+                    <th>Estado</th>
+                    <th>Accion</th>
+                </tr>
 
-        </thead>
-        <tbody>
-            <tr *ngFor='let unTurno of this.listaMostrar'>
-                <td>{{unTurno.fecha | primeraLetraMayuscula}}</td>
-                <td>{{unTurno.especialidad}}</td>
-                <td>{{unTurno.especialista | cambiarDatoPersonal:this.listaDeEspecialistas |primeraLetraMayuscula}}</td>
-                <td>{{unTurno.estadoTurno | uppercase }}</td>
-                <td *ngIf='unTurno.estadoTurno=="pendiente" || unTurno.estadoTurno=="aceptado"' ><button class="btn btn-outline-danger" (click)='AbrirModalCancelarTurno(unTurno)'>Cancelar</button></td>
-                <td *ngIf='unTurno.estadoTurno=="finalizado" || unTurno.estadoTurno=="rechazado" || unTurno.estadoTurno=="cancelado"' ><button class="btn btn-outline-danger" (click)='AbrirModalVerDetalles(unTurno)'>Ver Detalles</button></td>
-            </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor='let unTurno of this.listaMostrar'>
+                    <td>{{unTurno.fecha | primeraLetraMayuscula}}</td>
+                    <td>{{unTurno.especialidad}}</td>
+                    <td>{{unTurno.especialista | cambiarDatoPersonal:this.listaDeEspecialistas |primeraLetraMayuscula}}</td>
+                    <td>{{unTurno.estadoTurno | uppercase }}</td>
+                    <td *ngIf='unTurno.estadoTurno=="pendiente" || unTurno.estadoTurno=="aceptado"' ><button class="btn btn-outline-danger" (click)='AbrirModalCancelarTurno(unTurno)'>Cancelar</button></td>
+                    <td *ngIf='unTurno.estadoTurno=="finalizado" || unTurno.estadoTurno=="rechazado" || unTurno.estadoTurno=="cancelado"' ><button class="btn btn-outline-danger" (click)='AbrirModalVerDetalles(unTurno)'>Ver Detalles</button></td>
+                </tr>
 
-        </tbody>
-
-
-    </table>
-
-    <button style="visibility: hidden;" id='botonModalCancelar' data-toggle="modal" data-target="#modalCancelar">ModalCancelar</button>
-    <button style="visibility: hidden;" id='botonModalDetalles' data-toggle="modal" data-target="#modalDetalles">ModalDetalles</button>
-
-    <app-modal-cancelar-turno (cancelarTurno)='CancelarTurno($event)'></app-modal-cancelar-turno>
-    <app-modal-detalles [turnoDetalle]='this.turnoDetalle' [estadoTurno]='this.estadoTurno' (calificarAtencion)='CalificarAtencion($event)' ></app-modal-detalles>
+            </tbody>
 
 
-</div>
+        </table>
+
+        <button style="visibility: hidden;" id='botonModalCancelar' data-toggle="modal" data-target="#modalCancelar">ModalCancelar</button>
+        <button style="visibility: hidden;" id='botonModalDetalles' data-toggle="modal" data-target="#modalDetalles">ModalDetalles</button>
+
+        <app-modal-cancelar-turno (cancelarTurno)='CancelarTurno($event)'></app-modal-cancelar-turno>
+        <app-modal-detalles [turnoDetalle]='this.turnoDetalle' [estadoTurno]='this.estadoTurno' (calificarAtencion)='CalificarAtencion($event)' ></app-modal-detalles>
+
+
+    </div>
 
 
 </section>

@@ -46,8 +46,8 @@ export class MiPerfilComponent implements OnInit {
         }  
 
         this.listaEspecialistas=(<Especialista[]>data).filter((value,index,array)=>{
-          return value.perfil=='Especialista'
-        })
+          return value.perfil=='Especialista';
+        });
     });
     
   }
@@ -55,10 +55,8 @@ export class MiPerfilComponent implements OnInit {
   private CargarHistoria(){
     this.servicioHistoriaClinica.BuscarUnaHistoriaPorCorreo(this.usuarioLogeado.correo).valueChanges().subscribe((data:any)=>{
         this.listaHistoriaClinica=data;
-        console.log(this.listaHistoriaClinica);
         this.cargo=true;
     });
-
   }
 
   public async GenerarPDF()

@@ -18,6 +18,7 @@ import { FormsModule } from '@angular/forms';
 import { EscucharTecladoDirective } from 'src/app/directivas/escucharTeclado/escuchar-teclado.directive';
 import { PrimeraLetraMayusculaPipe } from 'src/app/pipes/primera-letra-mayuscula/primera-letra-mayuscula.pipe';
 import { CambiarDatoPersonalPipe } from 'src/app/pipes/cambiarDatoPersonal/cambiar-dato-personal.pipe';
+import { GenericosModule } from 'src/app/genericos/genericos.module';
 
 
 
@@ -44,6 +45,7 @@ PdfMakeWrapper.setFonts(pdfFonts);
     PacienteRoutingModule,
     AutocompleteLibModule,
     FormsModule,
+    GenericosModule
     
 
   ]

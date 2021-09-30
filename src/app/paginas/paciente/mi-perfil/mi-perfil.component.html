@@ -1,3 +1,5 @@
+<app-spinner *ngIf='!this.cargo'></app-spinner>
+
 <section class="container" *ngIf='this.cargo'>
 
     <div align="center">
@@ -34,9 +36,13 @@
                 
 </div>
 
-<section class="mt-2 bg-dark text-center">
-    <label class="h1 text-white">Historia Clinica</label>
-    <button class="btn btn-danger" (click)='GenerarPDF()'>Generar PDF</button>
+<section class="mt-2 bg-dark ">
+    <div class="text-center">
+        <label class="h1 text-white">Historia Clinica</label>
+    </div>
+    <div class='text-center'>
+        <button class="btn btn-danger " (click)='GenerarPDF()'>Generar PDF</button>
+    </div>
 </section>
     
 
