@@ -189,4 +189,31 @@ export class MisTurnosComponent implements OnInit {
     
   }
 
+  public AsignarColor(unTurno:Turno)
+  {
+      let retorno='';
+      
+      switch((<string><any>unTurno.estadoTurno))
+      {
+        case "pendiente":
+          retorno='bg-warning text-dark';
+          break;
+        case "aceptado":
+          retorno='bg-primary';
+          break;
+        case "cancelado":
+          retorno='bg-danger text-white';
+          break;
+        case "finalizado":
+          retorno='bg-success text-white';
+          break;
+        case "rechazado":
+          retorno='bg-danger text-white'
+          break;
+      }
+      return retorno;
+      
+  }
+
+
 }
