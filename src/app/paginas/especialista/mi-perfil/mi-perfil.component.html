@@ -1,162 +1,152 @@
-<div style="height: 75px;">
-
-</div>
-<section class="container"  *ngIf='cargo'>
-
-    <div class="row">
-        <div class="col">
-            <table class="table table-dark table-hover text-white " >
-                
-                <tr>
-                    <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>Edad</th>
-                    <th>DNI</th>
-                    <th>Correo</th>
-                    <th>Imagen Principal</th>                    
-                </tr>
-        
-                <tr>
-                    <td>{{datosUsuario.nombre}}</td>
-                    <td>{{datosUsuario.apellido}}</td>
-                    <td>{{datosUsuario.edad}}</td>
-                    <td>{{datosUsuario.dni}}</td>
-                    <td>{{datosUsuario.correo}}</td>
-                    <td><img src="{{datosUsuario.imagenPrincipal}}" width="50px" height="50px" ></td>
-                </tr>
-        
-            </table>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-2">
-
-            
-            <!--SeleccionarEspecialidad emitirlo y mostrar las fechas en otra tabla-->
-            <div>
-                <app-tabla-especialidades  [listaEspecialidades]='this.datosUsuario.especialidades' (seleccionar)='Seleccionar($event)'></app-tabla-especialidades>    
-            </div>
+<app-spinner *ngIf='!this.cargo'></app-spinner>
+<section class="container" *ngIf='cargo'>
 
 
 
-            <!--En principio podemos hacer que seleccione las fechas de un Data Table o spiker,video en favoritos-->
+
+    <section align="center">
+        <div class="pb-2 rounded bg-dark text-white">
+            <h2 style="text-transform: capitalize;">{{datosUsuario.nombre + ' ' + datosUsuario.apellido }}</h2>
+
+            <img [src]="datosUsuario.imagenPrincipal" width="250vw" height="250vh">
+
+            <section class="h-100 mt-2 text-center">
+                <h4>Edad: {{datosUsuario.edad}}</h4>
+                <h4>DNI: {{datosUsuario.dni}}</h4>
+                <h4>Obra Social: {{datosUsuario.obraSocial}}</h4>
+                <h4>{{datosUsuario.correo}}</h4>
+            </section>
 
         </div>
 
-        <div class="col bg-dark text-white h-100 pb-3 pl-0 pr-0">
+    </section>
 
-            <h1 *ngIf='this.especialidadSeleccionada' class="text-center text-white bg-primary p-0 m-0">{{this.especialidadSeleccionada}}</h1>
-            <h3 class="text-center">Seleccione una Especialidad para editar horarios</h3>
+    <div class="row mt-2 mb-3">
 
-           
-        <section class="row " *ngIf='this.especialidadSeleccionada'>
-            <div class="col-5 bg-dark form-control h-100 text-white border-success ml-4">
+        <div class="col-12 col-xl-4">
+            <app-tabla-especialidades [listaEspecialidades]='this.datosUsuario.especialidades'
+                (seleccionar)='Seleccionar($event)'></app-tabla-especialidades>
+        </div>
 
-                <section class="row ">
+        <div class="col col-xl bg-dark text-white rounded pb-3 pt-2 mt-2">
 
-                    <div class="col" align='center' >
-    
-                        <app-checkbox [contenido]='"L"' (valorRetorno)='diasBool.lunes=$event' ></app-checkbox>
-    
-                        <app-checkbox class="ml-2" [contenido]='"M"' (valorRetorno)='diasBool.martes=$event' ></app-checkbox>
-    
-                        <app-checkbox class="ml-2" [contenido]='"MI"' (valorRetorno)='diasBool.miercoles=$event' ></app-checkbox>
-    
-                        <app-checkbox class="ml-2" [contenido]='"J"' (valorRetorno)='diasBool.jueves=$event' ></app-checkbox>
-    
-                        <app-checkbox class="ml-2" [contenido]='"V"' (valorRetorno)='diasBool.viernes=$event' ></app-checkbox>
-    
-                        <app-checkbox class="ml-2" [contenido]='"S"' (valorRetorno)='diasBool.sabados=$event' ></app-checkbox>
-    
-    
-                    </div>
-                    
-                    
-    
-                </section>
-    
-                <section class="row mt-3">
-    
-                    <div class="col text-center">
-                        <h3>Horario</h3>
-                        <button  [class]="claseBoton1" (click)='SeleccionarHorario(1)' >8 a 12</button>
-                        <button class="ml-2" [class]="claseBoton2" (click)='SeleccionarHorario(2)'>8 a 17</button>
-                        <button class="ml-2" [class]="claseBoton3" (click)='SeleccionarHorario(3)'> 13 a 19</button>
-                        
-                    </div>
-      
-                </section>
-    
-                <section *ngIf='diasBool.sabados'>       
-    
-        
-                    <section class="row mt-3">
-    
-                        <div class="col text-center">
-                            <h3>Horario Sabados</h3>
-                            <button  [class]="claseBotonSabados1" (click)='SeleccionarHorarioSabados(1)'>8 a 12</button>
-                            <button class="ml-2" [class]="claseBotonSabados2" (click)='SeleccionarHorarioSabados(2)' >8 a 14</button>
+            <h1 *ngIf='this.especialidadSeleccionada' class="text-center text-white rounded bg-primary">
+                {{this.especialidadSeleccionada}}</h1>
+            <h3 class="text-center">Seleccione una especialidad para editar horarios</h3>
+
+
+            <section class="row " *ngIf='this.especialidadSeleccionada'>
+                <div class="col-12 bg-dark rounded text-white ">
+
+                    <hr class="bg-white">
+                    <section class="row ">
+
+                        <div class="col" align='center'>
+
+                            <app-checkbox [contenido]='"L"' (valorRetorno)='diasBool.lunes=$event'></app-checkbox>
+
+                            <app-checkbox class="ml-2" [contenido]='"M"' (valorRetorno)='diasBool.martes=$event'>
+                            </app-checkbox>
+
+                            <app-checkbox class="ml-2" [contenido]='"MI"' (valorRetorno)='diasBool.miercoles=$event'>
+                            </app-checkbox>
+
+                            <app-checkbox class="ml-2" [contenido]='"J"' (valorRetorno)='diasBool.jueves=$event'>
+                            </app-checkbox>
+
+                            <app-checkbox class="ml-2" [contenido]='"V"' (valorRetorno)='diasBool.viernes=$event'>
+                            </app-checkbox>
+
+                            <app-checkbox class="ml-2" [contenido]='"S"' (valorRetorno)='diasBool.sabados=$event'>
+                            </app-checkbox>
+
 
                         </div>
 
                     </section>
-                </section>
 
-                
+                    <section class="row mt-3">
 
-            </div>
-            <div class="col mr-3">
+                        <div class="col text-center mb-2">
+                            <h3>Horario</h3>
+                            <button [class]="claseBoton1" (click)='SeleccionarHorario(1)'>8 a 12</button>
+                            <button class="ml-2" [class]="claseBoton2" (click)='SeleccionarHorario(2)'>8 a 17</button>
+                            <button class="ml-2" [class]="claseBoton3" (click)='SeleccionarHorario(3)'> 13 a 19</button>
+                        </div>
 
-                <table class="table table-primary table-hover">
+                    </section>
 
-                    <thead>
-                        <tr>
-                            <th>Dias</th>
-                            <th>Hora Inicio</th>
-                            <th>Hora Fin</th>
-                        </tr>
-                    </thead>
+                    <section *ngIf='diasBool.sabados'>
+
+                        <section class="row mt-3">
+
+                            <div class="col text-center mb-2">
+                                <hr class='bg-white'>
+                                <h3>Horario Sabados</h3>
+                                <button [class]="claseBotonSabados1" (click)='SeleccionarHorarioSabados(1)'>8 a
+                                    12</button>
+                                <button class="ml-2" [class]="claseBotonSabados2"
+                                    (click)='SeleccionarHorarioSabados(2)'>8 a 14</button>
+
+                            </div>
+                        </section>
+                    </section>
+
+
+
+                </div>
+                <div class="col ">
+
+                    <hr class='bg-white'>
+                    <div class="table-responsive-sm">
+                        <table class="table table-primary table-hover ">
+
+                            <thead>
+                                <tr>
+                                    <th>Dias</th>
+                                    <th>Hora Inicio</th>
+                                    <th>Hora Fin</th>
+                                </tr>
+                            </thead>
+    
+                            <tbody *ngIf='this.horariosDeEspecialidad'>
+                                <tr>
+                                    <td>
+                                        {{diasMostrar}}
+                                    </td>
+                                    <td>
+                                        {{horariosDeEspecialidad.desde}}
+                                    </td>
+                                    <td>
+                                        {{horariosDeEspecialidad.hasta}}
+                                    </td>
+                                </tr>
+                                <tr *ngIf='trabajaSabado'>
+                                    <td>Sabados</td>
+                                    <td>{{this.horariosDeEspecialidad.desdeSabados}}</td>
+                                    <td>{{this.horariosDeEspecialidad.hastaSabados}}</td>
+                                </tr>
+                            </tbody>
+    
+    
+                        </table>
+                    </div>
                     
-                    <tbody *ngIf='this.horariosDeEspecialidad'>
-                        <tr>
-                            <td>
-                                {{diasMostrar}}
-                            </td>
-                            <td>
-                                {{horariosDeEspecialidad.desde}}
-                            </td>
-                            <td>
-                                {{horariosDeEspecialidad.hasta}}
-                            </td>
-                        </tr>
-                        <tr *ngIf='trabajaSabado'>
-                            <td>Sabados</td>
-                            <td>{{this.horariosDeEspecialidad.desdeSabados}}</td>
-                            <td>{{this.horariosDeEspecialidad.hastaSabados}}</td>
-                        </tr>
-                    </tbody>
-                    
 
-                </table>
+                </div>
 
+            </section>
+
+
+
+            <div class="row mt-3 ml-1 mr-1" *ngIf='this.especialidadSeleccionada'>
+                <div class="col">
+                    <button class="btn btn-warning btn-block" (click)='ModificarFechas()'>Modificar Dias</button>
+                </div>
             </div>
 
-        </section>
-            
-
-            
-        <div class="row mt-3 ml-1 mr-1" *ngIf='this.especialidadSeleccionada'>
-            <div class="col">
-                <button class="btn btn-warning btn-block" (click)='ModificarFechas()'>Modificar Dias</button>
-            </div>
-        </div>
-            
 
         </div>
     </div>
-    
-</section>
-    
 
-    
+</section>

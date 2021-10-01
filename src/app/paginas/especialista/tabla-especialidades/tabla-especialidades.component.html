@@ -1,6 +1,6 @@
 <div *ngIf='this.listaEspecialidades!=false'>
 
-    <table class="table table-hover table-dark" >
+    <!--table class="table table-hover table-dark" >
         <thead class="bg-primary">
             <tr >
                 <th>ESPECIALIDES</th>
@@ -14,7 +14,16 @@
         </tbody>
         
         
-    </table>
+    </table-->
+
+    <section class='bg-dark rounded p-2 text-white text-center'>
+        <h4>Especialidades</h4>
+
+        <button class='btn btn-primary btn-block mt-1' *ngFor='let i of this.listaEspecialidades' (click)='Seleccionar(i)'  >
+            {{i}}
+        </button>
+
+    </section>
     
 
 </div>
