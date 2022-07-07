@@ -1,18 +1,14 @@
-<div style="height: 75px;">
-
-</div>
-
 <section class="container">
 
 
     <app-grafico-dona></app-grafico-dona>
 
-    <section class='bg-dark pl-3 pt-3 pb-3 rounded'>
+    <section class='bg-dark p-2 rounded'>
 
 
 
         <div class="row">
-            <div class="col-5">
+            <div class="col-6">
 
                 <div class="form-row ">
                     <div class="col input-group mb-2">
@@ -24,27 +20,30 @@
                 </div>
 
             </div>
-            <div class="col-5">
+            <div class="col-6">
                 <div class="form-row ">
                     <div class="col input-group mb-2">
                         <input type="text" id="textEspecialista" class="form-control form-text"
-                            placeholder="Especialista" [(ngModel)]="inputPaciente" appEscucharTeclado>
+                            placeholder="Paciente" [(ngModel)]="inputPaciente" appEscucharTeclado>
                         <button (click)='BuscarPorEspecialista()' id='btnEspecialista' class="mt-1 btn btn-success">
                             <img src="assets/buscar.svg" width="20px"></button>
                     </div>
                 </div>
             </div>
-            <div class="col">
-                <button class="btn btn-success" data-toggle="modal" data-target="#modalGrafico">Graficar</button>
-            </div>
+            
 
+        </div>
+        <div class="row">
+            <div class="col">
+                <button class="btn btn-success btn-block" data-toggle="modal" data-target="#modalGrafico">Graficar</button>
+            </div>
         </div>
 
     </section>
 
 
-    <div class="lista" *ngIf='this.cargo'>
-        <table class="table table-primary table-hover">
+    <div class="lista mt-3" *ngIf='this.cargo'>
+        <table class="table table-dark table-hover text-center">
             <thead>
                 <tr>
                     <th>Fecha</th>
@@ -64,30 +63,30 @@
                     <td>{{unTurno.estadoTurno | primeraLetraMayuscula}}</td>
 
                     <td *ngIf='unTurno.estadoTurno=="aceptado"'>
-                        <button class="btn btn-outline-danger"
+                        <button class="btn btn-danger"
                             (click)='AbrirModalCancelarTurno(unTurno)'>Cancelar</button>
                     </td>
                     <td *ngIf='unTurno.estadoTurno=="pendiente"'>
-                        <button class="btn btn-outline-danger"
+                        <button class="btn btn-danger"
                             (click)='AbrirModalRechazarTurno(unTurno)'>Rechazar</button>
                     </td>
                     <td *ngIf='unTurno.estadoTurno=="pendiente" '>
-                        <button class="btn btn-outline-success" (click)='AceptarTurno(unTurno)'>Aceptar</button>
+                        <button class="btn btn-success" (click)='AceptarTurno(unTurno)'>Aceptar</button>
                     </td>
                     <td *ngIf='unTurno.estadoTurno=="aceptado"'>
-                        <button class="btn btn-outline-success"
+                        <button class="btn btn-success"
                             (click)='AbrirModalFinalizarTurno(unTurno)'>Finalizar</button>
                     </td>
                     <td *ngIf='unTurno.estadoTurno=="cancelado"'>
-                        <button class="btn btn-outline-danger" (click)='AbrirModalVerDetalles(unTurno)'>Ver
+                        <button class="btn btn-primary" (click)='AbrirModalVerDetalles(unTurno)'>Ver
                             Detalles</button>
                     </td>
                     <td *ngIf='unTurno.estadoTurno=="finalizado"'>
-                        <button class="btn btn-outline-danger" (click)='AbrirModalVerDetalles(unTurno)'>Ver
+                        <button class="btn btn-primary" (click)='AbrirModalVerDetalles(unTurno)'>Ver
                             Detalles</button>
                     </td>
                     <td *ngIf='unTurno.estadoTurno=="rechazado"'>
-                        <button class="btn btn-outline-danger" (click)='AbrirModalVerDetalles(unTurno)'>Ver
+                        <button class="btn btn-primary" (click)='AbrirModalVerDetalles(unTurno)'>Ver
                             Detalles</button>
                     </td>
                     <td *ngIf='unTurno.estadoTurno=="rechazado" || unTurno.estadoTurno=="finalizado" || unTurno.estadoTurno=="cancelado"'>
